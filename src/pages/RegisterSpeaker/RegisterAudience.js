@@ -17,7 +17,7 @@ const RegisterWrapper = styled.div`
   }
 `;
 
-function RegisterSpeaker() {
+function RegisterAudience() {
   return (
     <div>
       <RegisterWrapper className="login-form shadow  bg-white rounded">
@@ -80,4 +80,4 @@ function RegisterSpeaker() {
   );
 }
 
-export default RegisterSpeaker;
+export default RegisterAudience;
