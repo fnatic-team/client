@@ -18,7 +18,8 @@ display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-width:50%;`
+width:50%;
+text-align:left;`
 
 const Section2=styled.div`
 width:50%;
@@ -31,7 +32,7 @@ function Jumbotron() {
     <JumbotronWrapper>
       <Main>
         <Section1>
-          <h1>Find World's Best Speaker Experiece</h1>
+          <h2>Find World's Best Speaker Experiece</h2>
           <p>
             Semua orang yang membutuhkan publik speaking yang handal dan
             memiliki pengalaman yang sudah teruji kemampuannya. Disinilah
