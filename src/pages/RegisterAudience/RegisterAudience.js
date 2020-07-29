@@ -27,7 +27,7 @@ function RegisterAudience() {
         <span>Ingin mendaftar sebagai speaker? Klik disini </span>
         <hr />
         <FormGroup style={{ textAlign: "left" }}>
-          <Label>Nama Lengkap</Label>
+          <Label>Nama Lengkap :</Label>
 
           <Input
             type="text"
@@ -38,7 +38,7 @@ function RegisterAudience() {
         </FormGroup>
         <div className="container1">
           <FormGroup style={{ textAlign: "left" }}>
-            <Label>Username</Label>
+            <Label>Username :</Label>
             <Input
               type="text"
               name="username"
@@ -47,7 +47,7 @@ function RegisterAudience() {
             />
           </FormGroup>
           <FormGroup style={{ textAlign: "left" }}>
-            <Label>Password</Label>
+            <Label>Password :</Label>
             <Input
               type="password"
               name="password"
@@ -57,7 +57,7 @@ function RegisterAudience() {
           </FormGroup>
         </div>
         <FormGroup style={{ textAlign: "left" }}>
-          <Label>Email</Label>
+          <Label>Email :</Label>
           <Input
             type="email"
             name="email"
@@ -66,7 +66,7 @@ function RegisterAudience() {
           />
         </FormGroup>
         <FormGroup style={{ textAlign: "left" }}>
-          <Label>Nomor Telpon</Label>
+          <Label>Nomor Telpon :</Label>
           <Input
             type="text"
             name="phonenumber"
