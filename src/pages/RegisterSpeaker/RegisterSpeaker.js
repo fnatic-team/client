@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
-import TextareaAutosize from "react-textarea-autosize";
 
 const RegisterWrapper = styled.div`
   width: 100%;

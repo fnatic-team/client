@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CardBrowser from "../components/CardBrowser";
+import CardBrowser from "../../components/CardBrowser";
 
 const Container1 = styled.div`
   display: flex;
