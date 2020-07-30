@@ -4,42 +4,44 @@ import styled from "styled-components";
 
 const JumbotronWrapper = styled.div`
   display: flex;
-  justify-content:center;
-  margin:30px;
+  justify-content: center;
+  margin: 30px;
 `;
 const Main = styled.div`
   display: flex;
   flex-direction: row;
-  width:80%;
+  width: 80%;
 `;
 
-const Section1 =styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-width:50%;
-text-align:left;`
+const Section1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50%;
+  text-align: left;
+`;
 
-const Section2=styled.div`
-width:50%;
-img{
-    width:100%;
-}`
+const Section2 = styled.div`
+  width: 50%;
+  img {
+    width: 100%;
+  }
+`;
 
 function Jumbotron() {
   return (
     <JumbotronWrapper>
       <Main>
         <Section1>
-          <h2>Find World's Best Speaker Experiece</h2>
-          <p>
+          <p className="h2 mb-4">Find World's Best Speaker Experiece</p>
+          <p className="mt-2">
             Semua orang yang membutuhkan publik speaking yang handal dan
             memiliki pengalaman yang sudah teruji kemampuannya. Disinilah
             solusinya
           </p>
           <div>
-          <Button className="btn-lg btn-dark">Mulai</Button>
+            <Button className="btn-lg btn-dark">Mulai</Button>
           </div>
         </Section1>
 

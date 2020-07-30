@@ -12,31 +12,32 @@ const FooterWraper = styled.div`
 const Container1 = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   width: 83%;
-  margin:30px;
+  margin: 30px;
 `;
 
 const Container2 = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  align-items: center;
-  color:white;
-  flex-wrap:wrap;
-  margin-top:5px;
+  align-items: flex-start;
+  color: white;
+  flex-wrap: wrap;
+  margin-top: 5px;
   img {
-    align-self:flex-start;
+    align-self: flex-start;
     width: 200px;
-    margin:5px;
+    margin: 5px;
   }
 `;
 
-const Icon =styled.div`
-display:flex;
-justify-content:space-evenly;
-flex-direction:row;
-width:100%;`
+const Icon = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+`;
 
 function Footer() {
   return (
@@ -48,7 +49,9 @@ function Footer() {
             <img src={logo} alt="" />
           </div>
 
-          <p>An amazing solution for find experienced speaker</p>
+          <p className="text-left">
+            An amazing solution to find experienced speaker
+          </p>
           <Icon>
             <i className="fa fa-2x fa-facebook" aria-hidden="true"></i>
             <i className="fa fa-2x fa-instagram" aria-hidden="true"></i>
