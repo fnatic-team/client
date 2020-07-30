@@ -3,67 +3,65 @@ import styled from "styled-components";
 
 const RegistrationWrapper = styled.div`
   display: flex;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 70%;
+  max-width: 100%;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-`;
+  margin-top:30px;
+  margin: auto;
+  .divider {
+    width: 1px;
+    border: 1px solid black;
+  }
 
-const Container1 = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Container2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+  .container1 {
+    margin-top:30px;
+    margin-bottom: 20px;
+  }
 `;
 
 function Registrasi() {
   return (
-    <RegistrationWrapper>
-      <Container>
-        <h1>Buat Akun di Narasumber</h1>
-        <span>
-          Narasumber adalah website untuk mencari para publik speaker yang sudah
-          berpengalaman
-        </span>
-        <Container1>
-          <Container2>
-            <span>Speaker</span>
-            <span>
-              Apakah anda public speaker yang berpengalaman? 
-            </span>
-            <p>Daftar sebagai
-              Speaker</p>
-            <div>
-              <button className="btn btn-lg btn-success mt-30">
-                Daftar Sebagai Speaker
+    <div>
+      <RegistrationWrapper>
+        <div className="container-fluid">
+          <div className="row container1">
+            <div className="col-sm-12 col-center text-center">
+              <h2>Buat akun di Narasumber.com</h2>
+              <p>
+                Narasumber adalah website untuk mencari para publik speaker yang
+                sudah berpengalaman.
+              </p>
+            </div>
+          </div>
+
+          <div className="row d-flex justify-content-center">
+            <div className="col-sm-10 col-md-5 col-md-offset-1">
+              <img src="https://via.placeholder.com/150" alt="" />
+              <div>
+                <h4>Speaker</h4>
+                <p>Apakah anda public speaker yang berpengalaman?</p>
+                <p>Daftar sebagai Speaker.</p>
+              </div>
+              <button className="btn btn-xs btn-primary mt-30">
+                Daftar sebagai Speaker
               </button>
             </div>
-          </Container2>
-          <Container2>
-            <span>Audience</span>
-            <span>
-              Mencari publik speaker untuk event?
-            </span>
-            <p>Daftar sebagai Audience</p>
-            <div>
-              <button className="btn btn-lg btn-success mt-30">
-                Daftar Sebagai Audience
+            <div className="divider"></div>
+            <div className="col-sm-10 col-md-5 col-md-offset-1">
+              <img src="https://via.placeholder.com/150" alt="" />
+              <div>
+                <h4>Audience</h4>
+                <p>Mencari publik speaker untuk event?</p>
+                <p>Daftar sebagai Audience.</p>
+              </div>
+              <button className="btn btn-xs btn-primary mt-30">
+                Daftar sebagai Audience
               </button>
             </div>
-         
-          </Container2>
-        </Container1>
-      </Container>
-    </RegistrationWrapper>
+          </div>
+        </div>
+      </RegistrationWrapper>
+    </div>
   );
 }
 
