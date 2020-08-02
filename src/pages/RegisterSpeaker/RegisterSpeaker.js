@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const RegisterWrapper = styled.div`
-  width: 100%;
-  max-width: 500px;
+  width: 600px;
+  max-width: 100%;
   padding: 40px;
   margin: auto;
   height: 100%;
-  border: 1px black solid;
-  margin-top: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   .container1 {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
   textarea {
     width: 100%;
@@ -24,11 +25,16 @@ const RegisterWrapper = styled.div`
 function RegisterSpeaker() {
   return (
     <div>
-      <RegisterWrapper className="login-form shadow  bg-white rounded">
-        <h2 className="text-center">Daftar Sebagai Speaker</h2>
-        <span>Sudah punya akun? Masuk</span>
+      <RegisterWrapper className="login-form shadow-lg  bg-white rounded">
+        <h2 className="text-center">Daftar sebagai Speaker</h2>
+        <span>
+          Sudah punya akun? <Link to="/login">Masuk</Link>
+        </span>
         <br />
-        <span>Ingin mendaftar sebagai audience? Klik disini </span>
+        <span>
+          Ingin mendaftar sebagai audience?{" "}
+          <Link to="/registrasi/audience">Klik disini</Link>{" "}
+        </span>
         <hr />
         <FormGroup style={{ textAlign: "left" }}>
           <Label>Nama Lengkap :</Label>
@@ -70,6 +76,16 @@ function RegisterSpeaker() {
           />
         </FormGroup>
         <FormGroup style={{ textAlign: "left" }}>
+          <Label>Speaker as :</Label>
+          <select className="custom-select">
+            <option selected>Pilih...</option>
+            <option value="React JS">React JS</option>
+            <option value="React Native">React Native</option>
+            <option value="Angular JS">Angular JS</option>
+          </select>
+        </FormGroup>
+
+        <FormGroup style={{ textAlign: "left" }}>
           <Label>Nomor Telpon :</Label>
           <Input
             type="text"
@@ -78,10 +94,15 @@ function RegisterSpeaker() {
             placeholder="Masukan Nomor Telpon"
           />
         </FormGroup>
-        <FormGroup>
-          <textarea />
+        <FormGroup style={{ textAlign: "left" }}>
+          <Label>Resume :</Label>
+          <button className="btn btn-primary btn-block">Upload resume</button>
         </FormGroup>
-        <button className="btn btn-primary btn-block">Daftar</button>
+
+        <br />
+        <button className="btn btn-primary btn-block">
+          Daftar sebagai Speaker
+        </button>
       </RegisterWrapper>
     </div>
   );

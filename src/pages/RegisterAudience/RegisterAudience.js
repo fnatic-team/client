@@ -1,30 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
+import {Link} from 'react-router-dom'
 
 const RegisterWrapper = styled.div`
-  width: 100%;
-  max-width: 500px;
+  width: 600px;
+  max-width: 100%;
   padding: 50px;
   margin: auto;
   height: 100%;
-  border: 1px black solid;
-  margin-top: 50px;
+  margin-top: 100px;
+  margin-bottom:100px;
   .container1 {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 `;
 
 function RegisterAudience() {
   return (
     <div>
-      <RegisterWrapper className="login-form shadow  bg-white rounded">
+      <RegisterWrapper className="login-form shadow-lg  bg-white rounded">
         <h2 className="text-center">Daftar sebagai Audience</h2>
         <span>Sudah punya akun? Masuk</span>
         <br />
-        <span>Ingin mendaftar sebagai speaker? Klik disini </span>
+        <span>Ingin mendaftar sebagai speaker? <Link to="/registrasi/speaker">Klik disini</Link> </span>
         <hr />
         <FormGroup style={{ textAlign: "left" }}>
           <Label>Nama Lengkap :</Label>

@@ -6,16 +6,20 @@ const RegistrationWrapper = styled.div`
   max-width: 100%;
   justify-content: space-evenly;
   align-items: center;
-  margin-top:30px;
+  margin-top:100px;
+  margin-bottom:100px;
   margin: auto;
   .divider {
-    width: 1px;
     border: 1px solid black;
+    width: 1px;
   }
 
   .container1 {
     margin-top:30px;
     margin-bottom: 20px;
+  }
+  .container2{
+    margin-bottom:100px;
   }
 `;
 
@@ -34,7 +38,7 @@ function Registrasi() {
             </div>
           </div>
 
-          <div className="row d-flex justify-content-center">
+          <div className="row d-flex justify-content-center container2">
             <div className="col-sm-10 col-md-5 col-md-offset-1">
               <img src="https://via.placeholder.com/150" alt="" />
               <div>

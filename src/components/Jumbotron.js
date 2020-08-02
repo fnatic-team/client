@@ -1,54 +1,51 @@
 import React from "react";
-import { Button } from "reactstrap";
 import styled from "styled-components";
 
 const JumbotronWrapper = styled.div`
-  display: flex;
-  justify-content:center;
-  margin:30px;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(294deg, #006080, #006181 47%, #003648);
 `;
-const Main = styled.div`
-  display: flex;
-  flex-direction: row;
-  width:80%;
-`;
-
-const Section1 =styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-width:50%;
-text-align:left;`
-
-const Section2=styled.div`
-width:50%;
-img{
-    width:100%;
-}`
 
 function Jumbotron() {
-  return (
-    <JumbotronWrapper>
-      <Main>
-        <Section1>
-          <h2>Find World's Best Speaker Experiece</h2>
-          <p>
-            Semua orang yang membutuhkan publik speaking yang handal dan
-            memiliki pengalaman yang sudah teruji kemampuannya. Disinilah
-            solusinya
-          </p>
-          <div>
-          <Button className="btn-lg btn-dark">Mulai</Button>
-          </div>
-        </Section1>
-
-        <Section2>
-          <img src="https://via.placeholder.com/300" alt="" />
-        </Section2>
-      </Main>
-    </JumbotronWrapper>
-  );
+    return (
+        <JumbotronWrapper>
+            <div className="row m-auto">
+                <div className="row">
+                    <div className="col-sm">
+                        <h2
+                            style={{
+                                color: "white",
+                                fontWeight: "Bold",
+                                textAlign: "left",
+                            }}
+                        >
+                            Find World's Best Speaker Experiece
+                        </h2>
+                        <br />
+                        <p style={{ color: "white", textAlign: "left" }}>
+                            Semua orang yang membutuhkan publik speaking yang
+                            handal dan memiliki pengalaman yang sudah teruji
+                            kemampuannya. Disinilah solusinya
+                        </p>
+                        <button
+                            className="btn-lg btn-highlight text-white align-self-center m-3"
+                            style={{
+                                background: "rgb(255, 107, 84)",
+                                padding: "10px 30px 10px 30px",
+                            }}
+                        >
+                            Mulai
+                        </button>
+                    </div>
+                    <div className="col-sm">
+                        <img src="https://via.placeholder.com/300" alt="" />
+                    </div>
+                </div>
+            </div>
+        </JumbotronWrapper>
+    );
 }
 
 export default Jumbotron;

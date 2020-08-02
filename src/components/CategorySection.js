@@ -1,38 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import CardCategory from "./CardCategory";
+import Rosa from "react-on-scroll-animation";
 
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Container1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-`;
+const wrapper = {
+    padding: "50px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+};
 
 function CategorySection() {
-  return (
-    <Container>
-    <h3>Speaker by Category</h3>
-    <Container1>
-      <CardCategory />
-      <CardCategory />
-      <CardCategory />
-      <CardCategory />
-      <CardCategory />
-      <CardCategory />
-    </Container1>
-  </Container>
-  );
+    return (
+        <Rosa className="container" animation="fade-down" duration={1000}>
+            <h2 className="m-5">Speaker by Category</h2>
+            <div className="row m-auto">
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+                <div className="col-sm-4">
+                    <CardCategory />
+                </div>
+            </div>
+        </Rosa>
+    );
 }
 
 export default CategorySection;
