@@ -8,33 +8,37 @@ import BrowserSpeaker from "./pages/BrowserSpeaker/BrowserSpeaker";
 import RegistrasiAudience from "./pages/RegisterAudience/RegisterAudience";
 import RegistrasiSpeaker from "./pages/RegisterSpeaker/RegisterSpeaker";
 import Registrasi from "./pages/Registrasi/Registrasi";
+import EditBiodata from "./pages/EditBiodata/EditBiodata";
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/search">
-            <BrowserSpeaker />
-          </Route>
-          <Route exact path="/registrasi/audience">
-            <RegistrasiAudience />
-          </Route>
-          <Route exact path="/registrasi/speaker">
-            <RegistrasiSpeaker />
-          </Route>
-          <Route exact path="/registrasi">
-            <Registrasi />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Router>
+                <Header />
+                <Switch>
+                    <Route exact path="/">
+                        <LandingPage />
+                    </Route>
+                    <Route exact path="/search">
+                        <BrowserSpeaker />
+                    </Route>
+                    <Route exact path="/registrasi/audience">
+                        <RegistrasiAudience />
+                    </Route>
+                    <Route exact path="/registrasi/speaker">
+                        <RegistrasiSpeaker />
+                    </Route>
+                    <Route exact path="/registrasi">
+                        <Registrasi />
+                    </Route>
+                    <Route exact path="/profile/edit">
+                        <EditBiodata />
+                    </Route>
+                </Switch>
+                <Footer />
+            </Router>
+        </div>
+    );
 }
 
 export default App;
