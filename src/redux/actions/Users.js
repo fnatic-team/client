@@ -61,32 +61,18 @@ const userLogin = (formData, history) => async () => {
         } else if (response.status === 200 && dataUser.status === "ACTIVE") {
             localStorage.setItem("token", result.result);
 
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                onOpen: (toast) => {
-                    toast.addEventListener("mouseenter", Swal.stopTimer);
-                    toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                title: "Signed in successfully",
-                icon: "success",
-            });
-
-            setTimeout(() => {
-                history.push("/userprofile");
-                window.location.reload();
-            }, 3000);
+            Swal.fire({
+            title: "Berhasil Masuk",
+            text: "",
+            icon: "success",
+            confirmButtonText: "ok",
+        });
+        history.push("/");
         } else {
             Swal.fire({
                 icon: "error",
                 title: "Forbidden",
-                text: "wrong email or Password",
+                text: "email atau password salah",
             });
         }
     } catch (error) {
@@ -94,7 +80,7 @@ const userLogin = (formData, history) => async () => {
         Swal.fire({
             icon: "error",
             title: "Forbidden",
-            text: "Wrong Email or Password",
+            text: "email atau password salah",
         });
     }
 };
