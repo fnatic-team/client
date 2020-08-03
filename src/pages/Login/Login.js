@@ -16,24 +16,22 @@ function Login() {
     return (
         <div style={{ margin: "80px 0px 80px 0px" }}>
             <LoginWrapper className="shadow-lg container">
-                <FormGroup>
-                    <h2 className="text-center">Masuk</h2>
-                    <Label>Email</Label>
+                <h2 className="text-center">Masuk</h2>
+                <FormGroup className="text-left">
+                    <Label>Email :</Label>
                     <Input
                         type="email"
                         name="email"
                         id="email"
-                        disabled
                         placeholder="Your emails.."
                     />
                 </FormGroup>
-                <FormGroup>
-                    <Label>Password</Label>
+                <FormGroup className="text-left">
+                    <Label>Password :</Label>
                     <Input
                         type="password"
                         name="password"
                         id="password"
-                        disabled
                         placeholder="Your password.."
                     />
                 </FormGroup>

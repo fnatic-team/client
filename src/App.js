@@ -10,7 +10,9 @@ import RegistrasiSpeaker from "./pages/RegisterSpeaker/RegisterSpeaker";
 import Registrasi from "./pages/Registrasi/Registrasi";
 import EditBiodata from "./pages/EditBiodata/EditBiodata";
 import Login from "./pages/Login/Login";
-
+import Appointment from "./pages/Appointment/Appointment";
+import Profile from "./pages/Profile/Profile";
+import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 
 function App() {
     return (
@@ -33,10 +35,21 @@ function App() {
                     <Route exact path="/registrasi">
                         <Registrasi />
                     </Route>
-                    <Route exact path="/profile/edit">
-                        <EditBiodata />
                     <Route exact path="/login">
                         <Login />
+                    </Route>
+                    <Route exact path="/profile/edit">
+                        <EditBiodata />
+                    </Route>
+                    <Route exact path="/appointment">
+                        <Appointment />
+                    </Route>
+
+                    <Route exact path="/profile">
+                        <Profile />
+                    </Route>
+                    <Route exact path="/schedule">
+                        <SpeakerSchedule />
                     </Route>
                 </Switch>
                 <Footer />

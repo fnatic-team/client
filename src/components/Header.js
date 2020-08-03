@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Header() {
-    const [change, setChange] = useState("transparant");
+    const [change, setChange] = useState("");
+    const history = useHistory();
+    console.log(history);
 
     const handleScroll = () => {
-        window.scrollY < 1 ? setChange("") : setChange("#003648");
+        window.scrollY < 1 && history.location.pathname === "/"
+            ? setChange("")
+            : setChange("#003648");
     };
 
     useEffect(() => {
@@ -19,11 +24,13 @@ function Header() {
             style={{ backgroundColor: `${change}` }}
         >
             <div className="navbar-brand w-25">
-                <img
-                    src={logo}
-                    alt=""
-                    style={{ width: "200px", height: "30px" }}
-                />
+                <Link to="/">
+                    <img
+                        src={logo}
+                        alt=""
+                        style={{ width: "200px", height: "30px" }}
+                    />{" "}
+                </Link>
             </div>
             <button
                 className="navbar-toggler"
@@ -41,13 +48,21 @@ function Header() {
                     <i className="fa fa-bars" aria-hidden="true"></i>
                 </span>
             </button>
-
             <div
                 className="collapse navbar-collapse"
                 id="navbarSupportedContent"
             >
                 <div className="navbar-nav mr-auto text-white w-50 justify-content-around align-items-center">
-                    <span>Browser All Speaker</span>
+                    <Link
+                        to="/search"
+                        style={{
+                            "&:hover": {
+                                background: "rgb(255, 107, 84)",
+                            },
+                        }}
+                    >
+                        <span className="text-white">Browser All Speaker</span>
+                    </Link>
                     <span>Find Speaker</span>
                     <span>Find Location</span>
                 </div>
