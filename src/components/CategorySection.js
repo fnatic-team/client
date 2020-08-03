@@ -1,14 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import CardCategory from "./CardCategory";
 import Rosa from "react-on-scroll-animation";
-
-const wrapper = {
-    padding: "50px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-};
 
 function CategorySection() {
     return (
