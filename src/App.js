@@ -8,7 +8,9 @@ import BrowserSpeaker from "./pages/BrowserSpeaker/BrowserSpeaker";
 import RegistrasiAudience from "./pages/RegisterAudience/RegisterAudience";
 import RegistrasiSpeaker from "./pages/RegisterSpeaker/RegisterSpeaker";
 import Registrasi from "./pages/Registrasi/Registrasi";
+import EditBiodata from "./pages/EditBiodata/EditBiodata";
 import Login from "./pages/Login/Login";
+
 
 function App() {
     return (
@@ -31,6 +33,8 @@ function App() {
                     <Route exact path="/registrasi">
                         <Registrasi />
                     </Route>
+                    <Route exact path="/profile/edit">
+                        <EditBiodata />
                     <Route exact path="/login">
                         <Login />
                     </Route>
