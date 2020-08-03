@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 function Header() {
     const [change, setChange] = useState("");
     const history = useHistory();
-    console.log(history);
 
     const handleScroll = () => {
         window.scrollY < 1 && history.location.pathname === "/"

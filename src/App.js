@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -17,43 +20,45 @@ import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 function App() {
     return (
         <div className="App">
-            <Router>
-                <Header />
-                <Switch>
-                    <Route exact path="/">
-                        <LandingPage />
-                    </Route>
-                    <Route exact path="/search">
-                        <BrowserSpeaker />
-                    </Route>
-                    <Route exact path="/registrasi/audience">
-                        <RegistrasiAudience />
-                    </Route>
-                    <Route exact path="/registrasi/speaker">
-                        <RegistrasiSpeaker />
-                    </Route>
-                    <Route exact path="/registrasi">
-                        <Registrasi />
-                    </Route>
-                    <Route exact path="/login">
-                        <Login />
-                    </Route>
-                    <Route exact path="/profile/edit">
-                        <EditBiodata />
-                    </Route>
-                    <Route exact path="/appointment">
-                        <Appointment />
-                    </Route>
+            <Provider store={store}>
+                <Router>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/">
+                            <LandingPage />
+                        </Route>
+                        <Route exact path="/search">
+                            <BrowserSpeaker />
+                        </Route>
+                        <Route exact path="/registrasi/audience">
+                            <RegistrasiAudience />
+                        </Route>
+                        <Route exact path="/registrasi/speaker">
+                            <RegistrasiSpeaker />
+                        </Route>
+                        <Route exact path="/registrasi">
+                            <Registrasi />
+                        </Route>
+                        <Route exact path="/login">
+                            <Login />
+                        </Route>
+                        <Route exact path="/profile/edit">
+                            <EditBiodata />
+                        </Route>
+                        <Route exact path="/appointment">
+                            <Appointment />
+                        </Route>
 
-                    <Route exact path="/profile">
-                        <Profile />
-                    </Route>
-                    <Route exact path="/schedule">
-                        <SpeakerSchedule />
-                    </Route>
-                </Switch>
-                <Footer />
-            </Router>
+                        <Route exact path="/profile">
+                            <Profile />
+                        </Route>
+                        <Route exact path="/schedule">
+                            <SpeakerSchedule />
+                        </Route>
+                    </Switch>
+                    <Footer />
+                </Router>
+            </Provider>
         </div>
     );
 }

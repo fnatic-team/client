@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { registerUser } from "../../redux/actions";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const RegisterWrapper = styled.div`
+const RegisterWrapper = styled.form`
     width: 600px;
     max-width: 100%;
     padding: 50px;
     margin: auto;
-    height: 100%;
     margin-top: 100px;
+    height: 100%;
     margin-bottom: 100px;
     .container1 {
         display: flex;
@@ -19,9 +22,31 @@ const RegisterWrapper = styled.div`
 `;
 
 function RegisterAudience() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        username: "",
+        password: "",
+        phone: "",
+    });
+    console.log(formData);
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        dispatch(registerUser(formData, history));
+    };
+
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
     return (
         <div>
-            <RegisterWrapper className="login-form shadow-lg  bg-white rounded">
+            <RegisterWrapper
+                onSubmit={handleSubmit}
+                className="login-form shadow-lg  bg-white rounded"
+            >
                 <h2 className="text-center">Daftar sebagai Audience</h2>
                 <span>
                     Sudah punya akun? <Link to="/login">Masuk</Link>
@@ -29,7 +54,7 @@ function RegisterAudience() {
                 <br />
                 <span>
                     Ingin mendaftar sebagai speaker?{" "}
-                    <Link to="/registrasi/speaker">Klik disini</Link>{" "}
+                    <Link to="/registrasi/speaker">Klik disini</Link>
                 </span>
                 <hr />
                 <FormGroup style={{ textAlign: "left" }}>
@@ -37,8 +62,10 @@ function RegisterAudience() {
 
                     <Input
                         type="text"
-                        name="fullname"
+                        name="name"
                         id="fullname"
+                        onChange={handleChange}
+                        value={formData.fullname}
                         placeholder="Masukan nama lengkap"
                     />
                 </FormGroup>
@@ -49,6 +76,8 @@ function RegisterAudience() {
                             type="text"
                             name="username"
                             id="username"
+                            onChange={handleChange}
+                            value={formData.username}
                             placeholder="Masukan username"
                         />
                     </FormGroup>
@@ -58,6 +87,8 @@ function RegisterAudience() {
                             type="password"
                             name="password"
                             id="password"
+                            onChange={handleChange}
+                            value={formData.password}
                             placeholder="Masukan password"
                         />
                     </FormGroup>
@@ -68,6 +99,8 @@ function RegisterAudience() {
                         type="email"
                         name="email"
                         id="email"
+                        onChange={handleChange}
+                        value={formData.email}
                         placeholder="Masukan email"
                     />
                 </FormGroup>
@@ -75,8 +108,10 @@ function RegisterAudience() {
                     <Label>Nomor Telpon :</Label>
                     <Input
                         type="text"
-                        name="phonenumber"
-                        id="phonenumber"
+                        name="phone"
+                        id="phone"
+                        onChange={handleChange}
+                        value={formData.phone}
                         placeholder="Masukan Nomor Telpon"
                     />
                 </FormGroup>
