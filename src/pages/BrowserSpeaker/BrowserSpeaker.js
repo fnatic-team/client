@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import CardBrowser from "../../components/CardBrowser";
 
@@ -25,7 +25,15 @@ const SearchWrapper = styled.div`
     margin: 40px;
 `;
 
+
+
 function BrowserSpeaker() {
+
+    const [input, setInput] = useState("")
+
+    console.log(input)
+    
+
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
             <Container>
@@ -35,6 +43,7 @@ function BrowserSpeaker() {
                         type="search"
                         placeholder="Nama Pembicara"
                         aria-label="Search"
+                        onChange={(event) => setInput(event.target.value)}
                     />
 
                     <select className="form-control ">
@@ -48,11 +57,6 @@ function BrowserSpeaker() {
 
             <Container>
                 <Container1>
-                    <CardBrowser />
-                    <CardBrowser />
-                    <CardBrowser />
-                    <CardBrowser />
-                    <CardBrowser />
                     <CardBrowser />
                 </Container1>
             </Container>
