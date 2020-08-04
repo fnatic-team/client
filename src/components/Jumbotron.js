@@ -1,50 +1,53 @@
 import React from "react";
-import styled from "styled-components";
+import hero from "./../assets/images/hero.png";
 
-const JumbotronWrapper = styled.div`
-    padding: 100px;
-    display: flex;
-    justify-content: center;
-    background-image: linear-gradient(294deg, #006080, #006181 47%, #003648);
-`;
+
 
 function Jumbotron() {
     return (
-        <JumbotronWrapper>
+        <div
+            className="container-fluid d-flex justify-content-center"
+            style={{
+                backgroundImage:
+                    "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)",
+                height: "100vh",
+            }}
+        >
             <div className="row m-auto">
-                <div className="row">
-                    <div className="col-sm">
-                        <h2
+                <div className="row d-flex justify-content-center mt-5">
+                    <div className="col-sm-5 mt-5">
+                        <h1
                             style={{
                                 color: "white",
-                                fontWeight: "Bold",
+                                fontWeight: "Bolder",
                                 textAlign: "left",
                             }}
                         >
                             Find World's Best Speaker Experiece
-                        </h2>
+                        </h1>
                         <br />
                         <p style={{ color: "white", textAlign: "left" }}>
                             Semua orang yang membutuhkan publik speaking yang
                             handal dan memiliki pengalaman yang sudah teruji
                             kemampuannya. Disinilah solusinya
                         </p>
+                            <div className="d-flex align-items-start mt-5">
                         <button
-                            className="btn-lg btn-highlight text-white align-self-center m-3"
+                            className="btn font-weight-bold rounded-pill btn-lg text-white"
                             style={{
                                 background: "rgb(255, 107, 84)",
-                                padding: "10px 30px 10px 30px",
+                                padding: "10px 40px 10px 40px",
                             }}
                         >
                             Mulai
-                        </button>
+                        </button></div>
                     </div>
-                    <div className="col-sm">
-                        <img src="https://via.placeholder.com/300" alt="" />
+                    <div className="col-sm-4">
+                        <img className="img-fluid"src={hero} alt="" />
                     </div>
                 </div>
             </div>
-        </JumbotronWrapper>
+        </div>
     );
 }
 
