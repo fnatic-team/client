@@ -10,11 +10,11 @@ const registerUser = (formData, history) => async (dispatch) => {
         body: JSON.stringify(formData),
         headers: {
             "Content-type": "application/json",
-            
         },
     };
 
     const response = await fetch(url, options);
+    // eslint-disable-next-line
     const result = await response.json();
     if (response.status === 200) {
         Swal.fire({
@@ -62,12 +62,16 @@ const userLogin = (formData, history) => async () => {
             localStorage.setItem("token", result.result);
 
             Swal.fire({
-            title: "Berhasil Masuk",
-            text: "",
-            icon: "success",
-            confirmButtonText: "ok",
-        });
-        history.push("/");
+                title: "Berhasil Masuk",
+                text: "",
+                icon: "success",
+                confirmButtonText: "ok",
+            });
+
+            setTimeout(() => {
+                history.push("/");
+                window.location.reload();
+            }, 3000);
         } else {
             Swal.fire({
                 icon: "error",

@@ -3,7 +3,7 @@ import Rosa from "react-on-scroll-animation";
 
 function Hiring() {
   return (
-    <Rosa className="container" animation="fade-down" duration={1000}>
+    <Rosa className="container" style={{marginTop:"50px"}} animation="fade-down" duration={1000}>
       <div className="row bg-white m-3 border  pad1 shadow-lg">
         <div className="col m-3 modal-body text-center align-self-center">
           <h4>Hiring? Audience looking for you</h4>
