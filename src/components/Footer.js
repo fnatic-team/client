@@ -15,7 +15,8 @@ function Footer() {
         <div
             className="container-fluid text-white"
             style={{
-                backgroundColor: "#003648",
+                backgroundImage:
+                    "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)"
             }}
         >
             <div className="row" style={{ padding: "30px" }}>

@@ -5,7 +5,7 @@ import Rosa from "react-on-scroll-animation"
 function Subscribe() {
   return (
     
-    <Rosa className="container" animation="fade-down" duration={1000}>
+    <Rosa style={{marginBottom : "100px" ,}} className="container mt-5" animation="fade-down" duration={1000}>
     <form className="row bg-white m-3 border  pad1 shadow-lg">
       <div className="col">
         <div className="icon-box mx-auto">
