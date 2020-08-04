@@ -1,75 +1,65 @@
 import React from "react";
-import styled from "styled-components";
 import logo from "../assets/images/logo.png";
-
-const NavWrapper = styled.div`
-  background-color: black;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-
-const Nav = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  height: 80px;
-`;
-
-const Logo = styled.div`
-  display: flex;
-  width: 25%;
-  align-items: center;
-  
-  img {
-    width: 200px;
-  }
-`;
-
-const Menu = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  color: white;
-  flex-wrap: wrap;
-  width: 45%;
-  align-items: center;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  align-items: center;
-  width: 30%;
-  justify-content: space-evenly;
-`;
-
-const Button = styled.div`
-  background-color: orange;
-  width: 80px;
-  border-radius: 5px;
-  padding: 5px;
-`;
+import { Link } from "react-router-dom";
+import ButtonHeader from "./ButtonHeader";
 
 function Header() {
-  return (
-    <NavWrapper>
-      <Nav className="container-nav">
-        <Logo>
-          <img src={logo} alt="" />
-        </Logo>
-
-        <Menu>
-          <span>Browse All Speaker</span>
-          <span>Find Speaker</span>
-          <span>Find Location</span>
-        </Menu>
-
-        <ButtonGroup>
-          <Button>Log in</Button>
-          <Button>Register</Button>
-        </ButtonGroup>
-      </Nav>
-    </NavWrapper>
-  );
+    return (
+        <div
+            className="navbar m-auto navbar-expand-lg fixed-top m-auto"
+            style={{
+                backgroundImage:
+                    "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)",
+            }}
+        >
+            <div className="navbar-brand" style={{ width: "40%" }}>
+                <Link to="/">
+                    <img
+                        src={logo}
+                        alt=""
+                        style={{ width: "200px", height: "30px" }}
+                    />{" "}
+                </Link>
+            </div>
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span
+                    className="navbar-toggler-icon text-white"
+                    style={{ padding: "5px" }}
+                >
+                    <i className="fa fa-bars" aria-hidden="true"></i>
+                </span>
+            </button>
+            <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+            >
+                <div className="navbar-nav w-50 nav-menu text-white">
+                    <div className="w-100 d-flex justify-content-end">
+                        <Link to="/search">
+                            <span className="font-weight-bold text-white mr-3">
+                                Find Speaker
+                            </span>
+                        </Link>
+                        <Link to="/contact">
+                            <span className="font-weight-bold text-white mr-3">
+                                Hubungi Kami
+                            </span>
+                        </Link>
+                    </div>
+                </div>
+                <div className="navbar-nav mr-auto text-white justify-content-around">
+                    <ButtonHeader />
+                </div>
+            </div>
+        </div>
+    );
 }
 export default Header;
