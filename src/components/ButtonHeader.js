@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchToken } from "../redux/actions";
 import { useHistory } from "react-router-dom";
@@ -9,8 +9,6 @@ function ButtonHeader() {
     const history = useHistory();
     const dispatch = useDispatch();
     const token = useSelector((state) => state.authorization.authorization);
-
-
 
     const logout = () => {
         Swal.fire({
@@ -26,11 +24,11 @@ function ButtonHeader() {
     };
 
     // eslint-disable-next-line no-extend-native
-String.prototype.toTitleCase = function () {
-  return this.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-};
+    String.prototype.toTitleCase = function () {
+        return this.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    };
 
     useEffect(() => {
         dispatch(fetchToken());
@@ -41,12 +39,13 @@ String.prototype.toTitleCase = function () {
         <>
             {token !== null ? (
                 <>
-                    <i className="fa fa-2x fa-user" aria-hidden="true">
-                       
-                    </i> 
+                    <div className="m-auto">
+                        <i className="fa fa-user font-weight-bold" aria-hidden="true"></i>{" "}
+                        <span>{token.fullname.toTitleCase()}</span>
+                    </div>
 
                     <button
-                        className="btn btn-sm font-weight-bold btn-danger rounded-pill text-white"
+                        className="btn btn-sm ml-3 font-weight-bold btn-danger rounded-pill text-white"
                         style={{
                             width: "100px",
                             padding: "5px 15px 5px 15px ",
@@ -90,7 +89,7 @@ String.prototype.toTitleCase = function () {
         </>
     );
 
-                        return <>{display}</>;
+    return <>{display}</>;
 }
 
 export default ButtonHeader;
