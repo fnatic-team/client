@@ -13,11 +13,10 @@ const Icon = styled.div`
 function Footer() {
     return (
         <div
-            className="footer container-fluid text-white"
+            className="container-fluid text-white"
             style={{
-                marginTop:"auto",
                 backgroundImage:
-                    "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)"
+                    "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)",
             }}
         >
             <div className="row" style={{ padding: "30px" }}>
@@ -33,7 +32,9 @@ function Footer() {
                         />
                     </div>
                     <br />
-                    <p>An amazing solution for find experienced speaker</p>
+                    <p className="text-left ml-5">
+                        An amazing solution for find experienced speaker
+                    </p>
                     <Icon>
                         <i
                             className="fa fa-2x fa-facebook"
@@ -49,17 +50,17 @@ function Footer() {
                         ></i>{" "}
                     </Icon>
                 </div>
-                <div className="col-sm">
+                <div className="col-sm text-left">
                     <h6 style={{ fontWeight: "bold" }}>Speaker Seeker</h6>
                     <p>Home</p>
                     <p>Sign In</p>
                     <p>Register</p>
                 </div>
-                <div className="col-sm">
+                <div className="col-sm text-left">
                     <h6 style={{ fontWeight: "bold" }}>About</h6>
                     <p>Team</p>
                 </div>
-                <div className="col-sm">
+                <div className="col-sm text-left">
                     <h6 style={{ fontWeight: "bold" }}>General</h6>
                     <p>News</p>
                     <p>FAQs</p>
@@ -67,6 +68,10 @@ function Footer() {
                     <p>Term & Conditions</p>
                 </div>
             </div>
+            <p style={{ fontFamily: "'Raleway', sans-serif" }}>
+                &copy; All right reserved Design with{" "}
+                <span className="text-dark"> &hearts;</span> by Narasumber
+            </p>
         </div>
     );
 }

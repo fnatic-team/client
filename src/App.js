@@ -16,7 +16,8 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
-import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
+import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
+import ContactUs from "./pages/ContactUs/ContactUs";
 
 
 
@@ -62,7 +63,9 @@ function App() {
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
-
+                        <Route exact path="/contactus">
+                            <ContactUs />
+                        </Route>
                     </Switch>
                     <Footer className="footer" />
                 </Router>

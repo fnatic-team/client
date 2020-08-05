@@ -16,6 +16,7 @@ const registerUser = (formData, history) => async (dispatch) => {
     const response = await fetch(url, options);
     // eslint-disable-next-line
     const result = await response.json();
+    
     if (response.status === 200) {
         Swal.fire({
             title: "Your Email Successfuly Register!",

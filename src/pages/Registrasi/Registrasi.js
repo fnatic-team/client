@@ -33,7 +33,7 @@ function Registrasi() {
             <div className="container-fluid">
                 <div className="row container1">
                     <div className="col-sm-12 col-center text-center">
-                        <h2>Buat akun di Narasumber.com</h2>
+                        <h2>Buat akun di Narasumber</h2>
                         <p>
                             Narasumber adalah website untuk mencari para publik
                             speaker yang sudah berpengalaman.

@@ -44,6 +44,16 @@ function Header() {
             >
                 <div className="navbar-nav w-50 nav-menu text-white">
                     <div className="w-100 d-flex justify-content-end">
+                        <Link to="/search">
+                            <span className="font-weight-bold text-white mr-3">
+                                Find Speaker
+                            </span>
+                        </Link>
+                        <Link to="/contactus">
+                            <span className="font-weight-bold text-white mr-3">
+                                Hubungi Kami
+                            </span>
+                        </Link>
                        <MenuHeader />
                     </div>
                 </div>
