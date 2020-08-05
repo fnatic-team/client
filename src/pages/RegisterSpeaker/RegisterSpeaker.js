@@ -37,7 +37,6 @@ function RegisterSpeaker() {
         cv: "",
     });
 
-    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
@@ -145,7 +144,7 @@ function RegisterSpeaker() {
                                     className="btn btn-primary btn-block"
                                     onClick={onPick}
                                 >
-                                    Upload Picture
+                                    Upload Resume
                                 </button>
                             </div>
                         )}
