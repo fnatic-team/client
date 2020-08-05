@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 
 const registerUser = (formData, history) => async (dispatch) => {
-    const url = `https://narasumber-backend.herokuapp.com/api/user/`;
+    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/`;
     const options = {
         method: "POST",
         // mode : "no-cors",
@@ -37,57 +37,119 @@ const registerUser = (formData, history) => async (dispatch) => {
 };
 
 const userLogin = (formData, history) => async () => {
+  try {
+    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/login`;
+    const options = {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const response = await fetch(url, options);
+    const result = await response.json();
+    const dataUser = jwt_decode(result.token)
+    
+
+    if (response.status === 200 && dataUser.status !== "ACTIVE") {
+      localStorage.clear();
+      Swal.fire({
+        icon: "error",
+        title: "Forbidden",
+        text: "Akun anda belum aktif , Hubungi admin untuk informasi lebih lanjut",
+      });
+      
+    }else 
+    if (response.status === 200 && dataUser.status === "ACTIVE") {
+      localStorage.setItem("token", result.token);
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        title: "Signed in successfully",
+        icon: "success",
+      });
+
+      setTimeout(() => {
+        history.push("/")
+        window.location.reload();
+      }, 3000)
+      
+      ;
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Forbidden",
+        text: "wrong email or Password"
+      });
+    }
+  } catch (error) {
+    localStorage.clear();
+    Swal.fire({
+      icon: "error",
+      title: "Forbidden",
+      text: "Wrong Email or Password"
+    });;
+  }
+};
+
+
+export const updateUser = (formData, id, history) => async () => {
+
     try {
-        const url = "https://rumahku-com.herokuapp.com/users/login";
+        for (let key in formData ) {
+            if (formData[key] === "") {
+                delete formData[key];
+            }
+        }
+
         const options = {
-            method: "POST",
-            body: JSON.stringify(formData),
+            method: "PUT",
             headers: {
-                "Content-type": "application/json",
+                "content-type": "application/json",
             },
+            body: JSON.stringify(formData),
         };
 
-        const response = await fetch(url, options);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/${id}`, options);
         const result = await response.json();
-        const dataUser = jwt_decode(result.result);
 
-        if (response.status === 200 && dataUser.status !== "ACTIVE") {
-            localStorage.clear();
+        if (response.status === 200) {
             Swal.fire({
-                icon: "error",
-                title: "Forbidden",
-                text:
-                    "Your Account isn't Active, please contact administration for Activation ",
-            });
-        } else if (response.status === 200 && dataUser.status === "ACTIVE") {
-            localStorage.setItem("token", result.result);
-
-            Swal.fire({
-                title: "Berhasil Masuk",
-                text: "",
                 icon: "success",
-                confirmButtonText: "ok",
+                title: "Data berhasil diperbarui",
             });
 
-            setTimeout(() => {
-                history.push("/");
-                window.location.reload();
-            }, 3000);
+            history.goBack();
         } else {
             Swal.fire({
                 icon: "error",
-                title: "Forbidden",
-                text: "email atau password salah",
+                title: result.message,
             });
         }
     } catch (error) {
-        localStorage.clear();
-        Swal.fire({
-            icon: "error",
-            title: "Forbidden",
-            text: "email atau password salah",
-        });
+        console.log(error);
     }
 };
+
+
+
+
+
+
+
+
+
 
 export { registerUser, GET_USER_LOGIN, GET_USER_REGISTER, userLogin };

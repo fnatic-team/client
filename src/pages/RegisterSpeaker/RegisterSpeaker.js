@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import ReactFilestack from "filestack-react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -36,18 +37,33 @@ function RegisterSpeaker() {
         category: "",
         cv: "",
     });
-
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(registerUser(formData, history));
+        for (let key in formData) {
+            if (formData[key] === "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text: "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                });
+            }else if(formData.password.length <= 5){
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text: "Password Minimal 6 karakter",
+                });
+            }else{
+                dispatch(registerUser(formData,history))
+            }
+        }
     };
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-
+    console.log(`${process.env.REACT_APP_API_KEY}`)
     return (
         <div>
             <RegisterWrapper
@@ -140,7 +156,7 @@ function RegisterSpeaker() {
                     <Label>Resume :</Label>
 
                     <ReactFilestack
-                        apikey={"AjKZyDReRZ2wx6MJeR8LAz"}
+                        apikey={`${process.env.REACT_APP_API_KEY}`}
                         customRender={({ onPick }) => (
                             <div>
                                 <button

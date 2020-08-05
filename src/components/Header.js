@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import ButtonHeader from "./ButtonHeader";
+import MenuHeader from "./MenuHeader"
 
 function Header() {
     return (
@@ -53,6 +54,7 @@ function Header() {
                                 Hubungi Kami
                             </span>
                         </Link>
+                       <MenuHeader />
                     </div>
                 </div>
                 <div className="navbar-nav mr-auto text-white justify-content-around">
