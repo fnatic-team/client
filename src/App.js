@@ -64,7 +64,7 @@ function App() {
                             <ContactUs />
                         </Route>
                     </Switch>
-                    <Footer />
+                    <Footer className="footer" />
                 </Router>
             </Provider>
         </div>
