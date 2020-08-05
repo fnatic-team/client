@@ -102,4 +102,53 @@ const userLogin = (formData, history) => async () => {
     });;
   }
 };
+
+
+export const updateUser = (formData, id, history) => async () => {
+
+    try {
+        for (let key in formData ) {
+            if (formData[key] === "") {
+                delete formData[key];
+            }
+        }
+
+        const options = {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        };
+
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/${id}`, options);
+        const result = await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                icon: "success",
+                title: "Data berhasil diperbarui",
+            });
+
+            history.goBack();
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: result.message,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+
+
+
+
+
+
+
+
 export { registerUser, GET_USER_LOGIN, GET_USER_REGISTER, userLogin };
