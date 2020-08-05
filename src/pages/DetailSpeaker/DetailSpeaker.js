@@ -24,6 +24,11 @@ function DetailSpeaker() {
         // eslint-disable-next-line
     }, []);
 
+ 
+
+    // const handleClick = (event) => {
+    //     if {}
+    // }
 
     const detailView = dataSpeaker !== null && (
         <>

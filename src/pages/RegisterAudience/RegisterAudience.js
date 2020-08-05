@@ -29,7 +29,6 @@ function RegisterAudience() {
         password: "",
         phone: "",
     });
-    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {

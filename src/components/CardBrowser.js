@@ -42,10 +42,10 @@ function CardBrowser() {
 
   return (
     <>
-     {dataSpeakers !== null && dataSpeakers.map((data) => {return<Container>
-      <CardWrapper key={data._id}>
+     {dataSpeakers !== null && dataSpeakers.map((data) => {return<Container key={data._id}>
+      <CardWrapper  >
        
-        <div className="card d-flex" style={{ width: "250px" }}>
+        <div  className="card d-flex" style={{ width: "250px" }}>
           <div>
             <i className="fa fa-2x fa-star" style={{color:"orange"}} aria-hidden="true">
            </i>  <span style={{fontSize:"30px"}}>5</span>
