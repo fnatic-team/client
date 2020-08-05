@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./redux/store"
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,6 +17,9 @@ import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
+
+
+
 
 function App() {
     return (
@@ -43,17 +46,17 @@ function App() {
                         <Route exact path="/login">
                             <Login />
                         </Route>
-                        <Route exact path="/profile/edit">
+                        <Route exact path="/profile/edit/:id">
                             <EditBiodata />
                         </Route>
                         <Route exact path="/appointment">
                             <Appointment />
                         </Route>
 
-                        <Route exact path="/profile">
+                        <Route exact path="/speaker/profile/:id">
                             <Profile />
                         </Route>
-                        <Route exact path="/schedule">
+                        <Route exact path="/speaker/schedule">
                             <SpeakerSchedule />
                         </Route>
                         <Route exact path="/speaker/:id">
