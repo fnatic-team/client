@@ -9,7 +9,7 @@ const Container1 = styled.div`
     max-width: 100%;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 `;
 
 const Container = styled.div`
@@ -21,7 +21,7 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content: space-between;
+    justify-content:  space-aroun;
     margin: 40px;
 `;
 

@@ -17,6 +17,9 @@ import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
+import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker"
+import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterFacebookAudience'
+
 
 
 
@@ -61,6 +64,12 @@ function App() {
                         </Route>
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
+                        </Route>
+                        <Route exact path="/registrasi/speaker/facebook">
+                            <RegisterFacebookSpeaker/>
+                        </Route>
+                         <Route exact path="/registrasi/audience/facebook">
+                            <RegisterFacebookAudience/>
                         </Route>
 
                     </Switch>
