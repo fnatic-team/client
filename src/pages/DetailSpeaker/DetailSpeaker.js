@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpeakerDetails } from "../../redux/actions";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 
  // eslint-disable-next-line no-extend-native
@@ -13,10 +15,13 @@ import { getSpeakerDetails } from "../../redux/actions";
 
 function DetailSpeaker() {
     let { id } = useParams();
+    const history = useHistory()
     const dispatch = useDispatch();
     const dataSpeaker = useSelector(
         (state) => state.browserSpeaker.selectedSpeaker
     );
+
+    const isLoggin = localStorage.getItem("token")
 
     useEffect(() => {
         dispatch(getSpeakerDetails(id));
@@ -24,11 +29,19 @@ function DetailSpeaker() {
         // eslint-disable-next-line
     }, []);
 
- 
+    
 
-    // const handleClick = (event) => {
-    //     if {}
-    // }
+    const handleClick = (event) => {
+        if (isLoggin === null){
+             Swal.fire({
+                icon: "error",
+                title: "Forbidden",
+                text: "Anda Harus Masuk Terlebih Dahulu",
+            });
+        }else{
+            history.push('/appointment')
+        }
+    }
 
     const detailView = dataSpeaker !== null && (
         <>
@@ -59,7 +72,7 @@ function DetailSpeaker() {
                                         </h6>
                                         <p>{dataSpeaker.category}</p>
                                         <div>
-                                            <button style={{padding:"10px 30px 10px 30px"}}className="btn rounded-pill btn-xs btn-primary">
+                                            <button onClick={handleClick} style={{padding:"10px 30px 10px 30px"}}className="btn rounded-pill btn-xs btn-primary">
                                                 Hiring
                                             </button>
                                         </div>
