@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/new_logo.png";
 
 const Icon = styled.div`
     display: flex;

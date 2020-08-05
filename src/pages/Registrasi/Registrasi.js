@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import speaker from "../../assets/images/speech.svg";
+import audience from "../../assets/images/customer.svg";
 
 const RegistrationWrapper = styled.div`
     display: flex;
@@ -43,7 +45,7 @@ function Registrasi() {
 
                 <div className="row d-flex justify-content-center container2">
                     <div className="col-sm-10 col-md-5 col-md-offset-1">
-                        <img src="https://via.placeholder.com/150" alt="" />
+                        <img src={speaker} width="200px" alt="" />
                         <div>
                             <h4>Speaker</h4>
                             <p>
@@ -60,7 +62,7 @@ function Registrasi() {
                     </div>
                     <div className="divider"></div>
                     <div className="col-sm-10 col-md-5 col-md-offset-1">
-                        <img src="https://via.placeholder.com/150" alt="" />
+                        <img src={audience} width="200px" alt="" />
                         <div>
                             <h4>Audience</h4>
                             <p>
