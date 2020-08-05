@@ -61,7 +61,7 @@ function App() {
                         </Route>
 
                     </Switch>
-                    <Footer />
+                    <Footer className="footer" />
                 </Router>
             </Provider>
         </div>
