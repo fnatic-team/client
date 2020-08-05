@@ -42,12 +42,10 @@ function ButtonHeader() {
                     <div className="m-auto">
                         <Link
                             className="text-white"
-                            exact="true"
-                            path="true"
                             to={
                                 token.role !== "AUDIENCE"
-                                    ? `speaker/profile/${token.id}`
-                                    : "audience/profile"
+                                    ? `/speaker/profile/${token.id}`
+                                    : "/audience/profile"
                             }
                         >
                             <i

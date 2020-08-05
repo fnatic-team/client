@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
 import RegionSelect from "react-region-flag-select";
+import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+import { getSpeakerDetails } from "../../redux/actions";
+
+
+
 
 const EditBiodataWrapper = styled.div`
     width: 600px;
@@ -28,7 +36,23 @@ const EditBiodataWrapper = styled.div`
 `;
 
 function EditBiodata() {
+    let { id } = useParams();
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const dataSpeaker = useSelector(
+        (state) => state.browserSpeaker.selectedSpeaker
+    );
+        
+    console.log(dataSpeaker)
+
+     useEffect(() => {
+        dispatch(getSpeakerDetails(id));
+
+        // eslint-disable-next-line
+    }, []);
+
     return (
+       
         <div>
             <EditBiodataWrapper className="login-form shadow-lg  bg-white rounded">
                 <h2 className="text-center">Data Diri</h2>
@@ -40,6 +64,7 @@ function EditBiodata() {
                         type="text"
                         name="fullname"
                         id="fullname"
+                        defaultValue={dataSpeaker !== null && dataSpeaker.name }
                         placeholder="Masukan nama lengkap"
                     />
                 </FormGroup>

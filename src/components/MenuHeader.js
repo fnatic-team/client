@@ -33,10 +33,10 @@ function MenuHeader() {
                         )}
 
                         <Link
-                            exact="true" path="true" to={
+                             to={
                                 token.role !== "AUDIENCE"
-                                    ? "speaker/schedule"
-                                    : "audience/schedule"
+                                    ? "/speaker/schedule"
+                                    : "/audience/schedule"
                             }
                         >
                             <span className="font-weight-bold text-white mr-3">
