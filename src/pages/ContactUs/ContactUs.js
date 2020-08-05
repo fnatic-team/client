@@ -4,7 +4,7 @@ import { contactUs } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
-import tower from "../../assets/images/office.jpg";
+import tower from "../../assets/images/offices.jpg";
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -41,7 +41,7 @@ const Teks = styled.p`
     position: absolute;
     left: 40px;
     top: 120px;
-    color: #f5fffa;
+    color: black;
     font-size: 30px;
 `;
 
