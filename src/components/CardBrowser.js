@@ -38,6 +38,7 @@ function CardBrowser() {
         //eslint-disable-next-line
     }, []);
 
+   
     return (
         <>
             {dataSpeakers !== null ? (
@@ -74,7 +75,7 @@ function CardBrowser() {
                                         <p className="card-text">
                                             {data.category}
                                         </p>
-                                        <Link to={`/speaker/${data._id}`}>
+                                        <Link exact path to={`/speaker/${data._id}`}>
                                             <button className="btn btn-sm btn-primary">
                                                 Detail Profile
                                             </button>

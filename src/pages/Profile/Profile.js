@@ -1,5 +1,12 @@
 import React from "react";
 
+// eslint-disable-next-line no-extend-native
+String.prototype.toTitleCase = function () {
+    return this.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+
 function Profile() {
     return (
         <div style={{ margin: "100px 0px 80px 0px" }}>
@@ -84,59 +91,37 @@ function Profile() {
                     </div>
                 </div>
             </div>
-
             <div className="container">
                 <div className="row bg-white m-3 p-5 border shadow-lg">
                     <div className="col-sm">
                         <h4 className="text-left mb-4 font-weight-bold">
-                            Media Social
+                            Social Media
                         </h4>
-                        <div className="row text-left">
-                            <div className="col-sm">
-                                <i
-                                    className="fa fa-2x fa-facebook-square"
-                                    aria-hidden="true"
-                                >
-                                    {"    "}
-                                    Facebook
-                                </i>
-                            </div>
-                            <div className="col-sm">
-                                <i
-                                    class="fa fa-2x fa-linkedin-square"
-                                    aria-hidden="true"
-                                >
-                                    {"    "}
-                                    LinkedIn
-                                </i>
-                            </div>
-                            <div className="col-sm">
-                                <i
-                                    class="fa fa-2x fa-instagram"
-                                    aria-hidden="true"
-                                >
-                                    {"    "}
-                                    Instagram
-                                </i>
-                            </div>
-                            <div className="col-sm">
-                                <i
-                                    class="fa fa-2x fa-whatsapp"
-                                    aria-hidden="true"
-                                >
-                                    {"    "}
-                                    Whatsapp
-                                </i>
-                            </div>
-                            <div className="col-sm">
-                                <i
-                                    class="fa fa-2x fa-youtube-play"
-                                    aria-hidden="true"
-                                >
-                                    {"    "}
-                                    Youtube
-                                </i>
-                            </div>
+                        <div className="row d-flex w-25 justify-content-between ml-2">
+                            <i
+                                className="fa fa-2x fa-facebook-square"
+                                aria-hidden="true"
+                            ></i>
+
+                            <i
+                                className="fa fa-2x fa-linkedin-square"
+                                aria-hidden="true"
+                            ></i>
+
+                            <i
+                                className="fa fa-2x fa-instagram"
+                                aria-hidden="true"
+                            ></i>
+
+                            <i
+                                className="fa fa-2x fa-whatsapp"
+                                aria-hidden="true"
+                            ></i>
+
+                            <i
+                                className="fa fa-2x fa-youtube-play"
+                                aria-hidden="true"
+                            ></i>
                         </div>
                     </div>
                 </div>

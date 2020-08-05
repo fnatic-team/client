@@ -40,8 +40,13 @@ function ButtonHeader() {
             {token !== null ? (
                 <>
                     <div className="m-auto">
-                        <i className="fa fa-user font-weight-bold" aria-hidden="true"></i>{" "}
-                        <span>{token.fullname.toTitleCase()}</span>
+                        <Link className="text-white"  exact="true" path="true"  to={token.role !== "AUDIENCE" ? ("speaker/profile") :    ("audience/profile")}>
+                            <i
+                                className="fa fa-user font-weight-bold"
+                                aria-hidden="true"
+                            ></i>{" "}
+                            <span>{token.name.toTitleCase()}</span>
+                        </Link>
                     </div>
 
                     <button

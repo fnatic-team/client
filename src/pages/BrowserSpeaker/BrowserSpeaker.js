@@ -31,7 +31,6 @@ function BrowserSpeaker() {
 
     const [input, setInput] = useState("")
 
-    console.log(input)
     
 
     return (
