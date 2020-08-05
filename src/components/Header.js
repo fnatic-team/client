@@ -48,7 +48,7 @@ function Header() {
                                 Find Speaker
                             </span>
                         </Link>
-                        <Link to="/contact">
+                        <Link to="/contactus">
                             <span className="font-weight-bold text-white mr-3">
                                 Hubungi Kami
                             </span>
