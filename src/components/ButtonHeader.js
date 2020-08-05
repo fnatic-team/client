@@ -40,7 +40,16 @@ function ButtonHeader() {
             {token !== null ? (
                 <>
                     <div className="m-auto">
-                        <Link className="text-white"  exact="true" path="true"  to={token.role !== "AUDIENCE" ? ("speaker/profile") :    ("audience/profile")}>
+                        <Link
+                            className="text-white"
+                            exact="true"
+                            path="true"
+                            to={
+                                token.role !== "AUDIENCE"
+                                    ? `speaker/profile/${token.id}`
+                                    : "audience/profile"
+                            }
+                        >
                             <i
                                 className="fa fa-user font-weight-bold"
                                 aria-hidden="true"

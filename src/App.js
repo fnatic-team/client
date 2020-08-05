@@ -53,7 +53,7 @@ function App() {
                             <Appointment />
                         </Route>
 
-                        <Route exact path="/speaker/profile">
+                        <Route exact path="/speaker/profile/:id">
                             <Profile />
                         </Route>
                         <Route exact path="/speaker/schedule">
