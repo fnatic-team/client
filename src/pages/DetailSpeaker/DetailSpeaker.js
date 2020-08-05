@@ -12,6 +12,15 @@ String.prototype.toTitleCase = function () {
     });
 };
 
+// eslint-disable-next-line no-extend-native
+String.prototype.localIDR = function () {
+  return Number(this).toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 2,
+  });
+};
+
 function DetailSpeaker() {
     let { id } = useParams();
     const history = useHistory();
@@ -104,7 +113,7 @@ return <> {dataSpeaker !== null ? (
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Fee</p>
-                                                <span>Rp. 5.000.000 /jam</span>
+                                                <span>{dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()} / jam</span>
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Languages</p>
@@ -123,22 +132,7 @@ return <> {dataSpeaker !== null ? (
                                 <div className="text-left d-flex flex-column h-100 justify-content-center">
                                     <h4 className="font-weight-bold">Bio</h4>
                                     <p>
-                                        Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry. Lorem
-                                        Ipsum has been the industry's standard
-                                        dummy text ever since the 1500s, when an
-                                        unknown printer took a galley of type
-                                        and scrambled it to make a type specimen
-                                        book. It has survived not only five
-                                        centuries, but also the leap into
-                                        electronic typesetting, remaining
-                                        essentially unchanged. It was
-                                        popularised in the 1960s with the
-                                        release of Letraset sheets containing
-                                        Lorem Ipsum passages, and more recently
-                                        with desktop publishing software like
-                                        Aldus PageMaker including versions of
-                                        Lorem Ipsum.
+                                        {dataSpeaker.bio !== null && dataSpeaker.bio}
                                     </p>
                                 </div>
                             </div>
@@ -185,7 +179,7 @@ return <> {dataSpeaker !== null ? (
         ) : (
             <>
                 {" "}
-                <div className="container-fluid">
+                <div className="container-fluid" style={{width:"3rem", height:"3rem", marginTop:"200px"}}>
                     <div className="spinner-border text-primary" role="status">
                         <span className="sr-only">Loading...</span>
                     </div>{" "}

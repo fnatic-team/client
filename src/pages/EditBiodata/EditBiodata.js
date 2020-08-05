@@ -41,7 +41,8 @@ function EditBiodata() {
     const dataSpeaker = useSelector(
         (state) => state.browserSpeaker.selectedSpeaker
     );
-
+    
+    
     const [formData, setFormData] = useState({
         name: "",
         fee: "",
@@ -70,7 +71,7 @@ function EditBiodata() {
 
     return (
         <>
-            {dataSpeaker !== null && (
+            {dataSpeaker !== null ? (
                 <div>
                     <EditBiodataWrapper
                         onSubmit={handleSubmit}
@@ -85,7 +86,6 @@ function EditBiodata() {
                                 name="name"
                                 id="name"
                                 onChange={handleChange}
-                                value={formData.name}
                                 defaultValue={dataSpeaker.name}
                                 placeholder="Masukan nama lengkap"
                             />
@@ -98,7 +98,6 @@ function EditBiodata() {
                                     name="fee"
                                     id="fee"
                                     onChange={handleChange}
-                                    value={formData.fee}
                                     defaultValue={
                                         (dataSpeaker.fee !== undefined) &
                                         dataSpeaker.fee
@@ -199,7 +198,14 @@ function EditBiodata() {
                     </EditBiodataWrapper>
                     1
                 </div>
-            )}
+            ):  <>
+                {" "}
+                <div className="container-fluid" style={{width:"3rem", height:"3rem", marginTop:"200px"}}>
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>{" "}
+                </div>
+            </>}
         </>
     );
 }

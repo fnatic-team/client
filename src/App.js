@@ -54,7 +54,7 @@ function App() {
                         <Route exact path="/speaker/profile/:id">
                             <Profile />
                         </Route>
-                        <Route exact path="/speaker/schedule">
+                        <Route exact path="/speaker/schedule/:id">
                             <SpeakerSchedule />
                         </Route>
                         <Route exact path="/speaker/:id">

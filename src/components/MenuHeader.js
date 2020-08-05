@@ -35,7 +35,7 @@ function MenuHeader() {
                         <Link
                             to={
                                 token.role !== "AUDIENCE"
-                                    ? "/speaker/schedule"
+                                    ? `/speaker/schedule/${token.id}`
                                     : "/audience/schedule"
                             }
                         >
