@@ -87,7 +87,7 @@ function Profile() {
                                             <div className="text-left d-flex flex-column h-100 justify-content-center">
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>City</p>
-                                                    <span>Rp. {dataSpeaker.location !== null && dataSpeaker.location} / jam </span>
+                                                    <span>{dataSpeaker.location !== null && dataSpeaker.location} </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Available to</p>
@@ -96,9 +96,7 @@ function Profile() {
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Fee</p>
                                                     <span>
-                                                        {dataSpeaker.fee !==
-                                                            null &&
-                                                            dataSpeaker.fee}
+                                                       {dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()}
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">

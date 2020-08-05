@@ -12,6 +12,15 @@ String.prototype.toTitleCase = function () {
     });
 };
 
+// eslint-disable-next-line no-extend-native
+String.prototype.localIDR = function () {
+  return Number(this).toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 2,
+  });
+};
+
 function DetailSpeaker() {
     let { id } = useParams();
     const history = useHistory();
@@ -104,7 +113,7 @@ return <> {dataSpeaker !== null ? (
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Fee</p>
-                                                <span>Rp. 5.000.000 /jam</span>
+                                                <span>{dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()} / jam</span>
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Languages</p>
