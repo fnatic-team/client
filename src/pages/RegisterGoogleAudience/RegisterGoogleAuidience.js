@@ -4,12 +4,7 @@ import { registerUser } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2"
-import RegisterFacebook from "../../components/facebook/RegisterFacebook"
-import RegisterGoogle from "../../components/google/RegisterGoogle"
-
-
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -26,14 +21,19 @@ const RegisterWrapper = styled.form`
     }
 `;
 
-function RegisterAudience() {
+function RegisterGoogleAudience() {
+
+    const dataSocial = JSON.parse(localStorage.getItem("social"))
+
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        name:dataSocial.name,
+        email: dataSocial.email,
         username: "",
-        password: "",
+        password: dataSocial.googleId,
+        image:dataSocial.imageUrl,
         phone: "",
     });
+    
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
@@ -60,67 +60,26 @@ function RegisterAudience() {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
+
     return (
         <div>
             <RegisterWrapper
                 onSubmit={handleSubmit}
                 className="login-form shadow-lg  bg-white rounded"
             >
-                <h2 className="text-center">Daftar sebagai Audience</h2>
-                <span>
-                    Sudah punya akun? <Link to="/login">Masuk</Link>
-                </span>
-                <br />
-                <span>
-                    Ingin mendaftar sebagai speaker?{" "}
-                    <Link to="/registrasi/speaker">Klik disini</Link>
-                </span>
+                <h2 className="text-center">Lengkapi Data Terlebih Dahulu</h2>
+                
                 <hr />
+               
                 <FormGroup style={{ textAlign: "left" }}>
-                    <Label>Nama Lengkap :</Label>
-
+                    <Label>Username :</Label>
                     <Input
                         type="text"
-                        name="name"
-                        id="fullname"
-                        onChange={handleChange}
-                        value={formData.fullname}
-                        placeholder="Masukan nama lengkap"
-                    />
-                </FormGroup>
-                <div className="container1">
-                    <FormGroup style={{ textAlign: "left" }}>
-                        <Label>Username :</Label>
-                        <Input
-                            type="text"
-                            name="username"
-                            id="username"
-                            onChange={handleChange}
-                            value={formData.username}
-                            placeholder="Masukan username"
-                        />
-                    </FormGroup>
-                    <FormGroup style={{ textAlign: "left" }}>
-                        <Label>Password :</Label>
-                        <Input
-                            type="password"
-                            name="password"
-                            id="password"
-                            onChange={handleChange}
-                            value={formData.password}
-                            placeholder="Masukan password"
-                        />
-                    </FormGroup>
-                </div>
-                <FormGroup style={{ textAlign: "left" }}>
-                    <Label>Email :</Label>
-                    <Input
-                        type="email"
-                        name="email"
+                        name="username"
                         id="email"
                         onChange={handleChange}
-                        value={formData.email}
-                        placeholder="Masukan email"
+                        value={formData.username}
+                        placeholder="Masukan Username"
                     />
                 </FormGroup>
                 <FormGroup style={{ textAlign: "left" }}>
@@ -135,13 +94,9 @@ function RegisterAudience() {
                     />
                 </FormGroup>
                 <button className="btn btn-primary btn-block">Daftar Sebagai Audience</button>
-                <span>or</span>
-                <RegisterFacebook />
-                <RegisterGoogle/>
-
             </RegisterWrapper>
         </div>
     );
 }
 
-export default RegisterAudience;
+export default RegisterGoogleAudience;

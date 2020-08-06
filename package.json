@@ -15,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-facebook": "^8.1.4",
+    "react-google-login": "^5.1.21",
     "react-language-selector": "^1.1.0",
     "react-on-scroll-animation": "^1.0.0",
     "react-redux": "^7.2.1",

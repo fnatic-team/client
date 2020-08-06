@@ -55,7 +55,7 @@ function CardBrowser() {
                                         style={{ height: "200px" }}
                                     >
                                         <img
-                                            className="card-img-top"
+                                            className="card-img-top rounded-circle"
                                             src={data.image}
                                             alt="Card Cap"
                                         />

@@ -16,6 +16,12 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
+
+import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
+import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker"
+import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterFacebookAudience'
+import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogleAuidience'
+import RegisterGoogleSpeaker from './pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker'
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 
@@ -47,7 +53,7 @@ function App() {
                         <Route exact path="/profile/edit/:id">
                             <EditBiodata />
                         </Route>
-                        <Route exact path="/appointment">
+                        <Route exact path="/appointment/:id">
                             <Appointment />
                         </Route>
 
@@ -60,6 +66,18 @@ function App() {
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
+                        {/* <Route exact path="/registrasi/speaker/facebook">
+                            <RegisterFacebookSpeaker/>
+                        </Route>
+                         <Route exact path="/registrasi/audience/facebook">
+                            <RegisterFacebookAudience/>
+                        </Route>
+                        <Route exact path="/registrasi/audience/google">
+                            <RegisterGoogleAudience/>
+                        </Route>
+                        <Route exact path="/registrasi/speaker/google">
+                            <RegisterGoogleSpeaker/>
+                        </Route> */}
                         <Route exact path="/contactus">
                             <ContactUs />
                         </Route>
