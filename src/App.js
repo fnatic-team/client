@@ -17,7 +17,6 @@ import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 
-import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
 import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker"
 import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterFacebookAudience'
 import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogleAuidience'
