@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { registerUser } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import ReactFilestack from "filestack-react";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// import RegisterFacebook from "../../components/facebook/RegisterFacebook"
-// import RegisterGoogle from "../../components/google/RegisterGoogle"
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -29,16 +26,21 @@ const RegisterWrapper = styled.form`
     }
 `;
 
-function RegisterSpeaker() {
+function RegisterFacebookSpeaker() {
+    const dataSocial = JSON.parse(localStorage.getItem("social"));
+
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        name: dataSocial.name,
+        email: dataSocial.email,
         username: "",
-        password: "",
+        password: dataSocial.googleId,
+        image: dataSocial.imageUrl,
         phone: "",
         category: "",
         cv: "",
     });
+
+    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
@@ -48,9 +50,10 @@ function RegisterSpeaker() {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
-                    text: "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                    text:
+                        "Upload Resume Diperlukan dan Form tidak boleh kosong",
                 });
-            }else if(formData.password.length <= 5){
+            } else if (formData.password.length <= 5) {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
@@ -58,76 +61,34 @@ function RegisterSpeaker() {
                 });
             }
         }
-        dispatch(registerUser(formData,history))
+        dispatch(registerUser(formData, history));
     };
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-    console.log(`${process.env.REACT_APP_API_KEY}`)
+
     return (
         <div>
             <RegisterWrapper
                 onSubmit={handleSubmit}
                 className="login-form shadow-lg  bg-white rounded"
             >
-                <h2 className="text-center">Daftar sebagai Speaker</h2>
-                <span>
-                    Sudah punya akun? <Link to="/login">Masuk</Link>
-                </span>
-                <br />
-                <span>
-                    Ingin mendaftar sebagai audience?{" "}
-                    <Link to="/registrasi/audience">Klik disini</Link>{" "}
-                </span>
+                <h2 className="text-center">Lengkapi Data Terlebih Dahulu</h2>
                 <hr />
                 <FormGroup style={{ textAlign: "left" }}>
-                    <Label>Nama Lengkap :</Label>
+                    <Label>Username :</Label>
 
                     <Input
                         type="text"
-                        name="name"
+                        name="username"
                         onChange={handleChange}
-                        value={formData.name}
+                        value={formData.username}
                         id="fullname"
                         placeholder="Masukan nama lengkap"
                     />
                 </FormGroup>
-                <div className="container1">
-                    <FormGroup style={{ textAlign: "left" }}>
-                        <Label>Username :</Label>
-                        <Input
-                            type="text"
-                            name="username"
-                            onChange={handleChange}
-                            value={formData.username}
-                            id="username"
-                            placeholder="Masukan username"
-                        />
-                    </FormGroup>
-                    <FormGroup style={{ textAlign: "left" }}>
-                        <Label>Password :</Label>
-                        <Input
-                            type="password"
-                            name="password"
-                            onChange={handleChange}
-                            value={formData.password}
-                            id="password"
-                            placeholder="Masukan password"
-                        />
-                    </FormGroup>
-                </div>
-                <FormGroup style={{ textAlign: "left" }}>
-                    <Label>Email :</Label>
-                    <Input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={handleChange}
-                        value={formData.email}
-                        placeholder="Masukan email"
-                    />
-                </FormGroup>
+
                 <FormGroup style={{ textAlign: "left" }}>
                     <Label>Speaker as :</Label>
                     <select
@@ -135,12 +96,9 @@ function RegisterSpeaker() {
                         name="category"
                         onChange={handleChange}
                     >
-                        <option value="reactjs">React JS</option>
-                        <option value="angular">Angular</option>
-                        <option value="nodejs">Node JS JS</option>
-                        <option value="mysql">MySql</option>
-                        <option value="magento">Magento</option>
-                        <option value="codeigniter">Codeigniter</option>
+                        <option value="React JS">React JS</option>
+                        <option value="React Native">React Native</option>
+                        <option value="Angular JS">Angular JS</option>
                     </select>
                 </FormGroup>
 
@@ -183,13 +141,9 @@ function RegisterSpeaker() {
                 <button className="btn btn-primary btn-block">
                     Daftar sebagai Speaker
                 </button>
-                <br />
-                {/* <RegisterFacebook/>
-                <RegisterGoogle/> */}
             </RegisterWrapper>
-            
         </div>
     );
 }
 
-export default RegisterSpeaker;
+export default RegisterFacebookSpeaker;

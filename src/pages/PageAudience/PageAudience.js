@@ -69,8 +69,14 @@ function PageAudience() {
                 <td>Diterima</td>
                 <td>On Going</td>
                 <td>
-                  <Dropdown isOpen={dropdownOpenStatus} toggle={toggleStatus}>
-                    <DropdownToggle caret>{status}</DropdownToggle>
+                  <Dropdown>
+                    <DropdownToggle
+                      isOpen={dropdownOpenStatus}
+                      toggle={toggleStatus}
+                      caret
+                    >
+                      {status}
+                    </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem
                         onClick={handleChangeStatus}

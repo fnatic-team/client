@@ -1,15 +1,15 @@
-import { GET_USER_LOGIN } from "../actions";
+import { GET_FACEBOOK} from "../actions";
 
 const initialState = {
-    user: null,
+    dataFacebook: null
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case GET_USER_LOGIN:
+        case GET_FACEBOOK:
             return {
                 ...state,
-                user: action.payload,
+                dataFacebook: action.payload,
             };
         default:
             return state;

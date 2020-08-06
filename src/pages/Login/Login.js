@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogin } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import LoginFacebook from "../../components/facebook/LoginFacebook"
+import LoginGoogle from "../../components/google/LoginGoogle"
+
 
 import { FormGroup, Label, Input } from "reactstrap";
 
@@ -68,14 +71,8 @@ function Login() {
                 <div className="text-center pt-3 ">
                     <p>Or</p>
                 </div>
-                <button
-                    className="btn  btn-block"
-                    style={{ backgroundColor: "#3b5998", color: "white" }}
-                >
-                    Facebook
-                </button>
-                <button className="btn  btn-success btn-block">Google</button>
-                {/* <Google /> */}
+                <LoginFacebook/>
+                <LoginGoogle />
                 <div className="text-center">
                     <br />
                     <span>

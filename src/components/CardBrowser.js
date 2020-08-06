@@ -1,77 +1,100 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { fetchAllSpeakers } from "../redux/actions"
-import { useDispatch, useSelector } from 'react-redux';
-import {Link} from "react-router-dom"
-
+import { fetchAllSpeakers } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ReactStars from "react-stars";
 
 const CardWrapper = styled.div`
-  .card-img-top {
-    width: 150px;
-    height: 150px;
-  }
+    .card-img-top {
+        width: 150px;
+        height: 150px;
+    }
 `;
 
 const Container = styled.div`
-  width: 30%;
-  margin-bottom: 20px;
-  :hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
+    width: 30%;
+    margin-bottom: 20px;
+    :hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 `;
 
-  // eslint-disable-next-line no-extend-native
-    String.prototype.toTitleCase = function () {
-        return this.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-    };
+// eslint-disable-next-line no-extend-native
+String.prototype.toTitleCase = function () {
+    return this.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
 
 function CardBrowser() {
-  const dispatch = useDispatch() 
+    const dispatch = useDispatch();
 
-  const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers)
-  
-  
+    const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
-  useEffect(() => {
-    dispatch(fetchAllSpeakers());
-    //eslint-disable-next-line
-  }, []);
+    useEffect(() => {
+        dispatch(fetchAllSpeakers());
+        //eslint-disable-next-line
+    }, []);
 
-  return (
-    <>
-     {dataSpeakers !== null && dataSpeakers.map((data) => {return<Container key={data._id}>
-      <CardWrapper  >
-       
-        <div  className="card d-flex" style={{ width: "250px" }}>
-          <div>
-            <i className="fa fa-2x fa-star" style={{color:"orange"}} aria-hidden="true">
-           </i>  <span style={{fontSize:"30px"}}>5</span>
-          </div>
-          <div
-            className="d-flex align-items-center justify-content-center"
-            style={{ height: "200px" }}
-          >
-            <img
-              className="card-img-top"
-              src={data.image}
-              alt="Card Cap"
-            />
-          </div>
+   
+    return (
+        <>
+            {dataSpeakers !== null ? (
+                dataSpeakers.map((data) => {
+                    return (
+                        <Container key={data._id}>
+                            <CardWrapper>
+                                <div
+                                    className="card d-flex"
+                                    style={{ width: "250px" }}
+                                >
+                                    <div
+                                        className="d-flex align-items-center justify-content-center"
+                                        style={{ height: "200px" }}
+                                    >
+                                        <img
+                                            className="card-img-top rounded-circle"
+                                            src={data.image}
+                                            alt="Card Cap"
+                                        />
+                                    </div>
 
-          <div className="card-body">
-            <h5 className="card-title">{data.name.toTitleCase()}</h5>
-            <p className="card-text">{data.category}</p>
-            <Link to = {`/speaker/${data._id}`}>
-            <button className="btn btn-sm btn-primary">Detail Profile</button></Link>
-          </div>
-        </div>
-      </CardWrapper>
-    </Container>  })}
-    </>
-  );
+                                    <div className="card-body">
+                                        <div>
+                                            <ReactStars className="card-title d-flex justify-content-center"
+                                                count={5}
+                                                size={24}
+                                                color1={"#ffe234"}
+                                            />
+                                        </div>
+                                        <h5 className="card-title">
+                                            {data.name.toTitleCase()}
+                                        </h5>
+                                        <p className="card-text">
+                                            {data.category}
+                                        </p>
+                                        <Link exact path to={`/speaker/${data._id}`}>
+                                            <button className="btn btn-sm btn-primary">
+                                                Detail Profile
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </CardWrapper>
+                        </Container>
+                    );
+                })
+            ) : (
+                <div className="container-fluid">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>{" "}
+                </div>
+            )}
+        </>
+    );
 }
 
 export default CardBrowser;
