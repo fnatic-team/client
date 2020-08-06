@@ -36,7 +36,7 @@ function MenuHeader() {
                             to={
                                 token.role !== "AUDIENCE"
                                     ? `/speaker/schedule/${token.id}`
-                                    : "/audience/schedule"
+                                    : `/audience/schedule/${token.id}`
                             }
                         >
                             <span className="font-weight-bold text-white mr-3">

@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpeakerDetails } from "../../redux/actions";
+import {
+    getSpeakerDetails,
+    getTransactionSpeaker,
+    updateStatusTransaksi,
+    updateStatusSpeaker
+} from "../../redux/actions";
 import { useParams } from "react-router-dom";
 
 function SpeakerSchedule() {
@@ -10,12 +15,27 @@ function SpeakerSchedule() {
         (state) => state.browserSpeaker.selectedSpeaker
     );
 
+    const dataTransaction = useSelector((state) => state.transaction.speakers);
+
     useEffect(() => {
         dispatch(getSpeakerDetails(id));
+        dispatch(getTransactionSpeaker(id));
 
         // eslint-disable-next-line
     }, []);
-   
+
+    const status2 = <></>;
+
+    const status3 = (
+        <>
+            <button className="btn btn-sm btn-primary">Selesai</button>
+        </>
+    );
+
+    const status4 = <></>;
+    const status5 = <></>;
+    const status6 = <></>;
+
     return (
         <>
             {dataSpeaker !== null ? (
@@ -45,7 +65,6 @@ function SpeakerSchedule() {
                                                 {dataSpeaker.name}
                                             </h6>
                                             <p>{dataSpeaker.category}</p>
-                                            
                                         </div>
                                     </div>
                                     <div
@@ -68,7 +87,11 @@ function SpeakerSchedule() {
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Fee</p>
-                                                <span>{dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()} / jam</span>
+                                                <span>
+                                                    {dataSpeaker.fee !== null &&
+                                                        `${dataSpeaker.fee}`.localIDR()}{" "}
+                                                    / jam
+                                                </span>
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Languages</p>
@@ -78,41 +101,6 @@ function SpeakerSchedule() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="container">
-                        <div className="row bg-white m-3 border  pad1 shadow-lg">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Lokasi Seminar</th>
-                                        <th scope="col">Nama Audiece</th>
-                                        <th scope="col">Jumlah Peserta</th>
-                                        <th scope="col">Durasi (Jam)</th>
-                                        <th scope="col">Aksi</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Fullan</td>
-                                        <td>Jakarta</td>
-                                        <td>300</td>
-                                        <td>5 Jam</td>
-                                        <td>
-                                            <button className="btn btn-sm btn-primary">
-                                                Terima
-                                            </button>{" "}
-                                            <button className="btn btn-sm btn-danger">
-                                                Tolak
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -136,6 +124,95 @@ function SpeakerSchedule() {
                     </div>
                 </>
             )}
+
+            <div className="container font-smaller">
+                <div className="row bg-white m-3 border  pad1 shadow-lg">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Acara</th>
+                                <th scope="col">Penyelengara</th>
+                                <th scope="col">Status Transaksi</th>
+                                <th scope="col">Aksi</th>
+                                <th scope="col">Detail Acara</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataTransaction !== null &&
+                                dataTransaction.map((data, index) => {
+                                    return (
+                                        <tr key={data._id}>
+                                            <td scope="row">{index + 1}</td>
+                                            <td scope="row">
+                                                {data.nama_acara}
+                                            </td>
+                                            <td scope="row">
+                                                {data.penyelenggara}
+                                            </td>
+                                            <td scope="row">
+                                                {data.status_transaksi}
+                                            </td>
+
+                                            <td scope="row">
+                                                {data.status_transaksi ===
+                                                "MENUNGGU KONFIRMASI SPEAKER" ? (
+                                                    <>
+                                                        <button
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusTransaksi(
+                                                                        data._id,
+                                                                        "UNDANGAN DITERIMA, MENUNGGU PEMBAYARAN AUDIENCE"
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="btn btn-sm btn-primary"
+                                                        >
+                                                            Terima
+                                                        </button>{" "}
+                                                        <button onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusTransaksi(
+                                                                        data._id,
+                                                                        "UNDANGAN DITOLAK, TRANSAKSI GAGAL"
+                                                                    )
+                                                                )
+                                                            } className="btn btn-sm btn-danger">
+                                                            Tolak
+                                                        </button>
+                                                    </>
+                                                ) : data.status_transaksi ===
+                                                  "ACARA SEDANG BERLANGSUNG" ? (
+                                                    <>
+                                                        <button
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusSpeaker(
+                                                                        data._id,
+                                                                        "SELESAI"
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="btn btn-sm btn-primary"
+                                                        >
+                                                            Selesai
+                                                        </button>
+                                                    </>
+                                                ) : <></>}
+                                            </td>
+                                            <td scope="row">
+                                                <button className="btn btn-sm btn-primary">
+                                                    Detail Acara
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </>
     );
 }

@@ -21,7 +21,7 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content:  space-aroun;
+    justify-content:  space-around;
     margin: 40px;
 `;
 

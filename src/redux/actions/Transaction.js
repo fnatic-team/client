@@ -1,4 +1,5 @@
 import Swal from "sweetalert2"
+import {GET_TRANSACTION_SPEAKER, GET_TRANSACTION_AUDIENCE} from "./types"
 
 export const addTransaction = (formData, history) => async () => {
     const token = localStorage.getItem("token")
@@ -35,7 +36,7 @@ export const addTransaction = (formData, history) => async () => {
             });
 
             setTimeout(() => {
-                history.push("/");
+                history.push("/audience/schedule");
             }, 3000);
         } else {
             Swal.fire({
@@ -52,3 +53,158 @@ export const addTransaction = (formData, history) => async () => {
         });
     }
 };
+
+
+export const getTransactionSpeaker = (id) => async (dispatch) => {
+  let url =
+    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
+
+  const token = localStorage.getItem("token")  
+  let options = {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      Authorization : `Bearer ${token}`
+    },
+  };
+
+  let response = await fetch(url, options);
+  let results = await response.json();
+  const data =  results.data.filter( (e) => {return e.speakerID._id === id} )
+  
+
+  dispatch({
+    type: GET_TRANSACTION_SPEAKER,
+    payload: data,
+  });
+};
+
+
+export const getTransactionAudience = (id) => async (dispatch) => {
+  let url =
+    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
+
+  const token = localStorage.getItem("token")  
+  let options = {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      Authorization : `Bearer ${token}`
+    },
+  };
+
+  let response = await fetch(url, options);
+  let results = await response.json();
+  const data =  results.data.filter( (e) => {return e.audienceID._id === id} )
+  
+
+  dispatch({
+    type: GET_TRANSACTION_AUDIENCE,
+    payload: data,
+  });
+};
+
+export const updateStatusTransaksi = (id, status_transaksi) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const options = {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ status_transaksi : status_transaksi }),
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                icon: "success",
+                title: `Status Transaksi Berhasil diUpdate`,
+            });
+
+            window.location.reload()
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: result.message,
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const updateStatusSpeaker = (id, status_speaker) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const options = {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ status_speaker : status_speaker }),
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                icon: "success",
+                title: `Status Transaksi Berhasil diUpdate`,
+            });
+
+            window.location.reload()
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: result.message,
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const updateStatusAudience = (id, status_audience) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const options = {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ status_audience : status_audience }),
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                icon: "success",
+                title: `Status Transaksi Berhasil diUpdate`,
+            });
+
+            window.location.reload()
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: result.message,
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+export {GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_SPEAKER}

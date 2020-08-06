@@ -23,6 +23,7 @@ import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterF
 import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogleAuidience'
 import RegisterGoogleSpeaker from './pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker'
 import ContactUs from "./pages/ContactUs/ContactUs";
+import PageSchedule from "./pages/PageAudience/PageAudience"
 
 function App() {
     return (
@@ -79,6 +80,9 @@ function App() {
                         </Route> */}
                         <Route exact path="/contactus">
                             <ContactUs />
+                        </Route>
+                        <Route exact path="/audience/schedule/:id">
+                            <PageSchedule />
                         </Route>
                     </Switch>
                     <Footer className="footer" />
