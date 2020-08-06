@@ -1,7 +1,6 @@
 import React from "react";
 import hero from "./../assets/images/hero.png";
-
-
+import { Link } from "react-router-dom";
 
 function Jumbotron() {
     return (
@@ -31,19 +30,22 @@ function Jumbotron() {
                             handal dan memiliki pengalaman yang sudah teruji
                             kemampuannya. Disinilah solusinya
                         </p>
-                            <div className="d-flex align-items-start mt-5">
-                        <button
-                            className="btn font-weight-bold rounded-pill btn-lg text-white"
-                            style={{
-                                background: "rgb(255, 107, 84)",
-                                padding: "10px 40px 10px 40px",
-                            }}
-                        >
-                            Mulai
-                        </button></div>
+                        <div className="d-flex align-items-start mt-5">
+                            <Link to="/search">
+                                <button
+                                    className="btn font-weight-bold rounded-pill btn-lg text-white"
+                                    style={{
+                                        background: "rgb(255, 107, 84)",
+                                        padding: "10px 40px 10px 40px",
+                                    }}
+                                >
+                                    Mulai
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                     <div className="col-sm-4">
-                        <img className="img-fluid"src={hero} alt="" />
+                        <img className="img-fluid" src={hero} alt="" />
                     </div>
                 </div>
             </div>

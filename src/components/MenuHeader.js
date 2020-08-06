@@ -33,7 +33,7 @@ function MenuHeader() {
                         )}
 
                         <Link
-                             to={
+                            to={
                                 token.role !== "AUDIENCE"
                                     ? `/speaker/schedule/${token.id}`
                                     : "/audience/schedule"
@@ -57,7 +57,7 @@ function MenuHeader() {
                             Find Speaker
                         </span>
                     </Link>
-                    <Link to="/contact">
+                    <Link to="/contactus">
                         <span className="font-weight-bold text-white mr-3">
                             Hubungi Kami
                         </span>

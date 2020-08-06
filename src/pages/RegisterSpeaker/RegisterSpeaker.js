@@ -135,9 +135,12 @@ function RegisterSpeaker() {
                         name="category"
                         onChange={handleChange}
                     >
-                        <option value="React JS">React JS</option>
-                        <option value="React Native">React Native</option>
-                        <option value="Angular JS">Angular JS</option>
+                        <option value="reactjs">React JS</option>
+                        <option value="angular">Angular</option>
+                        <option value="nodejs">Node JS JS</option>
+                        <option value="mysql">MySql</option>
+                        <option value="magento">Magento</option>
+                        <option value="codeigniter">Codeigniter</option>
                     </select>
                 </FormGroup>
 

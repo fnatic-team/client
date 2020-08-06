@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/new_logo.png";
 import { Link } from "react-router-dom";
 import ButtonHeader from "./ButtonHeader";
-import MenuHeader from "./MenuHeader"
+import MenuHeader from "./MenuHeader";
 
 function Header() {
     return (
@@ -44,7 +44,7 @@ function Header() {
             >
                 <div className="navbar-nav w-50 nav-menu text-white">
                     <div className="w-100 d-flex justify-content-end">
-                       <MenuHeader />
+                        <MenuHeader />
                     </div>
                 </div>
                 <div className="navbar-nav mr-auto text-white justify-content-around">
