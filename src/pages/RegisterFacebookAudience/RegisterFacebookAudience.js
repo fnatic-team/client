@@ -21,9 +21,9 @@ const RegisterWrapper = styled.form`
     }
 `;
 
-function RegisterAudience() {
+function RegisterFacebookAudience() {
 
-    const dataSocial = JSON.parse(localStorage.getItem("facebook"))
+    const dataSocial = JSON.parse(localStorage.getItem("social"))
 
     const [formData, setFormData] = useState({
         name:dataSocial.name,
@@ -80,7 +80,7 @@ function RegisterAudience() {
                         id="email"
                         onChange={handleChange}
                         value={formData.username}
-                        placeholder="Masukan email"
+                        placeholder="Masukan username"
                     />
                 </FormGroup>
                 <FormGroup style={{ textAlign: "left" }}>
@@ -100,4 +100,4 @@ function RegisterAudience() {
     );
 }
 
-export default RegisterAudience;
+export default RegisterFacebookAudience;

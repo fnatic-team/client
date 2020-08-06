@@ -5,10 +5,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import ReactFilestack from "filestack-react";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import RegisterFacebook from "../../components/facebook/RegisterFacebook"
-import {getFacebook} from "../../redux/actions"
+
+
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -41,8 +40,8 @@ function RegisterFacebookSpeaker() {
         name:dataSocial.name,
         email: dataSocial.email,
         username: "",
-        password: dataSocial.id,
-        image:dataSocial.picture.data.url,
+        password: dataSocial.googleId,
+        image:dataSocial.imageUrl,
         phone: "",
         category: "",
         cv: "",

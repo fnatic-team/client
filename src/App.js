@@ -19,7 +19,8 @@ import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
 import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker"
 import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterFacebookAudience'
-
+import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogleAuidience'
+import RegisterGoogleSpeaker from './pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker'
 
 
 
@@ -65,12 +66,18 @@ function App() {
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
-                        <Route exact path="/registrasi/speaker/facebook">
+                        {/* <Route exact path="/registrasi/speaker/facebook">
                             <RegisterFacebookSpeaker/>
                         </Route>
                          <Route exact path="/registrasi/audience/facebook">
                             <RegisterFacebookAudience/>
                         </Route>
+                        <Route exact path="/registrasi/audience/google">
+                            <RegisterGoogleAudience/>
+                        </Route>
+                        <Route exact path="/registrasi/speaker/google">
+                            <RegisterGoogleSpeaker/>
+                        </Route> */}
 
                     </Switch>
                     <Footer className="footer" />
