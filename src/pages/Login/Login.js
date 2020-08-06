@@ -68,11 +68,11 @@ function Login() {
                 </FormGroup>
 
                 <button className="btn btn-primary btn-block">Login</button>
-                <div className="text-center pt-3 ">
+                {/* <div className="text-center pt-3 ">
                     <p>Or</p>
-                </div>
-                <LoginFacebook/>
-                <LoginGoogle />
+                </div> */}
+                {/* <LoginFacebook/>
+                <LoginGoogle /> */}
                 <div className="text-center">
                     <br />
                     <span>

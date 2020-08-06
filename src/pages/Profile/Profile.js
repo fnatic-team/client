@@ -86,7 +86,7 @@ function Profile() {
                                         <div className="col-sm p-4">
                                             <div className="text-left d-flex flex-column h-100 justify-content-center">
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>City</p>
+                                                    <p>Kota</p>
                                                     <span>{dataSpeaker.location !== null && dataSpeaker.location} </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
@@ -100,9 +100,9 @@ function Profile() {
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>Languages</p>
+                                                    <p>Bahasa</p>
                                                     <span>
-                                                        Indonesia , English
+                                                        {dataSpeaker.languages !== null && dataSpeaker.languages}
                                                     </span>
                                                 </div>
                                             </div>

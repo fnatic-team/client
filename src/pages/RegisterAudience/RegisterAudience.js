@@ -135,9 +135,9 @@ function RegisterAudience() {
                     />
                 </FormGroup>
                 <button className="btn btn-primary btn-block">Daftar Sebagai Audience</button>
-                <span>or</span>
+                {/* <span>or</span>
                 <RegisterFacebook />
-                <RegisterGoogle/>
+                <RegisterGoogle/> */}
 
             </RegisterWrapper>
         </div>

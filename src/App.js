@@ -22,7 +22,6 @@ import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFac
 import RegisterFacebookAudience from './pages/RegisterFacebookAudience/RegisterFacebookAudience'
 import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogleAuidience'
 import RegisterGoogleSpeaker from './pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker'
-import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 
 function App() {
