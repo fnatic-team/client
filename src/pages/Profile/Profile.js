@@ -87,7 +87,7 @@ function Profile() {
                                             <div className="text-left d-flex flex-column h-100 justify-content-center">
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Kota</p>
-                                                    <span>{dataSpeaker.location !== null && dataSpeaker.location} </span>
+                                                    <span>{dataSpeaker.location !== null &&  dataSpeaker.location} </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Available to</p>

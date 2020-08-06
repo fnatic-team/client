@@ -136,7 +136,6 @@ function EditBiodata() {
                                 type="text"
                                 name="phone"
                                 onClick={handleChange}
-                                value={formData.phone}
                                 defaultValue={dataSpeaker.phone}
                                 id="phone"
                                 placeholder="Masukan Nomor Telpon"
