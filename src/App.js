@@ -53,7 +53,7 @@ function App() {
                         <Route exact path="/profile/edit/:id">
                             <EditBiodata />
                         </Route>
-                        <Route exact path="/appointment">
+                        <Route exact path="/appointment/:id">
                             <Appointment />
                         </Route>
 

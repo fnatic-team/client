@@ -28,9 +28,11 @@ function DetailSpeaker() {
     const dataSpeaker = useSelector(
         (state) => state.browserSpeaker.selectedSpeaker
     );
+    
+    console.log(dataSpeaker)
 
     const isLoggin = localStorage.getItem("token");
-
+    
     useEffect(() => {
         dispatch(getSpeakerDetails(id));
 
@@ -44,8 +46,9 @@ function DetailSpeaker() {
                 title: "Forbidden",
                 text: "Anda Harus Masuk Terlebih Dahulu",
             });
+            history.push("/login")
         } else {
-            history.push("/appointment");
+            history.push(`/appointment/${dataSpeaker._id}`);
         }
     };
 
