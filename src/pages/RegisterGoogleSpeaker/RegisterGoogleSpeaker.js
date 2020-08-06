@@ -1,13 +1,11 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { registerUser } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import ReactFilestack from "filestack-react";
 import Swal from "sweetalert2";
-
-
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -28,26 +26,21 @@ const RegisterWrapper = styled.form`
     }
 `;
 
-
-
 function RegisterFacebookSpeaker() {
+    const dataSocial = JSON.parse(localStorage.getItem("social"));
 
-    
-    const dataSocial = JSON.parse(localStorage.getItem("social"))
-    
-    
     const [formData, setFormData] = useState({
-        name:dataSocial.name,
+        name: dataSocial.name,
         email: dataSocial.email,
         username: "",
         password: dataSocial.googleId,
-        image:dataSocial.imageUrl,
+        image: dataSocial.imageUrl,
         phone: "",
         category: "",
         cv: "",
     });
 
-    console.log(formData)
+    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
@@ -57,18 +50,18 @@ function RegisterFacebookSpeaker() {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
-                    text: "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                    text:
+                        "Upload Resume Diperlukan dan Form tidak boleh kosong",
                 });
-            }else if(formData.password.length <= 5){
+            } else if (formData.password.length <= 5) {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
                     text: "Password Minimal 6 karakter",
                 });
-            }else{
-                dispatch(registerUser(formData,history))
             }
         }
+        dispatch(registerUser(formData, history));
     };
 
     const handleChange = (event) => {
@@ -95,8 +88,7 @@ function RegisterFacebookSpeaker() {
                         placeholder="Masukan nama lengkap"
                     />
                 </FormGroup>
-                
-                
+
                 <FormGroup style={{ textAlign: "left" }}>
                     <Label>Speaker as :</Label>
                     <select
@@ -150,7 +142,6 @@ function RegisterFacebookSpeaker() {
                     Daftar sebagai Speaker
                 </button>
             </RegisterWrapper>
-            
         </div>
     );
 }

@@ -33,6 +33,8 @@ function Appointment() {
         nama_acara: "",
         waktu_acara: "",
         tanggal_acara: "",
+        durasi: null,
+        jml_peserta:null,
         kota: "",
         alamat: "",
         deskripsi: "",
@@ -45,21 +47,20 @@ function Appointment() {
             [event.target.name]: event.target.value,
         });
     };
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         for (let key in formData) {
-            if (formData[key] === "") {
-                Swal.fire({
+            if (formData[key] === "" || formData[key] === null  ) {
+                return Swal.fire({
                     icon: "error",
                     title: "Require",
                     text: "Form tidak boleh kosong",
-                });
-            }else{
-                dispatch(addTransaction(formData,history))
+                });  
             }
+            
         }
-        
+        dispatch(addTransaction(formData,history))
     };
 
     
@@ -164,6 +165,7 @@ function Appointment() {
                             type="number"
                             onChange={handleChange}
                             name="jml_peserta"
+                            value={formData.jml_peserta}
                             id="jml_peserta"
                             placeholder="Masukan Jumlah Peserta"
                         />
@@ -174,6 +176,7 @@ function Appointment() {
                             type="number"
                             name="durasi"
                             onChange={handleChange}
+                            value={formData.durasi}
                             id="durasi"
                             placeholder="Masukan durasi"
                         />

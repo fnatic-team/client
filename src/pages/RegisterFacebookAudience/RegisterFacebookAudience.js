@@ -50,11 +50,9 @@ function RegisterFacebookAudience() {
                     title: "Require",
                     text: "Password Minimal 6 karakter",
                 });
-            }else{
-                dispatch(registerUser(formData,history))
             }
         }
-        
+        dispatch(registerUser(formData,history))
     };
 
     const handleChange = (event) => {

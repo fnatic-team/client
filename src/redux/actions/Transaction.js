@@ -1,6 +1,7 @@
 import Swal from "sweetalert2"
 
 export const addTransaction = (formData, history) => async () => {
+    const token = localStorage.getItem("token")
     try {
         const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/addtransaction`;
         const options = {
@@ -8,6 +9,7 @@ export const addTransaction = (formData, history) => async () => {
             body: JSON.stringify(formData),
             headers: {
                 "Content-type": "application/json",
+                Authorization : `Bearer ${token}`
             },
         };
 
