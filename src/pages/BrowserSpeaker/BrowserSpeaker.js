@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CardBrowser from "../../components/CardBrowser";
+import { filterLocation } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container1 = styled.div`
     display: flex;
@@ -21,42 +23,53 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content:  space-aroun;
+    justify-content: space-around;
+
     margin: 40px;
 `;
 
-
-
 function BrowserSpeaker() {
+    const [input, setInput] = useState("");
+    const [name, setName] = useState("");
 
-    const [input, setInput] = useState("")
+    const dispatch = useDispatch();
+    const dataLocations = useSelector((state) => state.browserSpeaker.location);
+    const handleChange = (event) => {
+        setInput(event.target.value);
+    };
 
-    
+    useEffect(() => {
+        dispatch(filterLocation());
+    }, []);
 
+    const handleClick = (event) => {
+        setName(event.target.value);
+        console.log(event.target.value);
+    };
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
             <Container>
                 <SearchWrapper>
                     <input
                         className="form-control mr-sm-2"
-                        type="search"
+                        type="text"
                         placeholder="Nama Pembicara"
                         aria-label="Search"
-                        onChange={(event) => setInput(event.target.value)}
+                        onChange={handleChange}
                     />
 
-                    <select className="form-control ">
-                        <option>filter by location</option>
-                        <option>filter by location</option>
-                        <option>filter by location</option>
-                        <option>filter by location</option>
+                    <select className="form-control " onChange={handleClick}>
+                        {dataLocations !== null &&
+                            dataLocations.map((item) => (
+                                <option>{item.name}</option>
+                            ))}
                     </select>
                 </SearchWrapper>
             </Container>
 
             <Container>
                 <Container1>
-                    <CardBrowser />
+                    <CardBrowser user={input} location={name} />
                 </Container1>
             </Container>
         </div>

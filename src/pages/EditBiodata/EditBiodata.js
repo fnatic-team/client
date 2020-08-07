@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
-import RegionSelect from "react-region-flag-select";
+
 import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
+
 import { getSpeakerDetails } from "../../redux/actions";
 import ReactFilestack from "filestack-react";
 import { updateUser } from "../../redux/actions";
@@ -49,6 +49,8 @@ function EditBiodata() {
         bio: "",
         image: "",
         cv:"",
+        language:"",
+        
     });
 
     useEffect(() => {
@@ -98,9 +100,7 @@ function EditBiodata() {
                                     name="fee"
                                     id="fee"
                                     onChange={handleChange}
-                                    defaultValue={
-                                        (dataSpeaker.fee !== undefined) &
-                                        dataSpeaker.fee
+                                    defaultValue={dataSpeaker.fee
                                     }
                                     className="w-75"
                                     placeholder="Masukan nominal"
@@ -108,31 +108,35 @@ function EditBiodata() {
                                 <span> / jam</span>
                             </div>
                         </FormGroup>
-                        {/* <FormGroup style={{ textAlign: "left" }}>
+                        <FormGroup style={{ textAlign: "left" }}>
                             <Label>Domisili :</Label>
-                            <RegionSelect
-                                className="custom-select"
+                            <Input
+                                type="text"
                                 name="location"
-                                style={{ width: "100%" }}
-                                cityOnly={true}
-                                countryCode={"ID"}
-                                onChange={handleChange}
+                                onClick={handleChange}
+                                defaultValue={dataSpeaker.location}
+                                id="phone"
+                                placeholder="Masukan Kota Domisili"
                             />
                         </FormGroup>
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <Label>Bersedia di lokasi :</Label>
-                            <RegionSelect
-                                className="custom-select"
-                                style={{ width: "100%" }}
-                                cityOnly={true}
-                                countryCode={"ID"}
+                         <FormGroup style={{ textAlign: "left" }}>
+                            <Label>Bahasa Yang Digunakan:</Label>
+                            <Input
+                                type="text"
+                                name="language"
+                                onClick={handleChange}
+                                defaultValue={dataSpeaker.language}
+                                id="language"
+                                placeholder="Masukan Kota Domisili"
                             />
-                        </FormGroup> */}
+                        </FormGroup>
                         <FormGroup style={{ textAlign: "left" }}>
                             <Label>Nomor Telpon :</Label>
                             <Input
                                 type="text"
                                 name="phone"
+                                onClick={handleChange}
+                                defaultValue={dataSpeaker.phone}
                                 id="phone"
                                 placeholder="Masukan Nomor Telpon"
                             />
@@ -144,6 +148,7 @@ function EditBiodata() {
                                 name="bio"
                                 onChange={handleChange}
                                 value={formData.bio}
+                                defaultValue={dataSpeaker.bio}
                             />
                         </FormGroup>
                         <FormGroup style={{ textAlign: "left" }}>

@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchToken } from "../redux/actions";
-import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function MenuHeader() {
-    const history = useHistory();
     const dispatch = useDispatch();
     const token = useSelector((state) => state.authorization.authorization);
 
@@ -36,14 +34,14 @@ function MenuHeader() {
                             to={
                                 token.role !== "AUDIENCE"
                                     ? `/speaker/schedule/${token.id}`
-                                    : "/audience/schedule"
+                                    : `/audience/schedule/${token.id}`
                             }
                         >
                             <span className="font-weight-bold text-white mr-3">
                                 Jadwal Saya
                             </span>
                         </Link>
-                        <Link to="/contact">
+                        <Link to="/contactus">
                             <span className="font-weight-bold text-white mr-3">
                                 Hubungi Kami
                             </span>
