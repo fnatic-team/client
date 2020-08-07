@@ -55,6 +55,13 @@ function PaymentPage() {
             minimumFractionDigits: 2,
         });
     };
+
+      // eslint-disable-next-line no-extend-native
+    String.prototype.toTitleCase = function () {
+        return this.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    };
     return (
         <>
             {dataTransaction !== null && (
@@ -67,10 +74,18 @@ function PaymentPage() {
                             </p>
                             <p>
                                 2. Nama Penyelenggara :{" "}
-                                {dataTransaction.penyelenggara}
+                                {dataTransaction[0].penyelenggara}
                             </p>
-                            <p>3. Nama Audience : {dataTransaction.name} </p>
+                            <p>3. Nama Audience : {dataTransaction[0].name} </p>
+                            <p>4. Nama Speaker : {dataTransaction[0].speakerID.name}</p>
+                            <p>
+                                4. Status Transaksi :{" "}
+                                {dataTransaction[0].status_transaksi}
+                            </p>
+                            <p>5. Alamat Acara : {dataTransaction[0].alamat} </p>
+                            <p> </p>
                         </FormGroup>
+
 
                         <button
                             className="btn btn-primary btn-block"
