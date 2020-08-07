@@ -1,5 +1,5 @@
 import Swal from "sweetalert2"
-import {GET_TRANSACTION_SPEAKER, GET_TRANSACTION_AUDIENCE} from "./types"
+import {GET_TRANSACTION_SPEAKER, GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_DETAIL} from "./types"
 
 export const addTransaction = (formData, history) => async () => {
     const token = localStorage.getItem("token")
@@ -206,5 +206,28 @@ export const updateStatusAudience = (id, status_audience) => async (dispatch) =>
     }
 };
 
+export const getTransactionDetail = (id) => async (dispatch) => {
+  let url =
+    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
 
-export {GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_SPEAKER}
+  const token = localStorage.getItem("token")  
+  let options = {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      Authorization : `Bearer ${token}`
+    },
+  };
+
+  let response = await fetch(url, options);
+  let results = await response.json();
+  const data =  results.data.filter( (e) => {return e._id === id} )
+  
+
+  dispatch({
+    type: GET_TRANSACTION_DETAIL,
+    payload: data,
+  });
+};
+
+export {GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_SPEAKER, GET_TRANSACTION_DETAIL}
