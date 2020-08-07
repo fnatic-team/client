@@ -44,12 +44,12 @@ function BrowserSpeaker() {
                         onChange={handleChange}
                     />
 
-                    <select className="form-control ">
+                    {/* <select className="form-control ">
                         <option>filter by location</option>
                         <option>filter by location</option>
                         <option>filter by location</option>
                         <option>filter by location</option>
-                    </select>
+                    </select> */}
                 </SearchWrapper>
             </Container>
 
