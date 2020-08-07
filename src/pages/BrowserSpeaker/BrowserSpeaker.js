@@ -31,11 +31,7 @@ function BrowserSpeaker() {
 
     const [input, setInput] = useState("")
     
-    const handleKeypress = (event) =>{
-        event.preventDefault()
-        setInput(event.target.value)
-    }
-    
+ 
 
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>

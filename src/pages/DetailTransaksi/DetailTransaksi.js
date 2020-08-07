@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FormGroup} from "reactstrap";
-import { useHistory } from "react-router-dom";
 import {getTransactionDetail } from "../../redux/actions";
 
 const PaymentWrapper = styled.form`
@@ -31,7 +30,6 @@ const PaymentWrapper = styled.form`
 
 function PaymentPage() {
     let { id } = useParams();
-    const history = useHistory();
     const dispatch = useDispatch();
     const dataTransaction = useSelector(
         (state) => state.transaction.transactionDetail
@@ -90,14 +88,6 @@ function PaymentPage() {
                                 <span>{dataTransaction[0].alamat} </span>
                             </div>
                         </FormGroup>
-
-
-                        <button
-                            className="btn btn-primary btn-block"
-                            style={{ width: "40%", margin: "auto" }}
-                        >
-                            Confirm Payment
-                        </button>
                     </PaymentWrapper>
                 </div>
             )}

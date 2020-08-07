@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { FormGroup, Label, Input } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import { FormGroup } from "reactstrap";
 import ReactFilestack from "filestack-react";
 import {
     getTransactionDetail,
@@ -35,7 +34,6 @@ const PaymentWrapper = styled.form`
 
 function PaymentPage() {
     let { id } = useParams();
-    const history = useHistory();
     const dispatch = useDispatch();
     const dataTransaction = useSelector(
         (state) => state.transaction.transactionDetail
@@ -141,26 +139,34 @@ function PaymentPage() {
                         <FormGroup style={{ textAlign: "left" }}>
                             <span>Transfer ke:</span>
                             <div className="d-flex w-100 justify-content-between">
-                                
                                 <div>
                                     <div>
-                                        <span>Account : PT.Narasumber</span><br/>
-                                        <span>Bank Name: BCA</span><br/>
-                                        <span>Account No: xxxxxxx</span><br/>
+                                        <span>Account : PT.Narasumber</span>
+                                        <br />
+                                        <span>Bank Name: BCA</span>
+                                        <br />
+                                        <span>Account No: xxxxxxx</span>
+                                        <br />
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <span>Account : PT.Narasumber</span><br/>
-                                        <span>Bank Name: Mandiri</span><br/>
-                                        <span>Account No: xxxxxxx</span><br/>
+                                        <span>Account : PT.Narasumber</span>
+                                        <br />
+                                        <span>Bank Name: Mandiri</span>
+                                        <br />
+                                        <span>Account No: xxxxxxx</span>
+                                        <br />
                                     </div>
                                 </div>
-                                 <div>
+                                <div>
                                     <div>
-                                        <span>Account : PT.Narasumber</span><br/>
-                                        <span>Bank Name: BTPN</span><br/>
-                                        <span>Account No: xxxxxxx</span><br/>
+                                        <span>Account : PT.Narasumber</span>
+                                        <br />
+                                        <span>Bank Name: BTPN</span>
+                                        <br />
+                                        <span>Account No: xxxxxxx</span>
+                                        <br />
                                     </div>
                                 </div>
                             </div>
