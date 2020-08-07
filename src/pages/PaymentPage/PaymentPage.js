@@ -7,7 +7,11 @@ import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getSpeakerDetails } from "../../redux/actions";
 import ReactFilestack from "filestack-react";
-import { updateUser } from "../../redux/actions";
+import {
+    updateUser,
+    updateStatusTransaksiPembayaran,
+    getTransactionDetail,
+} from "../../redux/actions";
 
 const PaymentWrapper = styled.form`
     width: 600px;
@@ -24,7 +28,6 @@ const PaymentWrapper = styled.form`
         justify-content: space-between;
         align-items: center;
     }
-
     .Box {
         border: 1px solid black;
         width: auto;

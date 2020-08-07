@@ -23,7 +23,7 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content:  space-around;
+    justify-content: space-around;
 
     margin: 40px;
 `;
@@ -31,11 +31,8 @@ const SearchWrapper = styled.div`
 function BrowserSpeaker() {
     const [input, setInput] = useState("");
     const [name, setName] = useState("");
-
     const dispatch = useDispatch();
     const dataLocations = useSelector((state) => state.browserSpeaker.location);
-
-    const [input, setInput] = useState("")
     const handleChange = (event) => {
         setInput(event.target.value);
     };

@@ -1,8 +1,12 @@
-import Swal from "sweetalert2"
-import {GET_TRANSACTION_SPEAKER, GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_DETAIL} from "./types"
+import Swal from "sweetalert2";
+import {
+    GET_TRANSACTION_SPEAKER,
+    GET_TRANSACTION_AUDIENCE,
+    GET_TRANSACTION_DETAIL,
+} from "./types";
 
 export const addTransaction = (formData, history) => async () => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     try {
         const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/addtransaction`;
         const options = {
@@ -10,7 +14,7 @@ export const addTransaction = (formData, history) => async () => {
             body: JSON.stringify(formData),
             headers: {
                 "Content-type": "application/json",
-                Authorization : `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
             },
         };
 
@@ -18,7 +22,7 @@ export const addTransaction = (formData, history) => async () => {
         // eslint-disable-next-line
         const result = await response.json();
 
-        if (response.status === 200 ) {
+        if (response.status === 200) {
             const Toast = Swal.mixin({
                 toast: true,
                 position: "center",
@@ -37,7 +41,7 @@ export const addTransaction = (formData, history) => async () => {
             });
 
             setTimeout(() => {
-                window.history.back()
+                window.history.back();
             }, 3000);
         } else {
             Swal.fire({
@@ -55,67 +59,67 @@ export const addTransaction = (formData, history) => async () => {
     }
 };
 
-
 export const getTransactionSpeaker = (id) => async (dispatch) => {
-  let url =
-    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
 
-  const token = localStorage.getItem("token")  
-  let options = {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-      Authorization : `Bearer ${token}`
-    },
-  };
+    const token = localStorage.getItem("token");
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-  let response = await fetch(url, options);
-  let results = await response.json();
-  const data =  results.data.filter( (e) => {return e.speakerID._id === id} )
-  
+    let response = await fetch(url, options);
+    let results = await response.json();
+    const data = results.data.filter((e) => {
+        return e.speakerID._id === id;
+    });
 
-  dispatch({
-    type: GET_TRANSACTION_SPEAKER,
-    payload: data,
-  });
+    dispatch({
+        type: GET_TRANSACTION_SPEAKER,
+        payload: data,
+    });
 };
-
 
 export const getTransactionAudience = (id) => async (dispatch) => {
-  let url =
-    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
 
-  const token = localStorage.getItem("token")  
-  let options = {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-      Authorization : `Bearer ${token}`
-    },
-  };
+    const token = localStorage.getItem("token");
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-  let response = await fetch(url, options);
-  let results = await response.json();
-  const data =  results.data.filter( (e) => {return e.audienceID._id === id} )
-  
+    let response = await fetch(url, options);
+    let results = await response.json();
+    const data = results.data.filter((e) => {
+        return e.audienceID._id === id;
+    });
 
-  dispatch({
-    type: GET_TRANSACTION_AUDIENCE,
-    payload: data,
-  });
+    dispatch({
+        type: GET_TRANSACTION_AUDIENCE,
+        payload: data,
+    });
 };
 
-export const updateStatusTransaksi = (id, status_transaksi) => async (dispatch) => {
+export const updateStatusTransaksi = (id, status_transaksi) => async (
+    dispatch
+) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`;
         const options = {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
                 authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ status_transaksi : status_transaksi }),
+            body: JSON.stringify({ status_transaksi: status_transaksi }),
         };
 
         const response = await fetch(url, options);
@@ -127,7 +131,7 @@ export const updateStatusTransaksi = (id, status_transaksi) => async (dispatch) 
                 title: `Status Transaksi Berhasil diUpdate`,
             });
 
-            window.location.reload()
+            window.location.reload();
         } else {
             Swal.fire({
                 icon: "error",
@@ -142,14 +146,14 @@ export const updateStatusTransaksi = (id, status_transaksi) => async (dispatch) 
 export const updateStatusSpeaker = (id, status_speaker) => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`;
         const options = {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
                 authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ status_speaker : status_speaker }),
+            body: JSON.stringify({ status_speaker: status_speaker }),
         };
 
         const response = await fetch(url, options);
@@ -161,7 +165,7 @@ export const updateStatusSpeaker = (id, status_speaker) => async (dispatch) => {
                 title: `Status Transaksi Berhasil diUpdate`,
             });
 
-            window.location.reload()
+            window.location.reload();
         } else {
             Swal.fire({
                 icon: "error",
@@ -173,17 +177,19 @@ export const updateStatusSpeaker = (id, status_speaker) => async (dispatch) => {
     }
 };
 
-export const updateStatusAudience = (id, status_audience) => async (dispatch) => {
+export const updateStatusAudience = (id, status_audience) => async (
+    dispatch
+) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`;
         const options = {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
                 authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ status_audience : status_audience }),
+            body: JSON.stringify({ status_audience: status_audience }),
         };
 
         const response = await fetch(url, options);
@@ -195,7 +201,7 @@ export const updateStatusAudience = (id, status_audience) => async (dispatch) =>
                 title: `Status Transaksi Berhasil diUpdate`,
             });
 
-            window.location.reload()
+            window.location.reload();
         } else {
             Swal.fire({
                 icon: "error",
@@ -208,34 +214,36 @@ export const updateStatusAudience = (id, status_audience) => async (dispatch) =>
 };
 
 export const getTransactionDetail = (id) => async (dispatch) => {
-  let url =
-    `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/alltrans`;
 
-  const token = localStorage.getItem("token")  
-  let options = {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-      Authorization : `Bearer ${token}`
-    },
-  };
+    const token = localStorage.getItem("token");
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-  let response = await fetch(url, options);
-  let results = await response.json();
-  const data =  results.data.filter( (e) => {return e._id === id} )
-  localStorage.setItem("detail", JSON.stringify(data[0]))
- 
-  dispatch({
-    type: GET_TRANSACTION_DETAIL,
-    payload: data,
-  });
+    let response = await fetch(url, options);
+    let results = await response.json();
+    const data = results.data.filter((e) => {
+        return e._id === id;
+    });
+    localStorage.setItem("detail", JSON.stringify(data[0]));
+
+    dispatch({
+        type: GET_TRANSACTION_DETAIL,
+        payload: data,
+    });
 };
 
-
-export const updateStatusTransaksiPembayaran = (id,formData) => async (dispatch) => {
+export const updateStatusTransaksiPembayaran = (id, formData) => async (
+    dispatch
+) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`;
         const options = {
             method: "PUT",
             headers: {
@@ -254,7 +262,7 @@ export const updateStatusTransaksiPembayaran = (id,formData) => async (dispatch)
                 title: `Status Transaksi Berhasil diUpdate`,
             });
 
-            window.location.back()
+            window.location.back();
         } else {
             Swal.fire({
                 icon: "error",
@@ -266,4 +274,8 @@ export const updateStatusTransaksiPembayaran = (id,formData) => async (dispatch)
     }
 };
 
-export {GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_SPEAKER, GET_TRANSACTION_DETAIL}
+export {
+    GET_TRANSACTION_AUDIENCE,
+    GET_TRANSACTION_SPEAKER,
+    GET_TRANSACTION_DETAIL,
+};

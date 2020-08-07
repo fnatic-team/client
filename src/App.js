@@ -16,14 +16,9 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
-
-import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker"
-
-import ContactUs from "./pages/ContactUs/ContactUs";
-import PageSchedule from "./pages/PageAudience/PageAudience"
-import Payment from "./pages/PaymentPage/PaymentPage"
-import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
-import PrivateRoute from "./helpers/PrivateRoute"
+import PageSchedule from "./pages/PageAudience/PageAudience";
+import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
+import PrivateRoute from "./helpers/PrivateRoute";
 import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
 import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
 import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
@@ -31,7 +26,6 @@ import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleS
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
-
 
 function App() {
     return (
@@ -58,8 +52,7 @@ function App() {
                         <Route exact path="/login">
                             <Login />
                         </Route>
-                        <PrivateRoute
-                         exact path="/profile/edit/:id">
+                        <PrivateRoute exact path="/profile/edit/:id">
                             <EditBiodata />
                         </PrivateRoute>
                         <PrivateRoute exact path="/appointment/:id">
@@ -102,7 +95,6 @@ function App() {
                         <PrivateRoute exact path="/transaksi/detail/:id">
                             <DetailTransaksi />
                         </PrivateRoute>
-
                     </Switch>
                     <Footer className="footer" />
                 </Router>
