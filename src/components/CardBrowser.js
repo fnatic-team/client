@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { fetchAllSpeakers, searchSpeakerByName } from "../redux/actions";
+import {
+    fetchAllSpeakers,
+    searchSpeakerByName,
+    searchSpeakerByLocation,
+} from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
@@ -28,19 +32,20 @@ String.prototype.toTitleCase = function () {
     });
 };
 
-function CardBrowser({ user }) {
+function CardBrowser({ user, location }) {
     const dispatch = useDispatch();
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
         if (user !== "") {
-            console.log(user);
             dispatch(searchSpeakerByName(user));
+        } else if (location !== "") {
+            dispatch(searchSpeakerByLocation(location));
         } else {
             dispatch(fetchAllSpeakers());
         }
         //eslint-disable-next-line
-    }, [user]);
+    }, [user, location]);
 
     return (
         <>

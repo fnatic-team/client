@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CardBrowser from "../../components/CardBrowser";
+import { filterLocation } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container1 = styled.div`
     display: flex;
@@ -27,11 +29,23 @@ const SearchWrapper = styled.div`
 
 function BrowserSpeaker() {
     const [input, setInput] = useState("");
+    const [name, setName] = useState("");
+
+    const dispatch = useDispatch();
+    const dataLocations = useSelector((state) => state.browserSpeaker.location);
 
     const handleChange = (event) => {
         setInput(event.target.value);
     };
 
+    useEffect(() => {
+        dispatch(filterLocation());
+    }, []);
+
+    const handleClick = (event) => {
+        setName(event.target.value);
+        console.log(event.target.value);
+    };
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
             <Container>
@@ -44,18 +58,18 @@ function BrowserSpeaker() {
                         onChange={handleChange}
                     />
 
-                    {/* <select className="form-control ">
-                        <option>filter by location</option>
-                        <option>filter by location</option>
-                        <option>filter by location</option>
-                        <option>filter by location</option>
-                    </select> */}
+                    <select className="form-control " onChange={handleClick}>
+                        {dataLocations !== null &&
+                            dataLocations.map((item) => (
+                                <option>{item.name}</option>
+                            ))}
+                    </select>
                 </SearchWrapper>
             </Container>
 
             <Container>
                 <Container1>
-                    <CardBrowser user={input} />
+                    <CardBrowser user={input} location={name} />
                 </Container1>
             </Container>
         </div>

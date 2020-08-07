@@ -2,6 +2,8 @@ import {
     GET_DATA_SPEAKERS,
     GET_SPEAKERS_DETAILS,
     GET_SPEAKERS_BY_NAME,
+    GET_LOCATIONS,
+    GET_SPEAKERS_BY_LOCATION,
 } from "./types";
 
 export const fetchAllSpeakers = () => async (dispatch) => {
@@ -63,4 +65,50 @@ export const searchSpeakerByName = (user) => async (dispatch) => {
     });
 };
 
-export { GET_DATA_SPEAKERS, GET_SPEAKERS_DETAILS, GET_SPEAKERS_BY_NAME };
+export const filterLocation = () => async (dispatch) => {
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/userLocation`;
+
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+        },
+    };
+
+    let response = await fetch(url, options);
+    let results = await response.json();
+    console.log(results);
+
+    dispatch({
+        type: GET_LOCATIONS,
+        payload: results,
+    });
+};
+
+export const searchSpeakerByLocation = (location) => async (dispatch) => {
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/location/?location=${location}`;
+
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+        },
+    };
+
+    let response = await fetch(url, options);
+    let results = await response.json();
+    console.log(results);
+
+    dispatch({
+        type: GET_SPEAKERS_BY_LOCATION,
+        payload: results,
+    });
+};
+
+export {
+    GET_DATA_SPEAKERS,
+    GET_SPEAKERS_DETAILS,
+    GET_SPEAKERS_BY_NAME,
+    GET_LOCATIONS,
+    GET_SPEAKERS_BY_LOCATION,
+};
