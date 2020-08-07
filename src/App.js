@@ -24,6 +24,14 @@ import PageSchedule from "./pages/PageAudience/PageAudience"
 import Payment from "./pages/PaymentPage/PaymentPage"
 import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
 import PrivateRoute from "./helpers/PrivateRoute"
+import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
+import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
+import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
+import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker";
+import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import Payment from "./pages/PaymentPage/PaymentPage";
+
 
 function App() {
     return (
@@ -66,6 +74,9 @@ function App() {
                         </PrivateRoute>
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
+                        </Route>
+                        <Route exact path="/paymentPage">
+                            <Payment />
                         </Route>
                         {/* <Route exact path="/registrasi/speaker/facebook">
                             <RegisterFacebookSpeaker/>

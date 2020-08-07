@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { FormGroup } from "reactstrap";
+import { FormGroup, Label, Input } from "reactstrap";
+import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+import { getSpeakerDetails } from "../../redux/actions";
 import ReactFilestack from "filestack-react";
-import {
-    getTransactionDetail,
-    updateStatusTransaksiPembayaran,
-} from "../../redux/actions";
+import { updateUser } from "../../redux/actions";
 
 const PaymentWrapper = styled.form`
     width: 600px;
@@ -20,8 +20,9 @@ const PaymentWrapper = styled.form`
     .container1 {
         display: flex;
         flex-direction: row;
-        align-items: center;
         text-align: left;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .Box {
