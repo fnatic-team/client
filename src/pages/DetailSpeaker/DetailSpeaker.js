@@ -30,7 +30,6 @@ function DetailSpeaker() {
         (state) => state.browserSpeaker.selectedSpeaker
     );
 
-    console.log(dataSpeaker);
 
     const isLoggin = localStorage.getItem("token");
 
@@ -120,9 +119,9 @@ function DetailSpeaker() {
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>Languages</p>
+                                                    <p>Bahasa</p>
                                                     <span>
-                                                        Indonesia , English
+                                                        {dataSpeaker.language}
                                                     </span>
                                                 </div>
                                             </div>

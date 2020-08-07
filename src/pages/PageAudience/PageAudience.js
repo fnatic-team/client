@@ -10,8 +10,9 @@ function PageAudience() {
     let { id } = useParams();
     const dispatch = useDispatch();
     const dataTransaction = useSelector((state) => state.transaction.audience);
+    
 
-    console.log(dataTransaction);
+    
     useEffect(() => {
         dispatch(getTransactionAudience(id));
 
@@ -25,8 +26,9 @@ function PageAudience() {
         });
     };
     return (
+        
         <div style={{ margin: "100px 0px 80px 0px" }}>
-            <div className="container" animation="fade-down" duration={1000}>
+            {dataTransaction !== null ? <div className="container" animation="fade-down" duration={1000}>
                 <div className="row bg-white m-3 border  pad1 shadow-lg">
                     <div className="col m-3 modal-body text-center align-self-center">
                         <div className="col m-3 justify-content-space-evenly">
@@ -34,23 +36,41 @@ function PageAudience() {
                                 <div className="col-sm">
                                     <img
                                         className="rounded-circle"
-                                        src="https://via.placeholder.com/200"
+                                        style={{width:"200px"}}
+                                        src={dataTransaction[0].audienceID.image}
                                         alt=""
                                     />
                                 </div>
                             </div>
 
-                            <div className="col-sm">
+                            <div className="col-sm mt-5">
                                 <div className="text-center d-flex flex-column h-100 justify-content-center">
                                     <h6 className="font-weight-bold">
-                                        Name Audience
+                                        {dataTransaction[0].audienceID.name.toTitleCase()}
                                     </h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> :   <>
+                    {" "}
+                    <div
+                        className="container-fluid"
+                        style={{
+                            width: "3rem",
+                            height: "3rem",
+                            marginTop: "200px",
+                        }}
+                    >
+                        <div
+                            className="spinner-border text-primary"
+                            role="status"
+                        >
+                            <span className="sr-only">Loading...</span>
+                        </div>{" "}
+                    </div>
+                </>}
 
             {dataTransaction !== null ? (
                 <div className="container font-smaller">
@@ -119,11 +139,11 @@ function PageAudience() {
                                                     ) : data.status_transaksi ===
                                                       "MENUNGGU KONFIRMASI SPEAKER" ? (
                                                         <>
-                                                            <Link>
+                                                            
                                                                 <button className="btn btn-primary btn-sm">
                                                                     Check Out
                                                                 </button>
-                                                            </Link>
+                                                            
                                                         </>
                                                     ) : (
                                                         <></>

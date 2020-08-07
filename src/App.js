@@ -23,6 +23,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import PageSchedule from "./pages/PageAudience/PageAudience"
 import Payment from "./pages/PaymentPage/PaymentPage"
 import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
+import PrivateRoute from "./helpers/PrivateRoute"
 
 function App() {
     return (
@@ -49,19 +50,20 @@ function App() {
                         <Route exact path="/login">
                             <Login />
                         </Route>
-                        <Route exact path="/profile/edit/:id">
+                        <PrivateRoute
+                         exact path="/profile/edit/:id">
                             <EditBiodata />
-                        </Route>
-                        <Route exact path="/appointment/:id">
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/appointment/:id">
                             <Appointment />
-                        </Route>
+                        </PrivateRoute>
 
-                        <Route exact path="/speaker/profile/:id">
+                        <PrivateRoute exact path="/speaker/profile/:id">
                             <Profile />
-                        </Route>
-                        <Route exact path="/speaker/schedule/:id">
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/speaker/schedule/:id">
                             <SpeakerSchedule />
-                        </Route>
+                        </PrivateRoute>
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
@@ -80,15 +82,15 @@ function App() {
                         <Route exact path="/contactus">
                             <ContactUs />
                         </Route>
-                        <Route exact path="/audience/schedule/:id">
+                        <PrivateRoute exact path="/audience/schedule/:id">
                             <PageSchedule />
-                        </Route>
-                        <Route exact path="/pembayaran/:id">
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/pembayaran/:id">
                             <Payment />
-                        </Route>
-                        <Route exact path="/transaksi/detail/:id">
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/transaksi/detail/:id">
                             <DetailTransaksi />
-                        </Route>
+                        </PrivateRoute>
 
                     </Switch>
                     <Footer className="footer" />
