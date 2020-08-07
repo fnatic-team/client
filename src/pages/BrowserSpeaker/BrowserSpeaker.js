@@ -30,7 +30,11 @@ const SearchWrapper = styled.div`
 function BrowserSpeaker() {
 
     const [input, setInput] = useState("")
-
+    
+    const handleKeypress = (event) =>{
+        event.preventDefault()
+        setInput(event.target.value)
+    }
     
 
     return (
@@ -56,7 +60,7 @@ function BrowserSpeaker() {
 
             <Container>
                 <Container1>
-                    <CardBrowser />
+                    <CardBrowser input={input} />
                 </Container1>
             </Container>
         </div>

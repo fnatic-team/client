@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getSpeakerDetails } from "../../redux/actions";
+import { getSpeakerDetails} from "../../redux/actions";
 import ReactFilestack from "filestack-react";
-import { updateUser, getTransactionDetail } from "../../redux/actions";
+import { updateUser, getTransactionDetail, updateStatusTransaksiPembayaran} from "../../redux/actions";
 
 const PaymentWrapper = styled.form`
     width: 600px;
@@ -39,12 +39,10 @@ function PaymentPage() {
     const dataTransaction = useSelector(
         (state) => state.transaction.transactionDetail
     );
-
+    console.log(dataTransaction)
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        bukti_transaksi: "",
+        bukti_transaksi:"",
+            
     });
 
     const handleChange = (event) => {
@@ -56,7 +54,10 @@ function PaymentPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        dispatch(updateStatusTransaksiPembayaran(id,formData))
     };
+
+
 
     useEffect(() => {
         dispatch(getTransactionDetail(id));
@@ -83,38 +84,24 @@ function PaymentPage() {
                     >
                         <h2 className="text-center">Payment Form</h2>
                         <FormGroup style={{ textAlign: "left" }}>
-                            <Label>Nama :</Label>
-
-                            <Input
-                                type="text"
-                                name="nama"
-                                id="nama"
-                                onChange={handleChange}
-                                placeholder="Masukan nama lengkap"
-                            />
-                        </FormGroup>
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <Label>Email :</Label>
-                            <div className="container1">
-                                <Input
-                                    type="text"
-                                    name="email"
-                                    id="email"
-                                    onChange={handleChange}
-                                    placeholder="Masukan Email"
-                                />
-                            </div>
+                            
+                            <p>
+                                1. Nama Acara         : {dataTransaction[0].nama_acara}{" "}
+                            </p>
+                            <p>
+                                2. Nama Penyelenggara :{" "}
+                                {dataTransaction[0].penyelenggara}
+                            </p>
+                            <p>3. Nama Audience : {dataTransaction[0].name} </p>
+                            <p>4. Nama Speaker : {dataTransaction[0].speakerID.name}</p>
+                            <p>
+                                4. Status Transaksi :{" "}
+                                {dataTransaction[0].status_transaksi}
+                            </p>
+                            <p>5. Alamat Acara : {dataTransaction[0].alamat} </p>
+                            <p> </p>
                         </FormGroup>
 
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <Label>Nomor Telpon :</Label>
-                            <Input
-                                type="text"
-                                name="phone"
-                                id="phone"
-                                placeholder="Masukan Nomor Telpon"
-                            />
-                        </FormGroup>
 
                         <FormGroup style={{ textAlign: "left" }}>
                             <ReactFilestack
@@ -142,10 +129,11 @@ function PaymentPage() {
                         <FormGroup style={{ textAlign: "center" }}>
                             <div className="Box">
                                 {dataTransaction !== null &&
-                                    `Total Pembayaran Sebesar ${`${dataTransaction[0].durasi *
-                                        dataTransaction[0].speakerID.fee}
-                                        `.localIDR()
-                                    }`}
+                                    `Total Pembayaran Sebesar ${`${
+                                        dataTransaction[0].durasi *
+                                        dataTransaction[0].speakerID.fee
+                                    }
+                                        `.localIDR()}`}
                             </div>
                         </FormGroup>
 

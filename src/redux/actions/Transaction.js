@@ -224,11 +224,46 @@ export const getTransactionDetail = (id) => async (dispatch) => {
   let results = await response.json();
   const data =  results.data.filter( (e) => {return e._id === id} )
   
-
+  console.log(data)
   dispatch({
     type: GET_TRANSACTION_DETAIL,
     payload: data,
   });
+};
+
+
+export const updateStatusTransaksiPembayaran = (id,formData) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/transaksi/update/${id}`
+        const options = {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(formData),
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (response.status === 200) {
+            Swal.fire({
+                icon: "success",
+                title: `Status Transaksi Berhasil diUpdate`,
+            });
+
+            window.location.reload()
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: result.message,
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export {GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_SPEAKER, GET_TRANSACTION_DETAIL}

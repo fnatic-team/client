@@ -28,13 +28,13 @@ String.prototype.toTitleCase = function () {
     });
 };
 
-function CardBrowser() {
+function CardBrowser(props) {
     const dispatch = useDispatch();
 
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
-        dispatch(fetchAllSpeakers());
+        dispatch(fetchAllSpeakers(props.input));
         //eslint-disable-next-line
     }, []);
 
