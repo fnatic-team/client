@@ -3,7 +3,7 @@ import { GET_TRANSACTION_SPEAKER, GET_TRANSACTION_AUDIENCE,GET_TRANSACTION_DETAI
 const initialState = {
     speakers: null,
     audience : null,
-    transaktionDetail:null,
+    transactionDetail:null,
 };
 
 export default (state = initialState, action) => {
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
             case GET_TRANSACTION_DETAIL:
             return {
                 ...state,
-                trasantionDetail: action.payload,
+                transactionDetail: action.payload,
             };
         default:
             return state;

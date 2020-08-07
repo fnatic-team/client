@@ -19,6 +19,12 @@ function PageAudience() {
         // eslint-disable-next-line
     }, []);
 
+     // eslint-disable-next-line no-extend-native
+    String.prototype.toTitleCase = function () {
+        return this.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    };
     return (
         <div style={{ margin: "100px 0px 80px 0px" }}>
             <div className="container" animation="fade-down" duration={1000}>
@@ -73,7 +79,7 @@ function PageAudience() {
                                                 {data.speakerID.name}
                                             </td>
                                             <td scope="row">
-                                                {data.status_transaksi}
+                                                {data.status_transaksi.toTitleCase()}
                                             </td>
 
                                             <td scope="row">
@@ -83,7 +89,7 @@ function PageAudience() {
                                                         <Link
                                                             to={`/pembayaran/${data._id}`}
                                                         >
-                                                            <button>
+                                                            <button className="btn btn-primary btn-sm">
                                                                 Check Out
                                                             </button>
                                                         </Link>
@@ -109,10 +115,12 @@ function PageAudience() {
                                                     <></>
                                                 )}
                                             </td>
-                                            <td scope="row">
+                                           <td scope="row">
+                                                <Link to={`/transaksi/detail/${data._id}`}>
                                                 <button className="btn btn-sm btn-primary">
                                                     Detail Acara
                                                 </button>
+                                                </Link>
                                             </td>
                                         </tr>
                                     );

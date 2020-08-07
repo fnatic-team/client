@@ -24,6 +24,8 @@ import RegisterGoogleAudience from './pages/RegisterGoogleAudience/RegisterGoogl
 import RegisterGoogleSpeaker from './pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker'
 import ContactUs from "./pages/ContactUs/ContactUs";
 import PageSchedule from "./pages/PageAudience/PageAudience"
+import Payment from "./pages/PaymentPage/PaymentPage"
+import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
 
 function App() {
     return (
@@ -84,6 +86,13 @@ function App() {
                         <Route exact path="/audience/schedule/:id">
                             <PageSchedule />
                         </Route>
+                        <Route exact path="/pembayaran/:id">
+                            <Payment />
+                        </Route>
+                        <Route exact path="/transaksi/detail/:id">
+                            <DetailTransaksi />
+                        </Route>
+
                     </Switch>
                     <Footer className="footer" />
                 </Router>

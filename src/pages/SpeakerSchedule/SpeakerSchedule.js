@@ -6,7 +6,7 @@ import {
     updateStatusTransaksi,
     updateStatusSpeaker
 } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 
 function SpeakerSchedule() {
     let { id } = useParams();
@@ -202,9 +202,11 @@ function SpeakerSchedule() {
                                                 ) : <></>}
                                             </td>
                                             <td scope="row">
+                                                <Link to={`/transaksi/detail/${data._id}`}>
                                                 <button className="btn btn-sm btn-primary">
                                                     Detail Acara
                                                 </button>
+                                                </Link>
                                             </td>
                                         </tr>
                                     );
