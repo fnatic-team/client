@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CardBrowser from "../../components/CardBrowser";
 
@@ -21,17 +21,16 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content:  space-aroun;
+    justify-content: space-aroun;
     margin: 40px;
 `;
 
-
-
 function BrowserSpeaker() {
+    const [input, setInput] = useState("");
 
-    const [input, setInput] = useState("")
-
-    
+    const handleChange = (event) => {
+        setInput(event.target.value);
+    };
 
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
@@ -39,10 +38,10 @@ function BrowserSpeaker() {
                 <SearchWrapper>
                     <input
                         className="form-control mr-sm-2"
-                        type="search"
+                        type="text"
                         placeholder="Nama Pembicara"
                         aria-label="Search"
-                        onChange={(event) => setInput(event.target.value)}
+                        onChange={handleChange}
                     />
 
                     <select className="form-control ">
@@ -56,7 +55,7 @@ function BrowserSpeaker() {
 
             <Container>
                 <Container1>
-                    <CardBrowser />
+                    <CardBrowser user={input} />
                 </Container1>
             </Container>
         </div>
