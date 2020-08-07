@@ -17,7 +17,7 @@ export const registerUser = (formData, history) => async (dispatch) => {
     const response = await fetch(url, options);
     // eslint-disable-next-line
     const result = await response.json();
-    
+
     if (response.status === 200) {
         Swal.fire({
             title: "Your Email Successfuly Register!",
@@ -190,7 +190,7 @@ export const userLoginFacebook = (data, history) => async () => {
                     "Akun anda belum aktif , Hubungi admin untuk informasi lebih lanjut",
             });
         } else if (response.status === 200 && dataUser.status === "ACTIVE") {
-            localStorage.removeItem("social")
+            localStorage.removeItem("social");
             localStorage.setItem("token", result.token);
 
             const Toast = Swal.mixin({
@@ -238,7 +238,7 @@ export const getGoogle = (data, history) => {
 
     if (profile.profileObj !== undefined) {
         localStorage.setItem("social", JSON.stringify(profile.profileObj));
-         history.push(
+        history.push(
             `${
                 history.location.pathname !== "/registrasi/audience"
                     ? "/registrasi/speaker/google"
@@ -248,12 +248,10 @@ export const getGoogle = (data, history) => {
     }
 };
 
-
 export const userLoginGoogle = (data, history) => async () => {
-     const profile = {
+    const profile = {
         ...data,
     };
-
 
     const formData = {
         email: profile.profileObj.email,
@@ -283,7 +281,7 @@ export const userLoginGoogle = (data, history) => async () => {
                     "Akun anda belum aktif , Hubungi admin untuk informasi lebih lanjut",
             });
         } else if (response.status === 200 && dataUser.status === "ACTIVE") {
-            localStorage.removeItem("social")
+            localStorage.removeItem("social");
             localStorage.setItem("token", result.token);
 
             const Toast = Swal.mixin({
@@ -324,14 +322,50 @@ export const userLoginGoogle = (data, history) => async () => {
     }
 };
 
-
-
-
-
-
-
-export {
-    GET_USER_LOGIN,
-    GET_USER_REGISTER,
-    GET_FACEBOOK,
+export const onFailure = (error) => {
+    alert(error);
 };
+
+export const googleResponse = async (response) => {
+    const tokenBlob = new Blob(
+        [JSON.stringify({ access_token: response.accessToken }, null, 2)],
+        { type: "application/json" }
+    );
+    const options = {
+        method: "POST",
+        body: tokenBlob,
+        mode: "cors",
+        cache: "default",
+    };
+
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/auth/google`,
+        options
+    );
+    const result = await res.json();
+    console.log("Google", result);
+    localStorage.setItem("token", result.token);
+};
+
+export const facebookResponse = async (response) => {
+    const tokenBlob = new Blob(
+        [JSON.stringify({ access_token: response.accessToken }, null, 2)],
+        { type: "application/json" }
+    );
+    const options = {
+        method: "POST",
+        body: tokenBlob,
+        mode: "cors",
+        cache: "default",
+    };
+
+    const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/auth/facebook`,
+        options
+    );
+    const result = await res.json();
+    localStorage.setItem("token", result.token);
+    console.log("Facebook", result);
+};
+
+export { GET_USER_LOGIN, GET_USER_REGISTER, GET_FACEBOOK };

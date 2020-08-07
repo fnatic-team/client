@@ -1,32 +1,47 @@
-import React from 'react'
+import React from "react";
 import { GoogleLogin } from "react-google-login";
-import {userLoginGoogle} from "../../redux/actions"
+import { googleResponse, onFailure } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
-
+const Button = styled.button`
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    background-color: #dd4b39;
+    color: white;
+`;
 
 function LoginGoogle() {
-   
     const history = useHistory();
     const dispatch = useDispatch();
-    const responseGoogle = (data) => {
-        dispatch(userLoginGoogle(data, history));
-    };
-    
-  
-    
+
     return (
         <div>
-            <GoogleLogin 
-            className="btn btn-primary btn-block"
-            clientId="906985987698-kntbrf06p25drijcr7dmc400qqj48cm4.apps.googleusercontent.com"
-            buttonText="Login With Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}/>
+            <GoogleLogin
+                clientId={process.env.REACT_APP_GOOGLE_API_KEY}
+                render={(renderProps) => (
+                    <Button
+                        className="google"
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                    >
+                        <i class="fa fa-google fa-fw"></i> Login with Google+
+                    </Button>
+                )}
+                buttonText="Login"
+                onSuccess={googleResponse}
+                onFailure={onFailure}
+            />
         </div>
-    )
+    );
 }
 
-export default LoginGoogle
+export default LoginGoogle;
