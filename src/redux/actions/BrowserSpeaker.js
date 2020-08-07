@@ -4,8 +4,10 @@ import {
     GET_SPEAKERS_BY_NAME,
 } from "./types";
 
-export const fetchAllSpeakers = () => async (dispatch) => {
-    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/activeSpeaker`;
+export const fetchAllSpeakers = (input) => async (dispatch) => {
+    let url = 
+        input !== null ? `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/speakerName/`
+    : `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/activeSpeaker`;
 
     let options = {
         method: "GET",
