@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userLogin } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import LoginFacebook from "../../components/facebook/LoginFacebook"
-import LoginGoogle from "../../components/google/LoginGoogle"
 
 
 import { FormGroup, Label, Input } from "reactstrap";

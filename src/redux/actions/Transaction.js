@@ -15,6 +15,7 @@ export const addTransaction = (formData, history) => async () => {
         };
 
         const response = await fetch(url, options);
+        // eslint-disable-next-line
         const result = await response.json();
 
         if (response.status === 200 ) {
@@ -31,12 +32,12 @@ export const addTransaction = (formData, history) => async () => {
             });
 
             Toast.fire({
-                title: result,
+                title: "Berhasil",
                 icon: "success",
             });
 
             setTimeout(() => {
-                history.push("/audience/schedule");
+                window.history.back()
             }, 3000);
         } else {
             Swal.fire({

@@ -24,6 +24,7 @@ function Appointment() {
     const { id } = useParams();
     const history = useHistory()
     const dispatch = useDispatch()
+   
 
     const dataAudience = jwt_decode(localStorage.getItem("token"));
     const [formData, setFormData] = useState({
@@ -65,8 +66,8 @@ function Appointment() {
 
     
     return (
-        <div style={{ margin: " 100px 0px 100px 0px" }}>
-            <div className="container ">
+        <div className="container ">
+            <div style={{ margin: " 100px 0px 100px 0px" }}>
                 <img
                     style={{ width: "200px", height: "200px" }}
                     src="https://cdn.onlinewebfonts.com/svg/img_542916.png"
@@ -74,7 +75,7 @@ function Appointment() {
                 />
                 <h3 className="font-weight-bold">Terima Kasih</h3>
                 <p>
-                    Anda telah memilih Nama Speaker sebagai Narasumber Anda.{" "}
+                    Anda telah memilih Speaker ini sebagai Narasumber Anda.{" "}
                     <br />
                     Speaker berhak menerima atau menolak undangan kepada Anda.
                 </p>
@@ -166,6 +167,7 @@ function Appointment() {
                             onChange={handleChange}
                             name="jml_peserta"
                             value={formData.jml_peserta}
+                            min="0"
                             id="jml_peserta"
                             placeholder="Masukan Jumlah Peserta"
                         />

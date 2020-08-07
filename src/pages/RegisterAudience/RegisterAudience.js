@@ -6,8 +6,7 @@ import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"
-import RegisterFacebook from "../../components/facebook/RegisterFacebook"
-import RegisterGoogle from "../../components/google/RegisterGoogle"
+
 
 
 

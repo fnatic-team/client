@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpeakerDetails } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
-import {Link} from "react-router-dom"
+
 
 // eslint-disable-next-line no-extend-native
 String.prototype.toTitleCase = function () {
@@ -53,6 +53,7 @@ function DetailSpeaker() {
         }
     };
 
+    
     return (
         <>
             {" "}
@@ -113,16 +114,9 @@ function DetailSpeaker() {
                                                     <span>{dataSpeaker.location}</span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>Available to</p>
-                                                    <span>Jakarta</span>
-                                                </div>
-                                                <div className="d-flex flex-row justify-content-between">
                                                     <p>Fee</p>
                                                     <span>
-                                                        {dataSpeaker.fee !==
-                                                            null &&
-                                                            `${dataSpeaker.fee}`.localIDR()}{" "}
-                                                        / jam
+                                                        {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(dataSpeaker.fee)}
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
@@ -162,7 +156,9 @@ function DetailSpeaker() {
                                         </h4>
                                         <br />
                                         <div>
-                                            <a href={dataSpeaker.cv} target="_blank" >
+                                            <a href={dataSpeaker.cv} 
+                                            // eslint-disable-next-line
+                                            target="_blank" >
                                                 <button
                                                     
                                                     className="btn rounded-pill  btn-primary"
