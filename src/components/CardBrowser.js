@@ -37,6 +37,8 @@ function CardBrowser({ user, location }) {
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
+
+        dispatch(fetchAllSpeakers(props.input));
         if (user !== "") {
             dispatch(searchSpeakerByName(user));
         } else if (location !== "") {
