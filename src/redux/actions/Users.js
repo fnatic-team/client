@@ -18,9 +18,9 @@ export const registerUser = (formData, history) => async (dispatch) => {
     // eslint-disable-next-line
     const result = await response.json();
     
-    if (result.message === "Registration success") {
+    if (response.status === 200) {
         Swal.fire({
-            title: "Pendaftaran Berhasil",
+            title: "Your Email Successfuly Register!",
             text: "",
             icon: "success",
             confirmButtonText: "ok",
@@ -29,7 +29,7 @@ export const registerUser = (formData, history) => async (dispatch) => {
         history.push("/login");
     } else {
         Swal.fire({
-            title: "Email Sudah Terdaftar",
+            title: "Email already registered",
             text: "",
             icon: "error",
             confirmButtonText: "ok",

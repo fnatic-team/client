@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpeakerDetails } from "../../redux/actions";
-
-
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line no-extend-native
@@ -15,6 +15,7 @@ String.prototype.toTitleCase = function () {
 
 function Profile() {
     let { id } = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     const dataSpeaker = useSelector(
         (state) => state.browserSpeaker.selectedSpeaker
@@ -85,12 +86,8 @@ function Profile() {
                                         <div className="col-sm p-4">
                                             <div className="text-left d-flex flex-column h-100 justify-content-center">
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>Kota</p>
-                                                    <span>
-                                                        {dataSpeaker.location !==
-                                                            null &&
-                                                            dataSpeaker.location}{" "}
-                                                    </span>
+                                                    <p>City</p>
+                                                    <span>{dataSpeaker.location !== null && dataSpeaker.location} </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Available to</p>
@@ -99,17 +96,13 @@ function Profile() {
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Fee</p>
                                                     <span>
-                                                        {dataSpeaker.fee !==
-                                                            null &&
-                                                            `${dataSpeaker.fee}`.localIDR()}
+                                                       {dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()}
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
-                                                    <p>Bahasa</p>
+                                                    <p>Languages</p>
                                                     <span>
-                                                        {dataSpeaker.languages !==
-                                                            null &&
-                                                            dataSpeaker.languages}
+                                                        Indonesia , English
                                                     </span>
                                                 </div>
                                             </div>
@@ -124,36 +117,10 @@ function Profile() {
                                 <div className="col-sm">
                                     <div className="text-left d-flex flex-column h-100 justify-content-center">
                                         <h4 className="font-weight-bold">
-                                            Resume
-                                        </h4>
-                                        <br />
-                                        <div>
-                                            <a
-                                            
-                                                href={dataSpeaker.cv}
-                                                // eslint-disable-next-line
-                                                target="_blank"
-                                                rel="noopener ofererrer"
-                                            >
-                                                <button className="btn rounded-pill  btn-primary">
-                                                    Download resume
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="container">
-                            <div className="row bg-white m-3 p-5 border shadow-lg">
-                                <div className="col-sm">
-                                    <div className="text-left d-flex flex-column h-100 justify-content-center">
-                                        <h4 className="font-weight-bold">
                                             Bio
                                         </h4>
                                         <p>
-                                            {dataSpeaker.bio !== null &&
-                                                dataSpeaker.bio}
+                                           {dataSpeaker.bio !== null && dataSpeaker.bio}
                                         </p>
                                     </div>
                                 </div>
@@ -200,14 +167,7 @@ function Profile() {
             ) : (
                 <>
                     {" "}
-                    <div
-                        className="container-fluid"
-                        style={{
-                            width: "3rem",
-                            height: "3rem",
-                            marginTop: "200px",
-                        }}
-                    >
+                    <div className="container-fluid" style={{width:"3rem", height:"3rem", marginTop:"200px"}}>
                         <div
                             className="spinner-border text-primary"
                             role="status"

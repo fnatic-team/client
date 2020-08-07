@@ -20,7 +20,6 @@ const PaymentWrapper = styled.form`
     .container1 {
         display: flex;
         flex-direction: row;
-        text-align: left;
         justify-content: space-between;
         align-items: center;
     }
@@ -35,152 +34,132 @@ const PaymentWrapper = styled.form`
 
 function PaymentPage() {
     let { id } = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
-    const dataTransaction = useSelector(
-        (state) => state.transaction.transactionDetail
+    const dataSpeaker = useSelector(
+        (state) => state.browserSpeaker.selectedSpeaker
     );
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        bukti_transaksi: "",
+    });
+
+    const handleChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(updateStatusTransaksiPembayaran(id, formData));
-    };
-
-    const data = JSON.parse(localStorage.getItem("detail"));
-
-    useEffect(() => {
-        dispatch(getTransactionDetail(id));
-        // eslint-disable-next-line
-    }, []);
-
-    const [formData, setFormData] = useState({
-        bukti_transaksi: "",
-        jumlah_bayar: data.durasi * data.speakerID.fee,
-        status_transaksi: "ACARA SEDANG BERLANGSUNG",
-    });
-
-    // eslint-disable-next-line no-extend-native
-    String.prototype.localIDR = function () {
-        return Number(this).toLocaleString("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            minimumFractionDigits: 2,
-        });
+        console.log(formData);
     };
 
     return (
         <>
-            {dataTransaction !== null && (
-                <div>
-                    <PaymentWrapper
-                        onSubmit={handleSubmit}
-                        className="login-form shadow-lg  bg-white rounded"
-                    >
-                        <h2 className="text-center mb-3">Payment Form</h2>
+            {/* {dataSpeaker !== null ? ( */}
+            <div>
+                <PaymentWrapper
+                    onSubmit={handleSubmit}
+                    className="login-form shadow-lg  bg-white rounded"
+                >
+                    <h2 className="text-center">Payment Form</h2>
+                    <FormGroup style={{ textAlign: "left" }}>
+                        <Label>Nama :</Label>
 
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <div className="container1">
-                                <span className="w-50">1. Nama Acara :</span>
-                                <span>{dataTransaction[0].nama_acara}</span>
-                            </div>
-                            <div className="container1">
-                                <span className="w-50">
-                                    2. Nama Penyelenggara :
-                                </span>
-                                <span>{dataTransaction[0].penyelenggara}</span>
-                            </div>
-                            <div className="container1">
-                                <span className="w-50">3. Nama Audience :</span>
-                                <span>{dataTransaction[0].name} </span>
-                            </div>
-                            <div className="container1">
-                                <span className="w-50">4. Nama Speaker : </span>
-                                <span>{dataTransaction[0].speakerID.name}</span>
-                            </div>
-
-                            <div className="container1">
-                                <span className="w-50">5. Alamat Acara :</span>
-                                <span>{dataTransaction[0].alamat} </span>
-                            </div>
-                        </FormGroup>
-
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <ReactFilestack
-                                apikey={`${process.env.REACT_APP_API_KEY}`}
-                                customRender={({ onPick }) => (
-                                    <div>
-                                        <button
-                                            className="btn btn-primary btn-block"
-                                            onClick={onPick}
-                                        >
-                                            Upload Bukti Pembayaran
-                                        </button>
-                                    </div>
-                                )}
-                                onSuccess={(res) =>
-                                    setFormData({
-                                        ...formData,
-                                        bukti_transaksi:
-                                            res.filesUploaded[0].url,
-                                    })
-                                }
+                        <Input
+                            type="text"
+                            name="nama"
+                            id="nama"
+                            onChange={handleChange}
+                            placeholder="Masukan nama lengkap"
+                        />
+                    </FormGroup>
+                    <FormGroup style={{ textAlign: "left" }}>
+                        <Label>Email :</Label>
+                        <div className="container1">
+                            <Input
+                                type="text"
+                                name="email"
+                                id="email"
+                                onChange={handleChange}
+                                placeholder="Masukan Email"
                             />
-                        </FormGroup>
+                        </div>
+                    </FormGroup>
 
-                        <FormGroup style={{ textAlign: "center" }}>
-                            <div className="Box">
-                                {dataTransaction !== null &&
-                                    `Total Pembayaran Sebesar ${`${
-                                        dataTransaction[0].durasi *
-                                        dataTransaction[0].speakerID.fee
-                                    }
-                                        `.localIDR()}`}
-                            </div>
-                        </FormGroup>
+                    <FormGroup style={{ textAlign: "left" }}>
+                        <Label>Nomor Telpon :</Label>
+                        <Input
+                            type="text"
+                            name="phone"
+                            id="phone"
+                            placeholder="Masukan Nomor Telpon"
+                        />
+                    </FormGroup>
 
-                        <FormGroup style={{ textAlign: "left" }}>
-                            <span>Transfer ke:</span>
-                            <div className="d-flex w-100 justify-content-between">
+                    <FormGroup style={{ textAlign: "left" }}>
+                        <ReactFilestack
+                            apikey={`${process.env.REACT_APP_API_KEY}`}
+                            customRender={({ onPick }) => (
                                 <div>
-                                    <div>
-                                        <span>Account : PT.Narasumber</span>
-                                        <br />
-                                        <span>Bank Name: BCA</span>
-                                        <br />
-                                        <span>Account No: xxxxxxx</span>
-                                        <br />
-                                    </div>
+                                    <button
+                                        className="btn btn-primary btn-block"
+                                        onClick={onPick}
+                                    >
+                                        Upload Bukti Pembayaran
+                                    </button>
                                 </div>
-                                <div>
-                                    <div>
-                                        <span>Account : PT.Narasumber</span>
-                                        <br />
-                                        <span>Bank Name: Mandiri</span>
-                                        <br />
-                                        <span>Account No: xxxxxxx</span>
-                                        <br />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <span>Account : PT.Narasumber</span>
-                                        <br />
-                                        <span>Bank Name: BTPN</span>
-                                        <br />
-                                        <span>Account No: xxxxxxx</span>
-                                        <br />
-                                    </div>
-                                </div>
-                            </div>
-                        </FormGroup>
-                        <button
-                            className="btn btn-primary btn-block"
-                            style={{ width: "40%", margin: "auto" }}
-                        >
-                            Konfirmasi Pembayaran
-                        </button>
-                    </PaymentWrapper>
-                </div>
-            )}
+                            )}
+                            onSuccess={(res) =>
+                                setFormData({
+                                    ...formData,
+                                    bukti_transaksi: res.filesUploaded[0].url,
+                                })
+                            }
+                        />
+                    </FormGroup>
+
+                    <FormGroup style={{ textAlign: "center" }}>
+                        <div className="Box">
+                            Total Pembayaran : Rp. xxx.xxx
+                        </div>
+                    </FormGroup>
+
+                    <FormGroup style={{ textAlign: "left" }}>
+                        <div>
+                            <p>
+                                <br />
+                                Transfer ke:
+                                <br /> Account : PT.Narasumber
+                                <br /> Bank Name: BCA
+                                <br /> Account No: xxxxxxx
+                            </p>
+                        </div>
+                    </FormGroup>
+                    <button
+                        className="btn btn-primary btn-block"
+                        style={{ width: "40%", margin: "auto" }}
+                    >
+                        Confirm Payment
+                    </button>
+                </PaymentWrapper>
+            </div>
+            <>
+                {" "}
+                <div
+                    className="container-fluid"
+                    style={{
+                        width: "3rem",
+                        height: "3rem",
+                        marginTop: "200px",
+                    }}
+                ></div>
+            </>
         </>
     );
 }

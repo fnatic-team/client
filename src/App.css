@@ -9,9 +9,6 @@
   flex-direction: column;
 }
 
-.footer{
-  align-self: flex-end;
-}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
