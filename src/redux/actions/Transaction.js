@@ -223,8 +223,8 @@ export const getTransactionDetail = (id) => async (dispatch) => {
   let response = await fetch(url, options);
   let results = await response.json();
   const data =  results.data.filter( (e) => {return e._id === id} )
-  
-  console.log(data)
+  localStorage.setItem("detail", JSON.stringify(data[0]))
+ 
   dispatch({
     type: GET_TRANSACTION_DETAIL,
     payload: data,

@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
-import { getSpeakerDetails} from "../../redux/actions";
 import ReactFilestack from "filestack-react";
-import { updateUser, getTransactionDetail, updateStatusTransaksiPembayaran} from "../../redux/actions";
+import {
+    getTransactionDetail,
+    updateStatusTransaksiPembayaran,
+} from "../../redux/actions";
 
 const PaymentWrapper = styled.form`
     width: 600px;
@@ -20,8 +21,8 @@ const PaymentWrapper = styled.form`
     .container1 {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
+        text-align: left;
     }
 
     .Box {
@@ -39,31 +40,24 @@ function PaymentPage() {
     const dataTransaction = useSelector(
         (state) => state.transaction.transactionDetail
     );
-    console.log(dataTransaction)
-    const [formData, setFormData] = useState({
-        bukti_transaksi:"",
-            
-    });
-
-    const handleChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(updateStatusTransaksiPembayaran(id,formData))
+        dispatch(updateStatusTransaksiPembayaran(id, formData));
     };
 
-
+    const data = JSON.parse(localStorage.getItem("detail"));
 
     useEffect(() => {
         dispatch(getTransactionDetail(id));
-
         // eslint-disable-next-line
     }, []);
+
+    const [formData, setFormData] = useState({
+        bukti_transaksi: "",
+        jumlah_bayar: data.durasi * data.speakerID.fee,
+        status_transaksi: "ACARA SEDANG BERLANGSUNG",
+    });
 
     // eslint-disable-next-line no-extend-native
     String.prototype.localIDR = function () {
@@ -82,26 +76,33 @@ function PaymentPage() {
                         onSubmit={handleSubmit}
                         className="login-form shadow-lg  bg-white rounded"
                     >
-                        <h2 className="text-center">Payment Form</h2>
-                        <FormGroup style={{ textAlign: "left" }}>
-                            
-                            <p>
-                                1. Nama Acara         : {dataTransaction[0].nama_acara}{" "}
-                            </p>
-                            <p>
-                                2. Nama Penyelenggara :{" "}
-                                {dataTransaction[0].penyelenggara}
-                            </p>
-                            <p>3. Nama Audience : {dataTransaction[0].name} </p>
-                            <p>4. Nama Speaker : {dataTransaction[0].speakerID.name}</p>
-                            <p>
-                                4. Status Transaksi :{" "}
-                                {dataTransaction[0].status_transaksi}
-                            </p>
-                            <p>5. Alamat Acara : {dataTransaction[0].alamat} </p>
-                            <p> </p>
-                        </FormGroup>
+                        <h2 className="text-center mb-3">Payment Form</h2>
 
+                        <FormGroup style={{ textAlign: "left" }}>
+                            <div className="container1">
+                                <span className="w-50">1. Nama Acara :</span>
+                                <span>{dataTransaction[0].nama_acara}</span>
+                            </div>
+                            <div className="container1">
+                                <span className="w-50">
+                                    2. Nama Penyelenggara :
+                                </span>
+                                <span>{dataTransaction[0].penyelenggara}</span>
+                            </div>
+                            <div className="container1">
+                                <span className="w-50">3. Nama Audience :</span>
+                                <span>{dataTransaction[0].name} </span>
+                            </div>
+                            <div className="container1">
+                                <span className="w-50">4. Nama Speaker : </span>
+                                <span>{dataTransaction[0].speakerID.name}</span>
+                            </div>
+
+                            <div className="container1">
+                                <span className="w-50">5. Alamat Acara :</span>
+                                <span>{dataTransaction[0].alamat} </span>
+                            </div>
+                        </FormGroup>
 
                         <FormGroup style={{ textAlign: "left" }}>
                             <ReactFilestack
@@ -138,21 +139,37 @@ function PaymentPage() {
                         </FormGroup>
 
                         <FormGroup style={{ textAlign: "left" }}>
-                            <div>
-                                <p>
-                                    <br />
-                                    Transfer ke:
-                                    <br /> Account : PT.Narasumber
-                                    <br /> Bank Name: BCA
-                                    <br /> Account No: xxxxxxx
-                                </p>
+                            <span>Transfer ke:</span>
+                            <div className="d-flex w-100 justify-content-between">
+                                
+                                <div>
+                                    <div>
+                                        <span>Account : PT.Narasumber</span><br/>
+                                        <span>Bank Name: BCA</span><br/>
+                                        <span>Account No: xxxxxxx</span><br/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>Account : PT.Narasumber</span><br/>
+                                        <span>Bank Name: Mandiri</span><br/>
+                                        <span>Account No: xxxxxxx</span><br/>
+                                    </div>
+                                </div>
+                                 <div>
+                                    <div>
+                                        <span>Account : PT.Narasumber</span><br/>
+                                        <span>Bank Name: BTPN</span><br/>
+                                        <span>Account No: xxxxxxx</span><br/>
+                                    </div>
+                                </div>
                             </div>
                         </FormGroup>
                         <button
                             className="btn btn-primary btn-block"
                             style={{ width: "40%", margin: "auto" }}
                         >
-                            Confirm Payment
+                            Konfirmasi Pembayaran
                         </button>
                     </PaymentWrapper>
                 </div>
