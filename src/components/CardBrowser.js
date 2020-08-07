@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { fetchAllSpeakers } from "../redux/actions";
+import {
+    fetchAllSpeakers,
+    searchSpeakerByName,
+    searchSpeakerByLocation,
+} from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
@@ -28,17 +32,21 @@ String.prototype.toTitleCase = function () {
     });
 };
 
-function CardBrowser() {
+function CardBrowser({ user, location }) {
     const dispatch = useDispatch();
-
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
-        dispatch(fetchAllSpeakers());
+        if (user !== "") {
+            dispatch(searchSpeakerByName(user));
+        } else if (location !== "") {
+            dispatch(searchSpeakerByLocation(location));
+        } else {
+            dispatch(fetchAllSpeakers());
+        }
         //eslint-disable-next-line
-    }, []);
+    }, [user, location]);
 
-   
     return (
         <>
             {dataSpeakers !== null ? (
@@ -63,7 +71,8 @@ function CardBrowser() {
 
                                     <div className="card-body">
                                         <div>
-                                            <ReactStars className="card-title d-flex justify-content-center"
+                                            <ReactStars
+                                                className="card-title d-flex justify-content-center"
                                                 count={5}
                                                 size={24}
                                                 color1={"#ffe234"}
@@ -75,7 +84,11 @@ function CardBrowser() {
                                         <p className="card-text">
                                             {data.category}
                                         </p>
-                                        <Link exact path to={`/speaker/${data._id}`}>
+                                        <Link
+                                            exact
+                                            path
+                                            to={`/speaker/${data._id}`}
+                                        >
                                             <button className="btn btn-sm btn-primary">
                                                 Detail Profile
                                             </button>
