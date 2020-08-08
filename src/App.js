@@ -16,17 +16,12 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
-
-import ContactUs from "./pages/ContactUs/ContactUs";
 import PageSchedule from "./pages/PageAudience/PageAudience";
-import Payment from "./pages/PaymentPage/PaymentPage";
 import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
 import PrivateRoute from "./helpers/PrivateRoute";
-import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
-import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
-import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
-import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import Payment from "./pages/PaymentPage/PaymentPage";
 
 function App() {
     return (

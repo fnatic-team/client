@@ -37,7 +37,7 @@ const Image = styled.div`
 const Teks = styled.p`
     @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
     font-family: "Oswald", sans-serif;
-    align: left;
+    text-align: left;
     position: absolute;
     left: 40px;
     top: 120px;
