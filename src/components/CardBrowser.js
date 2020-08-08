@@ -39,6 +39,8 @@ function CardBrowser({ user, location }) {
     useEffect(() => {
         if (user !== "") {
             dispatch(searchSpeakerByName(user));
+        } else if (location === "All Location") {
+            dispatch(fetchAllSpeakers());
         } else if (location !== "") {
             dispatch(searchSpeakerByLocation(location));
         } else {
