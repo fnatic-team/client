@@ -1,8 +1,8 @@
-import { GET_CONTACT_US } from "./types";
+import { GET_NEWSLETTER } from "./types";
 import Swal from "sweetalert2";
 
-const contactUs = (formData, history) => async (dispatch) => {
-    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/contact/add/`;
+const newsLetter = (formData, history) => async (dispatch) => {
+    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/newsletter/addnewsletter`;
     const options = {
         method: "POST",
         // mode : "no-cors",
@@ -15,16 +15,23 @@ const contactUs = (formData, history) => async (dispatch) => {
     const response = await fetch(url, options);
     // eslint-disable-next-line
     const result = await response.json();
+    console.log(result);
 
-    if (response.status === 200) {
+    if (result.message === "Add Newsletter succes") {
         Swal.fire({
-            title: "Your Your message was sent!",
+            title: "Thak you!",
             text: "",
             icon: "success",
             confirmButtonText: "ok",
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Your email has ben subscribe",
+            text: "",
         });
     }
     // dispatch(registerUser(result));
 };
 
-export { contactUs, GET_CONTACT_US };
+export { newsLetter, GET_NEWSLETTER };

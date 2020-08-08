@@ -23,16 +23,17 @@ const SearchWrapper = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100%;
-    justify-content: space-around;
-
+    justify-content: space-aroun;
     margin: 40px;
 `;
 
 function BrowserSpeaker() {
     const [input, setInput] = useState("");
     const [name, setName] = useState("");
+
     const dispatch = useDispatch();
     const dataLocations = useSelector((state) => state.browserSpeaker.location);
+
     const handleChange = (event) => {
         setInput(event.target.value);
     };
