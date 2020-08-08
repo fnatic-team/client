@@ -32,11 +32,12 @@ String.prototype.toTitleCase = function () {
     });
 };
 
-function CardBrowser({ user, location }) {
+function CardBrowser({ props, user, location }) {
     const dispatch = useDispatch();
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
+        dispatch(fetchAllSpeakers(props.input));
         if (user !== "") {
             dispatch(searchSpeakerByName(user));
         } else if (location === "All Location") {

@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpeakerDetails } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import {
+    getSpeakerDetails,
+    getTransactionSpeaker,
+    updateStatusTransaksi,
+    updateStatusSpeaker,
+} from "../../redux/actions";
+import { useParams, Link } from "react-router-dom";
 
 function SpeakerSchedule() {
     let { id } = useParams();
@@ -10,16 +15,26 @@ function SpeakerSchedule() {
         (state) => state.browserSpeaker.selectedSpeaker
     );
 
+    const dataTransaction = useSelector((state) => state.transaction.speakers);
+
     useEffect(() => {
         dispatch(getSpeakerDetails(id));
+        dispatch(getTransactionSpeaker(id));
 
         // eslint-disable-next-line
     }, []);
-   
+
+    // eslint-disable-next-line no-extend-native
+    String.prototype.toTitleCase = function () {
+        return this.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    };
+
     return (
         <>
             {dataSpeaker !== null ? (
-                <div style={{ margin: "100px 0px 80px 0px" }}>
+                <div style={{ margin: "100px 0px 0px 0px" }}>
                     <div
                         className="container"
                         animation="fade-down"
@@ -45,7 +60,6 @@ function SpeakerSchedule() {
                                                 {dataSpeaker.name}
                                             </h6>
                                             <p>{dataSpeaker.category}</p>
-                                            
                                         </div>
                                     </div>
                                     <div
@@ -59,16 +73,19 @@ function SpeakerSchedule() {
                                     <div className="col-sm p-4">
                                         <div className="text-left d-flex flex-column h-100 justify-content-center">
                                             <div className="d-flex flex-row justify-content-between">
-                                                <p>City</p>
-                                                <span>Jakarta</span>
+                                                <p>Kota</p>
+                                                <span>
+                                                    {dataSpeaker.location}{" "}
+                                                </span>
                                             </div>
-                                            <div className="d-flex flex-row justify-content-between">
-                                                <p>Available to</p>
-                                                <span>Jakarta</span>
-                                            </div>
+
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Fee</p>
-                                                <span>{dataSpeaker.fee !== null &&  `${dataSpeaker.fee}`.localIDR()} / jam</span>
+                                                <span>
+                                                    {dataSpeaker.fee !== null &&
+                                                        `${dataSpeaker.fee}`.localIDR()}{" "}
+                                                    / jam
+                                                </span>
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
                                                 <p>Languages</p>
@@ -78,41 +95,6 @@ function SpeakerSchedule() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="container">
-                        <div className="row bg-white m-3 border  pad1 shadow-lg">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Lokasi Seminar</th>
-                                        <th scope="col">Nama Audiece</th>
-                                        <th scope="col">Jumlah Peserta</th>
-                                        <th scope="col">Durasi (Jam)</th>
-                                        <th scope="col">Aksi</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Fullan</td>
-                                        <td>Jakarta</td>
-                                        <td>300</td>
-                                        <td>5 Jam</td>
-                                        <td>
-                                            <button className="btn btn-sm btn-primary">
-                                                Terima
-                                            </button>{" "}
-                                            <button className="btn btn-sm btn-danger">
-                                                Tolak
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -136,6 +118,128 @@ function SpeakerSchedule() {
                     </div>
                 </>
             )}
+            
+
+            {dataTransaction !== null ? <div className="container font-smaller" style={{marginBottom: "80px"}}>
+                <div className="row bg-white m-3 border  pad1 shadow-lg" >
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Acara</th>
+                                <th scope="col">Penyelengara</th>
+                                <th scope="col">Status Transaksi</th>
+                                <th scope="col">Detail Acara</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataTransaction !== null &&
+                                dataTransaction.map((data, index) => {
+                                    return (
+                                        <tr key={data._id}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                {data.nama_acara}
+                                            </td>
+                                            <td>
+                                                {data.penyelenggara}
+                                            </td>
+                                            <td>
+                                                {data.status_transaksi.toTitleCase()}
+                                            </td>
+
+                                            <td>
+                                                <Link
+                                                    to={`/transaksi/detail/${data._id}`}
+                                                >
+                                                    <button className="btn btn-sm btn-primary">
+                                                        Detail Acara
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                {data.status_transaksi ===
+                                                "MENUNGGU KONFIRMASI SPEAKER" ? (
+                                                    <>
+                                                        <button
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusTransaksi(
+                                                                        data._id,
+                                                                        "UNDANGAN DITERIMA, MENUNGGU PEMBAYARAN AUDIENCE"
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="btn btn-sm btn-primary"
+                                                        >
+                                                            Terima
+                                                        </button>{" "}
+                                                        <button
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusTransaksi(
+                                                                        data._id,
+                                                                        "UNDANGAN DITOLAK, TRANSAKSI GAGAL"
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="btn btn-sm btn-danger"
+                                                        >
+                                                            Tolak
+                                                        </button>
+                                                    </>
+                                                ) : data.status_transaksi ===
+                                                  "ACARA SEDANG BERLANGSUNG" ? (
+                                                    <>
+                                                        <button
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    updateStatusSpeaker(
+                                                                        data._id,
+                                                                        "SELESAI"
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="btn btn-sm btn-primary"
+                                                        >
+                                                            Selesai
+                                                        </button>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        {" "}
+                                                        <button className="btn btn-sm btn-primary">
+                                                            Selesai
+                                                        </button>
+                                                    </>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
+                </div>
+            </div> : <>
+                    {" "}
+                    <div
+                        className="container-fluid"
+                        style={{
+                            width: "3rem",
+                            height: "3rem",
+                            marginTop: "200px",
+                        }}
+                    >
+                        <div
+                            className="spinner-border text-primary"
+                            role="status"
+                        >
+                            <span className="sr-only">Loading...</span>
+                        </div>{" "}
+                    </div>
+                </>}
+            
         </>
     );
 }
