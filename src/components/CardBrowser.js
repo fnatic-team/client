@@ -40,6 +40,8 @@ function CardBrowser({ props, user, location }) {
         dispatch(fetchAllSpeakers(props.input));
         if (user !== "") {
             dispatch(searchSpeakerByName(user));
+        } else if (location === "All Location") {
+            dispatch(fetchAllSpeakers());
         } else if (location !== "") {
             dispatch(searchSpeakerByLocation(location));
         } else {

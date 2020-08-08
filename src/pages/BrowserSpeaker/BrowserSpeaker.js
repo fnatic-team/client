@@ -58,6 +58,7 @@ function BrowserSpeaker() {
                     />
 
                     <select className="form-control " onChange={handleClick}>
+                        <option>All Location</option>
                         {dataLocations !== null &&
                             dataLocations.map((item) => (
                                 <option>{item.name}</option>
