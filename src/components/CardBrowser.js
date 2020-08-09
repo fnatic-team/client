@@ -87,8 +87,6 @@ function CardBrowser({ props, user, location }) {
                                             {data.category}
                                         </p>
                                         <Link
-                                            exact
-                                            path
                                             to={`/speaker/${data._id}`}
                                         >
                                             <button className="btn btn-sm btn-primary">

@@ -6,7 +6,7 @@ import {
     updateStatusTransaksi,
     updateStatusSpeaker,
 } from "../../redux/actions";
-import { useParams, Link } from "react-router-dom";
+import { useParams} from "react-router-dom";
 
 function SpeakerSchedule() {
     let { id } = useParams();
@@ -30,7 +30,7 @@ function SpeakerSchedule() {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     };
-
+     // eslint-disable-next-line no-extend-native
     String.prototype.localIDR = function () {
         return Number(this).toLocaleString("id-ID", {
             style: "currency",

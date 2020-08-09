@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 function PrivateRoute({ children, ...rest }) {
   let isLoggin = localStorage.getItem("token");
   return (
-    <Route
+    <Route 
       {...rest}
       render={({ location }) =>
         isLoggin !== null ? (

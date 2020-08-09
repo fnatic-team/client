@@ -26,12 +26,12 @@ function PageAudience() {
     return (
         <div style={{ margin: "100px 0px 80px 0px" }}>
             {dataTransaction !== null ? (
-                <div
+                <div key={dataTransaction._id}
                     className="container"
                     animation="fade-down"
                     duration={1000}
                 >
-                    <div className="row bg-white m-3 border  pad1 shadow-lg">
+                    <div  className="row bg-white m-3 border  pad1 shadow-lg">
                         <div className="col m-3 modal-body text-center align-self-center">
                             <div className="col m-3 justify-content-space-evenly">
                                 <div className="col-sm">

@@ -3,12 +3,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FormGroup, Label, Input } from "reactstrap";
-import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
-import { getSpeakerDetails } from "../../redux/actions";
 import ReactFilestack from "filestack-react";
 import {
-    updateUser,
+   
     updateStatusTransaksiPembayaran,
     getTransactionDetail,
 } from "../../redux/actions";
@@ -48,7 +45,7 @@ function PaymentPage() {
         dispatch(updateStatusTransaksiPembayaran(id, formData));
     };
 
-    const data = JSON.parse(localStorage.getItem("detail"));
+   
 
     useEffect(() => {
         dispatch(getTransactionDetail(id));
