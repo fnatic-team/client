@@ -59,7 +59,7 @@ function PaymentPage() {
     });
 
 
-    console.log(formData)
+ 
     // eslint-disable-next-line no-extend-native
     String.prototype.localIDR = function () {
         return Number(this).toLocaleString("id-ID", {
