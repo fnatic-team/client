@@ -46,7 +46,7 @@ function Profile() {
                                                     className="rounded-circle"
                                                     src={dataSpeaker.image}
                                                     alt=""
-                                                    style={{ width: "200px" }}
+                                                    style={{ width: "200px", height:"200px" }}
                                                 />
                                             </div>
                                         </div>
@@ -56,7 +56,38 @@ function Profile() {
                                                 <h6 className="font-weight-bold">
                                                     {dataSpeaker.name.toTitleCase()}
                                                 </h6>
-                                                <p>{dataSpeaker.category}</p>
+                                                <p>
+                                                    {dataSpeaker.category ===
+                                                    "nodejs" ? (
+                                                        <span className="badge badge-pill badge-success">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "reactjs" ? (
+                                                        <span class="badge badge-pill badge-primary">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "angular" ? (
+                                                        <span className="badge badge-pill badge-danger">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "mysql" ? (
+                                                        <span className="badge badge-pill badge-secondary">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "magento" ? (
+                                                        <span className="badge badge-pill badge-dark">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="badge badge-pill badge-warning">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    )}
+                                                </p>
                                                 <div>
                                                     <Link
                                                         to={`/profile/edit/${dataSpeaker._id}`}
@@ -92,28 +123,41 @@ function Profile() {
                                                             dataSpeaker.location}{" "}
                                                     </span>
                                                 </div>
-                                                <div className="d-flex flex-row justify-content-between">
-                                                    <p>Available to</p>
-                                                    <span>Jakarta</span>
-                                                </div>
+                                               
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Fee</p>
                                                     <span>
                                                         {dataSpeaker.fee !==
                                                             null &&
-                                                            `${dataSpeaker.fee}`.localIDR()}
+                                                            `${dataSpeaker.fee}`.localIDR()} /jam
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Bahasa</p>
                                                     <span>
-                                                        {dataSpeaker.languages !==
+                                                        {dataSpeaker.language !==
                                                             null &&
-                                                            dataSpeaker.languages}
+                                                            dataSpeaker.language}
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="container">
+                            <div className="row bg-white m-3 p-5 border shadow-lg">
+                                <div className="col-sm">
+                                    <div className="text-left d-flex flex-column h-100 justify-content-center">
+                                        <h4 className="font-weight-bold">
+                                            Bio
+                                        </h4>
+                                        <p>
+                                            {dataSpeaker.bio !== null &&
+                                                dataSpeaker.bio}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -144,22 +188,6 @@ function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div className="container">
-                            <div className="row bg-white m-3 p-5 border shadow-lg">
-                                <div className="col-sm">
-                                    <div className="text-left d-flex flex-column h-100 justify-content-center">
-                                        <h4 className="font-weight-bold">
-                                            Bio
-                                        </h4>
-                                        <p>
-                                            {dataSpeaker.bio !== null &&
-                                                dataSpeaker.bio}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div className="container">
                             <div className="row bg-white m-3 p-5 border shadow-lg">
                                 <div className="col-sm">

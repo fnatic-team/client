@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getTransactionAudience,
     updateStatusAudience,
+    getSpeakerDetails
 } from "../../redux/actions";
 import { useParams, Link } from "react-router-dom";
 
@@ -10,8 +11,10 @@ function PageAudience() {
     let { id } = useParams();
     const dispatch = useDispatch();
     const dataTransaction = useSelector((state) => state.transaction.audience);
+    const dataAudience = useSelector((state) =>state.browserSpeaker.selectedSpeaker);
 
     useEffect(() => {
+        dispatch(getSpeakerDetails(id))
         dispatch(getTransactionAudience(id));
 
         // eslint-disable-next-line
@@ -25,8 +28,8 @@ function PageAudience() {
     };
     return (
         <div style={{ margin: "100px 0px 80px 0px" }}>
-            {dataTransaction !== null ? (
-                <div key={dataTransaction._id}
+            {dataAudience !== null ? (
+                <div
                     className="container"
                     animation="fade-down"
                     duration={1000}
@@ -40,8 +43,7 @@ function PageAudience() {
                                             className="rounded-circle"
                                             style={{ width: "200px" }}
                                             src={
-                                                dataTransaction[0].audienceID
-                                                    .image
+                                                dataAudience.image
                                             }
                                             alt=""
                                         />
@@ -51,7 +53,7 @@ function PageAudience() {
                                 <div className="col-sm mt-5">
                                     <div className="text-center d-flex flex-column h-100 justify-content-center">
                                         <h6 className="font-weight-bold">
-                                            {dataTransaction[0].audienceID.name.toTitleCase()}
+                                            {dataAudience.name.toTitleCase()}
                                         </h6>
                                     </div>
                                 </div>
@@ -95,7 +97,7 @@ function PageAudience() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {dataTransaction !== null &&
+                                {dataTransaction !== null ?
                                     dataTransaction.map((data, index) => {
                                         return (
                                             <tr key={data._id}>
@@ -155,7 +157,7 @@ function PageAudience() {
                                                     ) : data.status_transaksi ===
                                                       "MENUNGGU KONFIRMASI SPEAKER" ? (
                                                         <>
-                                                            <button className="btn btn-primary btn-sm">
+                                                            <button disabled className="btn btn-primary btn-sm">
                                                                 Check Out
                                                             </button>
                                                         </>
@@ -177,7 +179,7 @@ function PageAudience() {
                                                 </td>
                                             </tr>
                                         );
-                                    })}
+                                    }) : <><h1>Belum Ada JAdwal</h1></>}
                             </tbody>
                         </table>
                     </div>

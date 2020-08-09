@@ -179,8 +179,11 @@ function RegisterSpeaker() {
                         }
                     />
                 </FormGroup>
+                <FormGroup style={{ textAlign: "left", display:"flex", alignItems: "center", justifyContent:"center" }}>
+                    {formData.cv !== "" && <embed width="191" height="207" name="plugin" src={formData.cv} type="application/pdf"></embed>}
 
-                <br />
+                </FormGroup>
+
                 <button className="btn btn-primary btn-block">
                     Daftar sebagai Speaker
                 </button>

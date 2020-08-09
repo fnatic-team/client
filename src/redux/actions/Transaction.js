@@ -73,9 +73,9 @@ export const getTransactionSpeaker = (id) => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    const data = results.data.filter((e) => {
+    const data = results !== null ? results.data.filter((e) => {
         return e.speakerID._id === id;
-    });
+    }) : results
 
     dispatch({
         type: GET_TRANSACTION_SPEAKER,
@@ -97,9 +97,9 @@ export const getTransactionAudience = (id) => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    const data = results.data.filter((e) => {
+    const data = results !== null ? results.data.filter((e) => {
         return e.audienceID._id === id;
-    });
+    }) : results
 
     dispatch({
         type: GET_TRANSACTION_AUDIENCE,
