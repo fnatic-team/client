@@ -1,51 +1,153 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import {
+    fetchAllSpeakers,
+    searchSpeakerByName,
+    searchSpeakerByLocation,
+} from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ReactStars from "react-stars";
 
 const CardWrapper = styled.div`
-  .card-img-top {
-    width: 150px;
-    height: 150px;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    .card-img-top {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 const Container = styled.div`
-  width: 30%;
-  margin-bottom: 20px;
-  :hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
+    width: 30%;
+    margin-bottom: 20px;
+    :hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 `;
 
-function CardBrowser() {
-  return (
-    <Container>
-      <CardWrapper>
-        <div className="card d-flex" style={{ width: "250px" }}>
-          <div>
-            <i className="fa fa-2x fa-star" style={{color:"orange"}} aria-hidden="true">
-           </i>  <span style={{fontSize:"30px"}}>5</span>
-          </div>
-          <div
-            className="d-flex align-items-center justify-content-center"
-            style={{ height: "200px" }}
-          >
-            <img
-              className="card-img-top"
-              src="https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
-              alt="Card Cap"
-            />
-          </div>
+// eslint-disable-next-line no-extend-native
+String.prototype.toTitleCase = function () {
+    return this.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
 
-          <div className="card-body">
-            <h5 className="card-title">Speaker</h5>
-            <p className="card-text">Bio Profile</p>
-            <button class="btn btn-sm btn-primary">Detail Profile</button>
-          </div>
-        </div>
-      </CardWrapper>
-    </Container>
-  );
+function CardBrowser({ props, user, location }) {
+    const dispatch = useDispatch();
+    const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
+
+    useEffect(() => {
+        if (user !== "") {
+            dispatch(searchSpeakerByName(user));
+        } else if (location === "All Location") {
+            dispatch(fetchAllSpeakers());
+        } else if (location !== "") {
+            dispatch(searchSpeakerByLocation(location));
+        } else {
+            dispatch(fetchAllSpeakers());
+        }
+        //eslint-disable-next-line
+    }, [user, location]);
+
+    return (
+        <>
+            {dataSpeakers !== null ? (
+                dataSpeakers.map((data) => {
+                    return (
+                        <Container key={data._id}>
+                            <CardWrapper>
+                                <div
+                                    className="card d-flex"
+                                    style={{ width: "250px" }}
+                                >
+                                    <div
+                                        className="d-flex align-items-center justify-content-center"
+                                        style={{ height: "200px" }}
+                                    >
+                                        <img
+                                            className="card-img-top rounded-circle"
+                                            src={data.image}
+                                            alt="Card Cap"
+                                        />
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div>
+                                            <ReactStars
+                                                className="card-title d-flex justify-content-center"
+                                                count={5}
+                                                size={24}
+                                                color1={"#ffe234"}
+                                            />
+                                        </div>
+                                        <h5
+                                            className="card-title"
+                                            style={{
+                                                fontFamily:
+                                                    "'Montserrat', sans-serif ",
+                                            }}
+                                        >
+                                            {data.name.toTitleCase()}
+                                        </h5>
+
+                                        <p className="card-text">
+                                            {data.category === "nodejs" ? (
+                                                <span class="badge badge-pill badge-success">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "reactjs" ? (
+                                                <span class="badge badge-pill badge-primary">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "angular" ? (
+                                                <span class="badge badge-pill badge-danger">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "mysql" ? (
+                                                <span class="badge badge-pill badge-secondary">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "magento" ? (
+                                                <span class="badge badge-pill badge-dark">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : (
+                                                <span class="badge badge-pill badge-warning">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            )}{" "}
+                                            <span class="badge badge-info">
+                                                {data.location}
+                                            </span>
+                                        </p>
+                                        <Link
+                                            to={`/speaker/${data._id}`}
+                                        >
+                                            <button className="btn btn-sm btn-primary">
+                                                Detail Profile
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </CardWrapper>
+                        </Container>
+                    );
+                })
+            ) : (
+                <div className="container-fluid">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>{" "}
+                </div>
+            )}
+        </>
+    );
 }
 
 export default CardBrowser;

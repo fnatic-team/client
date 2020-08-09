@@ -5,6 +5,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
+
+
+
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -29,12 +33,26 @@ function RegisterAudience() {
         password: "",
         phone: "",
     });
-    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(registerUser(formData, history));
+        for (let key in formData) {
+            if (formData[key] === "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text: "Form tidak boleh kosong",
+                });
+            }else if(formData.password.length <= 5){
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text: "Password Minimal 6 karakter",
+                });
+            }
+        }
+        dispatch(registerUser(formData,history))
     };
 
     const handleChange = (event) => {
@@ -115,7 +133,11 @@ function RegisterAudience() {
                         placeholder="Masukan Nomor Telpon"
                     />
                 </FormGroup>
-                <button className="btn btn-primary btn-block">Daftar</button>
+                <button className="btn btn-primary btn-block">Daftar Sebagai Audience</button>
+                {/* <span>or</span>
+                <RegisterFacebook />
+                <RegisterGoogle/> */}
+
             </RegisterWrapper>
         </div>
     );

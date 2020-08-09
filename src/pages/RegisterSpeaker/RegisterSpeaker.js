@@ -6,6 +6,9 @@ import { useDispatch } from "react-redux";
 import { FormGroup, Label, Input } from "reactstrap";
 import ReactFilestack from "filestack-react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+// import RegisterFacebook from "../../components/facebook/RegisterFacebook"
+// import RegisterGoogle from "../../components/google/RegisterGoogle"
 
 const RegisterWrapper = styled.form`
     width: 600px;
@@ -36,19 +39,33 @@ function RegisterSpeaker() {
         category: "",
         cv: "",
     });
-
-    console.log(formData);
     const history = useHistory();
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
+        for (let key in formData) {
+            if (formData[key] === "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text:
+                        "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                });
+            } else if (formData.password.length <= 5) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Require",
+                    text: "Password Minimal 6 karakter",
+                });
+            }
+        }
         dispatch(registerUser(formData, history));
     };
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-
+  
     return (
         <div>
             <RegisterWrapper
@@ -119,9 +136,12 @@ function RegisterSpeaker() {
                         name="category"
                         onChange={handleChange}
                     >
-                        <option value="React JS">React JS</option>
-                        <option value="React Native">React Native</option>
-                        <option value="Angular JS">Angular JS</option>
+                        <option value="reactjs">React JS</option>
+                        <option value="angular">Angular</option>
+                        <option value="nodejs">Node JS</option>
+                        <option value="mysql">MySql</option>
+                        <option value="magento">Magento</option>
+                        <option value="codeigniter">Codeigniter</option>
                     </select>
                 </FormGroup>
 
@@ -130,6 +150,8 @@ function RegisterSpeaker() {
                     <Input
                         type="text"
                         name="phone"
+                        onChange={handleChange}
+                        value={formData.phone}
                         id="phone"
                         placeholder="Masukan Nomor Telpon"
                     />
@@ -138,14 +160,14 @@ function RegisterSpeaker() {
                     <Label>Resume :</Label>
 
                     <ReactFilestack
-                        apikey={"AjKZyDReRZ2wx6MJeR8LAz"}
+                        apikey={`${process.env.REACT_APP_API_KEY}`}
                         customRender={({ onPick }) => (
                             <div>
                                 <button
                                     className="btn btn-primary btn-block"
                                     onClick={onPick}
                                 >
-                                    Upload Picture
+                                    Upload Resume
                                 </button>
                             </div>
                         )}
@@ -162,6 +184,9 @@ function RegisterSpeaker() {
                 <button className="btn btn-primary btn-block">
                     Daftar sebagai Speaker
                 </button>
+                <br />
+                {/* <RegisterFacebook/>
+                <RegisterGoogle/> */}
             </RegisterWrapper>
         </div>
     );

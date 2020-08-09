@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { userLogin } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
+
 import { FormGroup, Label, Input } from "reactstrap";
 
 const LoginWrapper = styled.form`
@@ -65,17 +66,11 @@ function Login() {
                 </FormGroup>
 
                 <button className="btn btn-primary btn-block">Login</button>
-                <div className="text-center pt-3 ">
+                {/* <div className="text-center pt-3 ">
                     <p>Or</p>
-                </div>
-                <button
-                    className="btn  btn-block"
-                    style={{ backgroundColor: "#3b5998", color: "white" }}
-                >
-                    Facebook
-                </button>
-                <button className="btn  btn-success btn-block">Google</button>
-                {/* <Google /> */}
+                </div> */}
+                {/* <LoginFacebook/>
+                <LoginGoogle /> */}
                 <div className="text-center">
                     <br />
                     <span>

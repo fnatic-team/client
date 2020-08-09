@@ -16,6 +16,12 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
+import PageAudience from "./pages/PageAudience/PageAudience";
+import PrivateRoute from "./helpers/PrivateRoute";
+import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import Payment from "./pages/PaymentPage/PaymentPage";
+import NotFound from "./pages/404/NotFound";
 
 function App() {
     return (
@@ -42,21 +48,42 @@ function App() {
                         <Route exact path="/login">
                             <Login />
                         </Route>
-                        <Route exact path="/profile/edit">
+                        <PrivateRoute exact path="/profile/edit/:id">
                             <EditBiodata />
-                        </Route>
-                        <Route exact path="/appointment">
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/appointment/:id">
                             <Appointment />
-                        </Route>
+                        </PrivateRoute>
 
-                        <Route exact path="/profile">
+                        <PrivateRoute exact path="/speaker/profile/:id">
                             <Profile />
-                        </Route>
-                        <Route exact path="/schedule">
+                        </PrivateRoute>
+                        <Route exact path="/speaker/schedule/:id">
                             <SpeakerSchedule />
                         </Route>
+                        <Route exact path="/speaker/:id">
+                            <DetailSpeaker />
+                        </Route>
+                        <Route exact path="/paymentPage">
+                            <Payment />
+                        </Route>
+                        <Route exact path="/contactus">
+                            <ContactUs />
+                        </Route>
+                        <Route exact path="/audience/schedule/:id">
+                            <PageAudience />
+                        </Route>
+                        <PrivateRoute exact path="/pembayaran/:id">
+                            <Payment />
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/transaksi/detail/:id">
+                            <DetailTransaksi />
+                        </PrivateRoute>
+                        <Route path="*">
+                            <NotFound />
+                        </Route>
                     </Switch>
-                    <Footer />
+                    <Footer className="footer" />
                 </Router>
             </Provider>
         </div>
