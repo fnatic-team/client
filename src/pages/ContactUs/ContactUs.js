@@ -34,6 +34,7 @@ const Image = styled.div`
     }
 `;
 
+
 const Teks = styled.div`
     @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
     font-family: "Oswald", sans-serif;
@@ -96,8 +97,20 @@ function ContactUs() {
                 <div className="container-fluid">
                     <div className="row container1">
                         <div className="col-sm-12 col-center text-center ">
-                            <h2>HUBUNGI KAMI</h2>
-                            <p>
+                            <p
+                                style={{
+                                    fontFamily: "'Montserrat', sans-serif ",
+                                    fontSize: "30px",
+                                }}
+                            >
+                                HUBUNGI KAMI
+                            </p>
+                            <p
+                                style={{
+                                    fontFamily: " Roboto', sans-serif",
+                                    fontSize: "20px",
+                                }}
+                            >
                                 Punya sesuatu, sesuatu yang ingin kau bicarakan,
                                 tentang kami? Kirimkan email kepada kami,
                                 <span>atau isi formulir bagus di bawah ini.</span>

@@ -18,13 +18,10 @@ import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 import PageAudience from "./pages/PageAudience/PageAudience";
 import PrivateRoute from "./helpers/PrivateRoute";
-// import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
-// import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
-// import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
-// import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
+import NotFound from "./pages/404/NotFound";
 
 function App() {
     return (
@@ -70,18 +67,6 @@ function App() {
                         <Route exact path="/paymentPage">
                             <Payment />
                         </Route>
-                        {/* <Route exact path="/registrasi/speaker/facebook">
-                            <RegisterFacebookSpeaker/>
-                        </Route>
-                         <Route exact path="/registrasi/audience/facebook">
-                            <RegisterFacebookAudience/>
-                        </Route>
-                        <Route exact path="/registrasi/audience/google">
-                            <RegisterGoogleAudience/>
-                        </Route>
-                        <Route exact path="/registrasi/speaker/google">
-                            <RegisterGoogleSpeaker/>
-                        </Route> */}
                         <Route exact path="/contactus">
                             <ContactUs />
                         </Route>
@@ -91,6 +76,12 @@ function App() {
                         <PrivateRoute exact path="/pembayaran/:id">
                             <Payment />
                         </PrivateRoute>
+                        <PrivateRoute exact path="/transaksi/detail/:id">
+                            <DetailTransaksi />
+                        </PrivateRoute>
+                        <Route path="*">
+                            <NotFound />
+                        </Route>
                     </Switch>
                     <Footer className="footer" />
                 </Router>
