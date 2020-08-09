@@ -34,10 +34,10 @@ const Image = styled.div`
     }
 `;
 
-const Teks = styled.p`
+const Teks = styled.div`
     @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
     font-family: "Oswald", sans-serif;
-    align: left;
+    text-align: left;
     position: absolute;
     left: 40px;
     top: 120px;
@@ -100,7 +100,7 @@ function ContactUs() {
                             <p>
                                 Punya sesuatu, sesuatu yang ingin kau bicarakan,
                                 tentang kami? Kirimkan email kepada kami,
-                                <p>atau isi formulir bagus di bawah ini.</p>
+                                <span>atau isi formulir bagus di bawah ini.</span>
                             </p>
                         </div>
                     </div>

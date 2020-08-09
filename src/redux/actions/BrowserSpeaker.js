@@ -18,7 +18,7 @@ export const fetchAllSpeakers = () => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    console.log(results);
+  
 
     dispatch({
         type: GET_DATA_SPEAKERS,
@@ -60,7 +60,7 @@ export const searchSpeakerByName = (user, location) => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    console.log(results);
+  
 
     dispatch({
         type: GET_SPEAKERS_BY_NAME,
@@ -80,7 +80,7 @@ export const filterLocation = () => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    console.log(results);
+   
 
     dispatch({
         type: GET_LOCATIONS,
@@ -100,7 +100,7 @@ export const searchSpeakerByLocation = (location) => async (dispatch) => {
 
     let response = await fetch(url, options);
     let results = await response.json();
-    console.log(results);
+  
 
     dispatch({
         type: GET_SPEAKERS_BY_LOCATION,

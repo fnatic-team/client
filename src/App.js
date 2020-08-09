@@ -16,13 +16,12 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
-import PageSchedule from "./pages/PageAudience/PageAudience";
-import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
+import PageAudience from "./pages/PageAudience/PageAudience";
 import PrivateRoute from "./helpers/PrivateRoute";
-import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
-import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
-import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
-import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker";
+// import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
+// import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
+// import RegisterGoogleAudience from "./pages/RegisterGoogleAudience/RegisterGoogleAuidience";
+// import RegisterGoogleSpeaker from "./pages/RegisterGoogleSpeaker/RegisterGoogleSpeaker";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
@@ -62,9 +61,9 @@ function App() {
                         <PrivateRoute exact path="/speaker/profile/:id">
                             <Profile />
                         </PrivateRoute>
-                        <PrivateRoute exact path="/speaker/schedule/:id">
+                        <Route exact path="/speaker/schedule/:id">
                             <SpeakerSchedule />
-                        </PrivateRoute>
+                        </Route>
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
@@ -86,14 +85,11 @@ function App() {
                         <Route exact path="/contactus">
                             <ContactUs />
                         </Route>
-                        <PrivateRoute exact path="/audience/schedule/:id">
-                            <PageSchedule />
-                        </PrivateRoute>
+                        <Route exact path="/audience/schedule/:id">
+                            <PageAudience />
+                        </Route>
                         <PrivateRoute exact path="/pembayaran/:id">
                             <Payment />
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/transaksi/detail/:id">
-                            <DetailTransaksi />
                         </PrivateRoute>
                     </Switch>
                     <Footer className="footer" />

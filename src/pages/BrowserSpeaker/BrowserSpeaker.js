@@ -40,6 +40,7 @@ function BrowserSpeaker() {
 
     useEffect(() => {
         dispatch(filterLocation());
+        // eslint-disable-next-line
     }, []);
 
     const handleClick = (event) => {
@@ -62,8 +63,8 @@ function BrowserSpeaker() {
                     <select className="form-control " onChange={handleClick}>
                         <option>All Location</option>
                         {dataLocations !== null &&
-                            dataLocations.map((item) => (
-                                <option>{item.name}</option>
+                            dataLocations.map((item, index) => (
+                                <option key={index}>{item.name}</option>
                             ))}
                     </select>
                 </SearchWrapper>

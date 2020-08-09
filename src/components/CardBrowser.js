@@ -81,11 +81,7 @@ function CardBrowser({ user, location }) {
                                         <p className="card-text">
                                             {data.category}
                                         </p>
-                                        <Link
-                                            exact
-                                            path
-                                            to={`/speaker/${data._id}`}
-                                        >
+                                        <Link to={`/speaker/${data._id}`}>
                                             <button className="btn btn-sm btn-primary">
                                                 Detail Profile
                                             </button>

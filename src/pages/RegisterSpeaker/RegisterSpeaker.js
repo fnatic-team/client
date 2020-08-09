@@ -64,7 +64,7 @@ function RegisterSpeaker() {
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-    console.log(`${process.env.REACT_APP_API_KEY}`)
+  
     return (
         <div>
             <RegisterWrapper
