@@ -22,6 +22,7 @@ import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
 import NotFound from "./pages/404/NotFound";
+import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
 
 function App() {
     return (
