@@ -48,9 +48,10 @@ function RegisterSpeaker() {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
-                    text: "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                    text:
+                        "Upload Resume Diperlukan dan Form tidak boleh kosong",
                 });
-            }else if(formData.password.length <= 5){
+            } else if (formData.password.length <= 5) {
                 Swal.fire({
                     icon: "error",
                     title: "Require",
@@ -58,13 +59,13 @@ function RegisterSpeaker() {
                 });
             }
         }
-        dispatch(registerUser(formData,history))
+        dispatch(registerUser(formData, history));
     };
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
-    console.log(`${process.env.REACT_APP_API_KEY}`)
+    console.log(`${process.env.REACT_APP_API_KEY}`);
     return (
         <div>
             <RegisterWrapper
@@ -137,7 +138,7 @@ function RegisterSpeaker() {
                     >
                         <option value="reactjs">React JS</option>
                         <option value="angular">Angular</option>
-                        <option value="nodejs">Node JS JS</option>
+                        <option value="nodejs">Node JS</option>
                         <option value="mysql">MySql</option>
                         <option value="magento">Magento</option>
                         <option value="codeigniter">Codeigniter</option>
@@ -187,7 +188,6 @@ function RegisterSpeaker() {
                 {/* <RegisterFacebook/>
                 <RegisterGoogle/> */}
             </RegisterWrapper>
-            
         </div>
     );
 }

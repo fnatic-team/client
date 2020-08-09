@@ -22,6 +22,7 @@ import PrivateRoute from "./helpers/PrivateRoute";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
+import NotFound from "./pages/404/NotFound";
 
 function App() {
     return (
@@ -91,6 +92,9 @@ function App() {
                         <PrivateRoute exact path="/transaksi/detail/:id">
                             <DetailTransaksi />
                         </PrivateRoute>
+                        <Route path="*">
+                            <NotFound />
+                        </Route>
                     </Switch>
                     <Footer className="footer" />
                 </Router>
