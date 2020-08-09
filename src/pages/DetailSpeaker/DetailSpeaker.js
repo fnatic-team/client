@@ -5,7 +5,6 @@ import { getSpeakerDetails } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
-
 // eslint-disable-next-line no-extend-native
 String.prototype.toTitleCase = function () {
     return this.replace(/\w\S*/g, function (txt) {
@@ -30,7 +29,6 @@ function DetailSpeaker() {
         (state) => state.browserSpeaker.selectedSpeaker
     );
 
-
     const isLoggin = localStorage.getItem("token");
 
     useEffect(() => {
@@ -52,7 +50,6 @@ function DetailSpeaker() {
         }
     };
 
-    
     return (
         <>
             {" "}
@@ -83,7 +80,38 @@ function DetailSpeaker() {
                                                 <h6 className="font-weight-bold">
                                                     {dataSpeaker.name.toTitleCase()}
                                                 </h6>
-                                                <p>{dataSpeaker.category}</p>
+                                                <p>
+                                                    {dataSpeaker.category ===
+                                                    "nodejs" ? (
+                                                        <span class="badge badge-pill badge-success">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "reactjs" ? (
+                                                        <span class="badge badge-pill badge-primary">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "angular" ? (
+                                                        <span class="badge badge-pill badge-danger">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "mysql" ? (
+                                                        <span class="badge badge-pill badge-secondary">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : dataSpeaker.category ===
+                                                      "magento" ? (
+                                                        <span class="badge badge-pill badge-dark">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    ) : (
+                                                        <span class="badge badge-pill badge-warning">
+                                                            {dataSpeaker.category.toTitleCase()}
+                                                        </span>
+                                                    )}
+                                                </p>
                                                 <div>
                                                     <button
                                                         onClick={handleClick}
@@ -110,12 +138,23 @@ function DetailSpeaker() {
                                             <div className="text-left d-flex flex-column h-100 justify-content-center">
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Kota</p>
-                                                    <span>{dataSpeaker.location}</span>
+                                                    <span>
+                                                        {dataSpeaker.location}
+                                                    </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
                                                     <p>Fee</p>
                                                     <span>
-                                                        {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(dataSpeaker.fee)}
+                                                        {new Intl.NumberFormat(
+                                                            "id-ID",
+                                                            {
+                                                                style:
+                                                                    "currency",
+                                                                currency: "IDR",
+                                                            }
+                                                        ).format(
+                                                            dataSpeaker.fee
+                                                        )}
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
@@ -155,13 +194,12 @@ function DetailSpeaker() {
                                         </h4>
                                         <br />
                                         <div>
-                                            <a href={dataSpeaker.cv} 
-                                            // eslint-disable-next-line
-                                            target="_blank" >
-                                                <button
-                                                    
-                                                    className="btn rounded-pill  btn-primary"
-                                                >
+                                            <a
+                                                href={dataSpeaker.cv}
+                                                // eslint-disable-next-line
+                                                target="_blank"
+                                            >
+                                                <button className="btn rounded-pill  btn-primary">
                                                     Download resume
                                                 </button>
                                             </a>

@@ -31,6 +31,7 @@ const SearchWrapper = styled.div`
 function BrowserSpeaker() {
     const [input, setInput] = useState("");
     const [name, setName] = useState("");
+
     const dispatch = useDispatch();
     const dataLocations = useSelector((state) => state.browserSpeaker.location);
     const handleChange = (event) => {

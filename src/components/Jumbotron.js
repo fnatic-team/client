@@ -17,6 +17,7 @@ function Jumbotron() {
                     <div className="col-sm-5 mt-5">
                         <h1
                             style={{
+                                fontFamily: "'Montserrat', sans-serif ",
                                 color: "white",
                                 fontWeight: "Bolder",
                                 textAlign: "left",
@@ -25,7 +26,13 @@ function Jumbotron() {
                             Find World's Best Speaker Experiece
                         </h1>
                         <br />
-                        <p style={{ color: "white", textAlign: "left" }}>
+                        <p
+                            style={{
+                                fontFamily: " Roboto', sans-serif",
+                                color: "white",
+                                textAlign: "left",
+                            }}
+                        >
                             Semua orang yang membutuhkan publik speaking yang
                             handal dan memiliki pengalaman yang sudah teruji
                             kemampuannya. Disinilah solusinya

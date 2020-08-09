@@ -1,48 +1,40 @@
-import React,{useState} from "react";
-import { FacebookProvider, Login } from "react-facebook";
+import React from "react";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { facebookResponse, onFailure } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
-import { useDispatch} from 'react-redux'
-import {userLoginFacebook} from '../../redux/actions'
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
-
-
-
-
+const Button = styled.button`
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    background-color: #3b5998;
+    color: white;
+`;
 
 export default function LoginFacebook() {
-    const dispatch = useDispatch();
     const history = useHistory();
-    const [errors, setErrors] = useState({});
-
-    
-
-
-    const handleResponse = (data) => {
-        dispatch(userLoginFacebook(data, history));
-    };
-
-    const handleError = (error) => {
-        console.log(errors);
-
-        setErrors({ error });
-    };
-
-   
-
+    const dispatch = useDispatch();
     return (
-        <FacebookProvider appId="276763010319212">
-            <Login
-                scope="email"
-                onCompleted={handleResponse}
-                onError={handleError}
-            >
-                {({ loading, handleClick, error, data }) => (
-                    <button className="btn btn-primary btn-block" onClick={handleClick}>
-                        Masuk via Facebook
-                        {loading && <span>Loading...</span>}
-                    </button>
+        <div>
+            <FacebookLogin
+                appId={process.env.REACT_APP_FACEBOOK_API_KEY}
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={facebookResponse}
+                render={(renderProps) => (
+                    <Button onClick={renderProps.onClick}>
+                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                    </Button>
                 )}
-            </Login>
-        </FacebookProvider>
+            />
+        </div>
     );
 }

@@ -10,9 +10,15 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
 const CardWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
     .card-img-top {
-        width: 150px;
-        height: 150px;
+        max-width: 150px;
+        max-height: 150px;
+    }
+    img {
+        width: 100%;
+        height: 100%;
     }
 `;
 
@@ -80,11 +86,45 @@ function CardBrowser({ props, user, location }) {
                                                 color1={"#ffe234"}
                                             />
                                         </div>
-                                        <h5 className="card-title">
+                                        <h5
+                                            className="card-title"
+                                            style={{
+                                                fontFamily:
+                                                    "'Montserrat', sans-serif ",
+                                            }}
+                                        >
                                             {data.name.toTitleCase()}
                                         </h5>
+
                                         <p className="card-text">
-                                            {data.category}
+                                            {data.category === "nodejs" ? (
+                                                <span class="badge badge-pill badge-success">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "reactjs" ? (
+                                                <span class="badge badge-pill badge-primary">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "angular" ? (
+                                                <span class="badge badge-pill badge-danger">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "mysql" ? (
+                                                <span class="badge badge-pill badge-secondary">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : data.category === "magento" ? (
+                                                <span class="badge badge-pill badge-dark">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            ) : (
+                                                <span class="badge badge-pill badge-warning">
+                                                    {data.category.toTitleCase()}
+                                                </span>
+                                            )}{" "}
+                                            <span class="badge badge-info">
+                                                {data.location}
+                                            </span>
                                         </p>
                                         <Link
                                             to={`/speaker/${data._id}`}
