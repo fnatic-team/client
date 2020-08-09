@@ -1,11 +1,28 @@
 import React from "react";
 import hero from "./../assets/images/hero.png";
 import { Link } from "react-router-dom";
+import styled from "styled-components"
+
+
+
+const Wrapper = styled.div`
+ @media (max-width: 576px){
+        .img{ width: 200px;}
+        .section1{
+            padding:20px;
+        }
+        .button-start{
+            display: flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            margin-bottom: 60px;
+        }
+    }`
 
 function Jumbotron() {
     return (
-        <div
-            className="container-fluid d-flex justify-content-center"
+        <Wrapper
+            className=" container-fluid d-flex justify-content-center"
             style={{
                 backgroundImage:
                     "linear-gradient(45deg, rgba(86, 58, 250, 0.9) 0%, rgba(116, 15, 214, 0.9) 100%)",
@@ -13,7 +30,7 @@ function Jumbotron() {
             }}
         >
             <div className="row m-auto">
-                <div className="row d-flex justify-content-center mt-5">
+                <div className=" section1 row d-flex justify-content-center mt-5">
                     <div className="col-sm-5 mt-5">
                         <h1
                             style={{
@@ -37,7 +54,7 @@ function Jumbotron() {
                             handal dan memiliki pengalaman yang sudah teruji
                             kemampuannya. Disinilah solusinya
                         </p>
-                        <div className="d-flex align-items-start mt-5">
+                        <div className="button-start d-flex align-items-start mt-5">
                             <Link to="/search">
                                 <button
                                     className="btn font-weight-bold rounded-pill btn-lg text-white"
@@ -52,11 +69,11 @@ function Jumbotron() {
                         </div>
                     </div>
                     <div className="col-sm-4">
-                        <img className="img-fluid" src={hero} alt="" />
+                        <img className="img img-fluid" src={hero} alt="" />
                     </div>
                 </div>
             </div>
-        </div>
+        </Wrapper>
     );
 }
 

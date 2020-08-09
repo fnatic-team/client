@@ -40,20 +40,26 @@ function ButtonHeader() {
             {token !== null ? (
                 <>
                     <div className="m-auto">
-                        <Link
-                            className="text-white"
-                            to={
-                                token.role !== "AUDIENCE"
-                                    ? `/speaker/profile/${token.id}`
-                                    : "/audience/profile"
-                            }
-                        >
-                            <i
-                                className="fa fa-user font-weight-bold"
-                                aria-hidden="true"
-                            ></i>{" "}
-                            <span>{token.name.toTitleCase()}</span>
-                        </Link>
+                        {token.role !== "AUDIENCE" ? (
+                            <Link
+                                className="text-white"
+                                to={`/speaker/profile/${token.id}`}
+                            >
+                                <i
+                                    className="fa fa-user font-weight-bold"
+                                    aria-hidden="true"
+                                ></i>{" "}
+                                <span>{token.name.toTitleCase()}</span>
+                            </Link>
+                        ) : (
+                            <>
+                                <i
+                                    className="fa fa-user font-weight-bold"
+                                    aria-hidden="true"
+                                ></i>{" "}
+                                <span>{token.name.toTitleCase()}</span>
+                            </>
+                        )}
                     </div>
 
                     <button

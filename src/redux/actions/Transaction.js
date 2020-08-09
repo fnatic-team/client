@@ -162,10 +162,12 @@ export const updateStatusSpeaker = (id, status_speaker) => async (dispatch) => {
         if (response.status === 200) {
             Swal.fire({
                 icon: "success",
-                title: `Status Transaksi Berhasil diUpdate`,
+                title: `Status Transaksi Berhasil diupdate`,
             });
 
-            window.location.reload();
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         } else {
             Swal.fire({
                 icon: "error",

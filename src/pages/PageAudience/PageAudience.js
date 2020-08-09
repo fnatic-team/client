@@ -3,18 +3,41 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getTransactionAudience,
     updateStatusAudience,
-    getSpeakerDetails
+    getSpeakerDetails,
 } from "../../redux/actions";
 import { useParams, Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+    @media (max-width: 576px) {
+        margin: auto;
+        box-sizing: border-box !important;
+        display:flex;
+        flex-wrap: wrap;
+      
+        
+        .section1 {
+            box-sizing: border-box !important;
+            width: 70% !important;
+              padding: 0px !important;
+            img {
+                width: 150px !important;
+                height: 150px !important;
+            }
+        }
+    }
+`;
 
 function PageAudience() {
     let { id } = useParams();
     const dispatch = useDispatch();
     const dataTransaction = useSelector((state) => state.transaction.audience);
-    const dataAudience = useSelector((state) =>state.browserSpeaker.selectedSpeaker);
+    const dataAudience = useSelector(
+        (state) => state.browserSpeaker.selectedSpeaker
+    );
 
     useEffect(() => {
-        dispatch(getSpeakerDetails(id))
+        dispatch(getSpeakerDetails(id));
         dispatch(getTransactionAudience(id));
 
         // eslint-disable-next-line
@@ -27,30 +50,24 @@ function PageAudience() {
         });
     };
     return (
-        <div style={{ margin: "100px 0px 80px 0px" }}>
+        <Wrapper style={{ margin: "100px 0px 80px 0px" }}>
             {dataAudience !== null ? (
                 <div
                     className="container"
                     animation="fade-down"
                     duration={1000}
                 >
-                    <div  className="row bg-white m-3 border  pad1 shadow-lg">
-                        <div className="col m-3 modal-body text-center align-self-center">
-                            <div className="col m-3 justify-content-space-evenly">
-                                <div className="col-sm">
-                                    <div className="col-sm">
-                                        <img
-                                            className="rounded-circle"
-                                            style={{ width: "200px" }}
-                                            src={
-                                                dataAudience.image
-                                            }
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
+                    <div className="row section1 m-3 bg-white border shadow-lg">
+                        <div className="col section2 modal-body text-center align-self-center">
+                            <div className="col-sm">
+                                <img
+                                    className="mt-3 rounded-circle"
+                                    style={{ width: "200px" }}
+                                    src={dataAudience.image}
+                                    alt=""
+                                />
 
-                                <div className="col-sm mt-5">
+                                <div className="col-sm mt-3 mb-3">
                                     <div className="text-center d-flex flex-column h-100 justify-content-center">
                                         <h6 className="font-weight-bold">
                                             {dataAudience.name.toTitleCase()}
@@ -97,7 +114,7 @@ function PageAudience() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {dataTransaction !== null ?
+                                {dataTransaction !== null ? (
                                     dataTransaction.map((data, index) => {
                                         return (
                                             <tr key={data._id}>
@@ -105,10 +122,14 @@ function PageAudience() {
                                                 <td>{data.nama_acara}</td>
                                                 <td>{data.speakerID.name}</td>
                                                 <td>
-                                                    {data.status_audience !==
-                                                    "PENDING"
-                                                        ? "Acara Sudah Selesai"
-                                                        : data.status_transaksi.toTitleCase()}
+                                                    {data.status_audience ===
+                                                    "SELESAI" && data.status_speaker === "SELESAI" && data.status_transaksi === "PAID BY ADMIN"
+                                                        ? data.status_transaksi.toTitleCase()
+                                                        : (data.status_audience ===
+                                                    "SELESAI" && data.status_speaker === "PENDING" ? "Acara Sudah Selesai" : (data.status_audience === "SELESAI" && data.status_speaker === "SELESAI" &&  data.status_transaksi !== "PAID BY ADMIN" ? "Acara Sudah Selesai" : data.status_transaksi.toTitleCase()
+                                                        
+
+                                                    ) ) }
                                                 </td>
                                                 <td>
                                                     <button
@@ -157,14 +178,17 @@ function PageAudience() {
                                                     ) : data.status_transaksi ===
                                                       "MENUNGGU KONFIRMASI SPEAKER" ? (
                                                         <>
-                                                            <button disabled className="btn btn-primary btn-sm">
+                                                            <button
+                                                                disabled
+                                                                className="btn btn-primary btn-sm"
+                                                            >
                                                                 Check Out
                                                             </button>
                                                         </>
                                                     ) : data.status_audience ===
                                                       "SELESAI" ? (
                                                         <>
-                                                            <button className="btn btn-sm btn-primary">
+                                                            <button disabled className="btn btn-sm btn-primary">
                                                                 Selesai
                                                             </button>
                                                         </>
@@ -179,7 +203,12 @@ function PageAudience() {
                                                 </td>
                                             </tr>
                                         );
-                                    }) : <><h1>Belum Ada JAdwal</h1></>}
+                                    })
+                                ) : (
+                                    <>
+                                        <h1>Belum Ada JAdwal</h1>
+                                    </>
+                                )}
                             </tbody>
                         </table>
                     </div>
@@ -320,7 +349,7 @@ function PageAudience() {
                         </>
                     );
                 })}
-        </div>
+        </Wrapper>
     );
 }
 

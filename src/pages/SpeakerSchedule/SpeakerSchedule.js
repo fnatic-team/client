@@ -155,10 +155,14 @@ function SpeakerSchedule() {
                                                         {data.penyelenggara}
                                                     </td>
                                                     <td>
-                                                        {data.status_speaker !==
-                                                        "PENDING"
-                                                            ? "Acara Sudah Selesai"
-                                                            : data.status_transaksi.toTitleCase()}
+                                                       {data.status_audience ===
+                                                    "SELESAI" && data.status_speaker === "SELESAI" && data.status_transaksi === "PAID BY ADMIN"
+                                                        ? data.status_transaksi.toTitleCase()
+                                                        : (data.status_audience ===
+                                                    "PENDING" && data.status_speaker === "SELESAI" ? "Acara Sudah Selesai" : (data.status_audience === "SELESAI" && data.status_speaker === "SELESAI" &&  data.status_transaksi !== "PAID BY ADMIN" ? "Acara Sudah Selesai" : data.status_transaksi.toTitleCase()
+                                                        
+
+                                                    ) ) }
                                                     </td>
 
                                                     <td>
@@ -226,7 +230,7 @@ function SpeakerSchedule() {
                                                         ) : data.status_speaker ===
                                                           "SELESAI" ? (
                                                             <>
-                                                                <button className="btn btn-sm btn-primary">
+                                                                <button disabled className="btn btn-sm btn-primary">
                                                                     Selesai
                                                                 </button>
                                                             </>

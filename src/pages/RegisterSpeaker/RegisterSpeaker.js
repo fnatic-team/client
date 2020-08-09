@@ -41,25 +41,34 @@ function RegisterSpeaker() {
     });
     const history = useHistory();
     const dispatch = useDispatch();
-    const handleSubmit = (event) => {
+     const handleSubmit = async (event) => {
         event.preventDefault();
-        for (let key in formData) {
-            if (formData[key] === "") {
+        if (
+            formData.name === "" ||
+            formData.email === "" ||
+            formData.username === "" ||
+            formData.password === "" ||
+            formData.phone === "" ||
+            formData.category === "" ||
+            formData.cv === ""
+        ) {
+            Swal.fire({
+                title: "Form Registrasi dan Resume Tidak Boleh Kosong",
+                text: "",
+                icon: "error",
+            });
+        } else {
+            if (formData.password.length < 6) {
                 Swal.fire({
+                    title: "Password harus lebih dari 6 karakter",
+                    text: "",
                     icon: "error",
-                    title: "Require",
-                    text:
-                        "Upload Resume Diperlukan dan Form tidak boleh kosong",
+                    // confirmButtonText: 'Cool',
                 });
-            } else if (formData.password.length <= 5) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Require",
-                    text: "Password Minimal 6 karakter",
-                });
+            } else {
+                await dispatch(registerUser(formData, history));
             }
         }
-        dispatch(registerUser(formData, history));
     };
 
     const handleChange = (event) => {

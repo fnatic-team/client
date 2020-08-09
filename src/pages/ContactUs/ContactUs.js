@@ -112,7 +112,7 @@ function ContactUs() {
                                 }}
                             >
                                 Punya sesuatu, sesuatu yang ingin kau bicarakan,
-                                tentang kami? Kirimkan email kepada kami,
+                                tentang kami? Kirimkan email kepada kami,<br/>
                                 <span>atau isi formulir bagus di bawah ini.</span>
                             </p>
                         </div>
