@@ -45,8 +45,11 @@ export const getSpeakerDetails = (id) => async (dispatch) => {
     });
 };
 
-export const searchSpeakerByName = (user) => async (dispatch) => {
-    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/speakerName/?user=${user}`;
+export const searchSpeakerByName = (user, location) => async (dispatch) => {
+    if (location === "All Location") {
+        return (location = "");
+    }
+    let url = `${process.env.REACT_APP_BACKEND_ENDPOINT}api/user/speakerName/?user=${user}&location=${location}`;
 
     let options = {
         method: "GET",
