@@ -233,7 +233,7 @@ function SpeakerSchedule() {
                                                         ) : (
                                                             <>
                                                                 {" "}
-                                                                <button className="btn btn-sm btn-primary">
+                                                                <button disabled className="btn btn-sm btn-primary">
                                                                     Selesai
                                                                 </button>
                                                             </>

@@ -41,16 +41,15 @@ function EditBiodata() {
     const dataSpeaker = useSelector(
         (state) => state.browserSpeaker.selectedSpeaker
     );
-    
-    
+
     const [formData, setFormData] = useState({
         name: "",
         fee: "",
         bio: "",
         image: "",
-        cv:"",
-        language:"",
-        
+        cv: "",
+        language: "",
+        locattion: "",
     });
 
     useEffect(() => {
@@ -100,8 +99,7 @@ function EditBiodata() {
                                     name="fee"
                                     id="fee"
                                     onChange={handleChange}
-                                    defaultValue={dataSpeaker.fee
-                                    }
+                                    defaultValue={dataSpeaker.fee}
                                     className="w-75"
                                     placeholder="Masukan nominal"
                                 />{" "}
@@ -113,18 +111,18 @@ function EditBiodata() {
                             <Input
                                 type="text"
                                 name="location"
-                                onClick={handleChange}
+                                onChange={handleChange}
                                 defaultValue={dataSpeaker.location}
                                 id="phone"
                                 placeholder="Masukan Kota Domisili"
                             />
                         </FormGroup>
-                         <FormGroup style={{ textAlign: "left" }}>
+                        <FormGroup style={{ textAlign: "left" }}>
                             <Label>Bahasa Yang Digunakan:</Label>
                             <Input
                                 type="text"
                                 name="language"
-                                onClick={handleChange}
+                                onChange={handleChange}
                                 defaultValue={dataSpeaker.language}
                                 id="language"
                                 placeholder="Masukan Kota Domisili"
@@ -173,8 +171,10 @@ function EditBiodata() {
                                 }
                             />
                         </FormGroup>
+                         <FormGroup style={{ textAlign: "left", display:"flex", alignItems: "center", justifyContent:"center" }}>
+                    {formData.image !== "" && <img style={{width:"150px", height:"150px"}} src={formData.image} alt={formData.image}/>}
 
-                        <br />
+                </FormGroup>
                         <FormGroup style={{ textAlign: "left" }}>
                             <Label>Resume :</Label>
                             <ReactFilestack
@@ -197,20 +197,50 @@ function EditBiodata() {
                                 }
                             />
                         </FormGroup>
+                        <FormGroup
+                            style={{
+                                textAlign: "left",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            {formData.cv !== "" && (
+                                <embed
+                                    width="191"
+                                    height="207"
+                                    name="plugin"
+                                    src={formData.cv}
+                                    type="application/pdf"
+                                ></embed>
+                            )}
+                        </FormGroup>
                         <button className="btn btn-primary btn-block">
                             Perbarui
                         </button>
                     </EditBiodataWrapper>
                     1
                 </div>
-            ):  <>
-                {" "}
-                <div className="container-fluid" style={{width:"3rem", height:"3rem", marginTop:"200px"}}>
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>{" "}
-                </div>
-            </>}
+            ) : (
+                <>
+                    {" "}
+                    <div
+                        className="container-fluid"
+                        style={{
+                            width: "3rem",
+                            height: "3rem",
+                            marginTop: "200px",
+                        }}
+                    >
+                        <div
+                            className="spinner-border text-primary"
+                            role="status"
+                        >
+                            <span className="sr-only">Loading...</span>
+                        </div>{" "}
+                    </div>
+                </>
+            )}
         </>
     );
 }

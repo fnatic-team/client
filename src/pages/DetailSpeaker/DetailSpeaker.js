@@ -83,12 +83,12 @@ function DetailSpeaker() {
                                                 <p>
                                                     {dataSpeaker.category ===
                                                     "nodejs" ? (
-                                                        <span class="badge badge-pill badge-success">
+                                                        <span className="badge badge-pill badge-success">
                                                             {dataSpeaker.category.toTitleCase()}
                                                         </span>
                                                     ) : dataSpeaker.category ===
                                                       "reactjs" ? (
-                                                        <span class="badge badge-pill badge-primary">
+                                                        <span className="badge badge-pill badge-primary">
                                                             {dataSpeaker.category.toTitleCase()}
                                                         </span>
                                                     ) : dataSpeaker.category ===
@@ -98,16 +98,16 @@ function DetailSpeaker() {
                                                         </span>
                                                     ) : dataSpeaker.category ===
                                                       "mysql" ? (
-                                                        <span class="badge badge-pill badge-secondary">
+                                                        <span className="badge badge-pill badge-secondary">
                                                             {dataSpeaker.category.toTitleCase()}
                                                         </span>
                                                     ) : dataSpeaker.category ===
                                                       "magento" ? (
-                                                        <span class="badge badge-pill badge-dark">
+                                                        <span className="badge badge-pill badge-dark">
                                                             {dataSpeaker.category.toTitleCase()}
                                                         </span>
                                                     ) : (
-                                                        <span class="badge badge-pill badge-warning">
+                                                        <span className="badge badge-pill badge-warning">
                                                             {dataSpeaker.category.toTitleCase()}
                                                         </span>
                                                     )}
@@ -154,7 +154,7 @@ function DetailSpeaker() {
                                                             }
                                                         ).format(
                                                             dataSpeaker.fee
-                                                        )}
+                                                        )} / Jam
                                                     </span>
                                                 </div>
                                                 <div className="d-flex flex-row justify-content-between">
