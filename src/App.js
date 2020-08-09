@@ -23,6 +23,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import Payment from "./pages/PaymentPage/PaymentPage";
 import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
 import NotFound from "./pages/404/NotFound";
+import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi"
 
 function App() {
     return (
