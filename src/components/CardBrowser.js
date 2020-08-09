@@ -25,6 +25,12 @@ const Container = styled.div`
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
+    @media (max-width: 576px){
+        width: 80%;
+        display:flex;
+        align-items:center;
+        justify-content: center;
+    }
 `;
 
 // eslint-disable-next-line no-extend-native
@@ -49,7 +55,7 @@ function CardBrowser({ user, location }) {
         }
         //eslint-disable-next-line
     }, [user, location]);
-
+  
     return (
         <>
             {dataSpeakers !== null ? (
@@ -93,31 +99,31 @@ function CardBrowser({ user, location }) {
 
                                         <p className="card-text">
                                             {data.category === "nodejs" ? (
-                                                <span class="badge badge-pill badge-success">
+                                                <span className="badge badge-pill badge-success">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             ) : data.category === "reactjs" ? (
-                                                <span class="badge badge-pill badge-primary">
+                                                <span className="badge badge-pill badge-primary">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             ) : data.category === "angular" ? (
-                                                <span class="badge badge-pill badge-danger">
+                                                <span className="badge badge-pill badge-danger">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             ) : data.category === "mysql" ? (
-                                                <span class="badge badge-pill badge-secondary">
+                                                <span className="badge badge-pill badge-secondary">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             ) : data.category === "magento" ? (
-                                                <span class="badge badge-pill badge-dark">
+                                                <span className="badge badge-pill badge-dark">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             ) : (
-                                                <span class="badge badge-pill badge-warning">
+                                                <span className="badge badge-pill badge-warning">
                                                     {data.category.toTitleCase()}
                                                 </span>
                                             )}{" "}
-                                            <span class="badge badge-info">
+                                            <span className="badge badge-info">
                                                 {data.location}
                                             </span>
                                         </p>
@@ -132,11 +138,11 @@ function CardBrowser({ user, location }) {
                         </Container>
                     );
                 })
-            ) : (
+            ) : ( 
                 <div className="container-fluid">
                     <div className="spinner-border text-primary" role="status">
                         <span className="sr-only">Loading...</span>
-                    </div>{" "}
+                    </div>{" "} 
                 </div>
             )}
         </>

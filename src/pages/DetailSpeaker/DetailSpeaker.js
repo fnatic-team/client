@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpeakerDetails } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components"
 
 // eslint-disable-next-line no-extend-native
 String.prototype.toTitleCase = function () {
@@ -20,6 +21,21 @@ String.prototype.localIDR = function () {
         minimumFractionDigits: 2,
     });
 };
+
+const Wrapper = styled.div`
+@media (max-width: 576px){
+    .name-text{
+        text-align: center !important;
+    }
+    .section1{
+        box-sizing:border-box;
+    }
+    .social{
+        display: flex !important;
+        flex-direction: row !important;
+        width:100% !important;
+    }
+    }`
 
 function DetailSpeaker() {
     let { id } = useParams();
@@ -55,19 +71,19 @@ function DetailSpeaker() {
             {" "}
             {dataSpeaker !== null ? (
                 <>
-                    <div style={{ margin: "100px 0px 80px 0px" }}>
+                    <Wrapper style={{ margin: "100px 0px 80px 0px" }}>
                         <div
                             className="container"
                             animation="fade-down"
                             duration={1000}
                         >
-                            <div className="row bg-white m-3 border  pad1 shadow-lg">
-                                <div className="col m-3 modal-body text-center align-self-center">
+                            <div className="row-xs bg-white m-3 border  pad1 shadow-lg">
+                                <div className="col  modal-body text-center align-self-center">
                                     <div className="row">
                                         <div className="col-sm">
                                             <div className="col-sm">
                                                 <img
-                                                    className="rounded-circle"
+                                                    className="rounded-circle mb-3"
                                                     src={dataSpeaker.image}
                                                     alt=""
                                                     style={{ width: "200px" }}
@@ -76,7 +92,8 @@ function DetailSpeaker() {
                                         </div>
 
                                         <div className="col-sm">
-                                            <div className="text-left d-flex flex-column h-100 justify-content-center">
+                                            <div className="name-text text-left d-flex flex-column h-100 justify-content-center" 
+                                            >
                                                 <h6 className="font-weight-bold">
                                                     {dataSpeaker.name.toTitleCase()}
                                                 </h6>
@@ -215,7 +232,7 @@ function DetailSpeaker() {
                                     <h4 className="text-left mb-4 font-weight-bold">
                                         Social Media
                                     </h4>
-                                    <div className="row d-flex w-25 justify-content-between ml-2">
+                                    <div className="social row d-flex w-25 justify-content-between ml-2">
                                         <i
                                             className="fa fa-2x fa-facebook-square"
                                             aria-hidden="true"
@@ -244,7 +261,7 @@ function DetailSpeaker() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Wrapper>
                 </>
             ) : (
                 <>
