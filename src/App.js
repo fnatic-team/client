@@ -17,7 +17,6 @@ import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
 import PageSchedule from "./pages/PageAudience/PageAudience";
-import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
 import PrivateRoute from "./helpers/PrivateRoute";
 import RegisterFacebookSpeaker from "./pages/RegisterFacebookSpeaker/RegisterFacebookSpeaker";
 import RegisterFacebookAudience from "./pages/RegisterFacebookAudience/RegisterFacebookAudience";
@@ -91,9 +90,6 @@ function App() {
                         </PrivateRoute>
                         <PrivateRoute exact path="/pembayaran/:id">
                             <Payment />
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/transaksi/detail/:id">
-                            <DetailTransaksi />
                         </PrivateRoute>
                     </Switch>
                     <Footer className="footer" />

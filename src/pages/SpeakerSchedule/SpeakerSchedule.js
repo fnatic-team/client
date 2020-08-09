@@ -31,6 +31,14 @@ function SpeakerSchedule() {
         });
     };
 
+    String.prototype.localIDR = function () {
+        return Number(this).toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 2,
+        });
+    };
+
     return (
         <>
             {dataSpeaker !== null ? (
@@ -118,110 +126,247 @@ function SpeakerSchedule() {
                     </div>
                 </>
             )}
-            
 
-            {dataTransaction !== null ? <div className="container font-smaller" style={{marginBottom: "80px"}}>
-                <div className="row bg-white m-3 border  pad1 shadow-lg" >
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama Acara</th>
-                                <th scope="col">Penyelengara</th>
-                                <th scope="col">Status Transaksi</th>
-                                <th scope="col">Detail Acara</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataTransaction !== null &&
-                                dataTransaction.map((data, index) => {
-                                    return (
-                                        <tr key={data._id}>
-                                            <td>{index + 1}</td>
-                                            <td>
-                                                {data.nama_acara}
-                                            </td>
-                                            <td>
-                                                {data.penyelenggara}
-                                            </td>
-                                            <td>
-                                                {data.status_transaksi.toTitleCase()}
-                                            </td>
+            {dataTransaction !== null ? (
+                <div
+                    className="container font-smaller"
+                    style={{ marginBottom: "80px" }}
+                >
+                    <div className="row bg-white m-3 border  pad1 shadow-lg">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Acara</th>
+                                    <th scope="col">Penyelengara</th>
+                                    <th scope="col">Status Transaksi</th>
+                                    <th scope="col">Detail Acara</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {dataTransaction !== null &&
+                                    dataTransaction.map((data, index) => {
+                                        return (
+                                                <tr key={data._id}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{data.nama_acara}</td>
+                                                    <td>
+                                                        {data.penyelenggara}
+                                                    </td>
+                                                    <td>
+                                                        {data.status_speaker !==
+                                                        "PENDING"
+                                                            ? "Acara Sudah Selesai"
+                                                            : data.status_transaksi.toTitleCase()}
+                                                    </td>
 
-                                            <td>
-                                                <Link
-                                                    to={`/transaksi/detail/${data._id}`}
-                                                >
-                                                    <button className="btn btn-sm btn-primary">
-                                                        Detail Acara
-                                                    </button>
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                {data.status_transaksi ===
-                                                "MENUNGGU KONFIRMASI SPEAKER" ? (
-                                                    <>
+                                                    <td>
                                                         <button
-                                                            onClick={() =>
-                                                                dispatch(
-                                                                    updateStatusTransaksi(
-                                                                        data._id,
-                                                                        "UNDANGAN DITERIMA, MENUNGGU PEMBAYARAN AUDIENCE"
-                                                                    )
-                                                                )
-                                                            }
+                                                            type="button"
                                                             className="btn btn-sm btn-primary"
+                                                            data-toggle="modal"
+                                                            data-target={`#detail${
+                                                                index + 1
+                                                            }`}
                                                         >
-                                                            Terima
-                                                        </button>{" "}
-                                                        <button
-                                                            onClick={() =>
-                                                                dispatch(
-                                                                    updateStatusTransaksi(
-                                                                        data._id,
-                                                                        "UNDANGAN DITOLAK, TRANSAKSI GAGAL"
-                                                                    )
-                                                                )
-                                                            }
-                                                            className="btn btn-sm btn-danger"
-                                                        >
-                                                            Tolak
+                                                            Detail Acara
                                                         </button>
-                                                    </>
-                                                ) : data.status_transaksi ===
-                                                  "ACARA SEDANG BERLANGSUNG" ? (
-                                                    <>
-                                                        <button
-                                                            onClick={() =>
-                                                                dispatch(
-                                                                    updateStatusSpeaker(
-                                                                        data._id,
-                                                                        "SELESAI"
-                                                                    )
-                                                                )
-                                                            }
-                                                            className="btn btn-sm btn-primary"
-                                                        >
-                                                            Selesai
-                                                        </button>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        {" "}
-                                                        <button className="btn btn-sm btn-primary">
-                                                            Selesai
-                                                        </button>
-                                                    </>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
+                                                    </td>
+                                                    <td>
+                                                        {data.status_transaksi ===
+                                                        "MENUNGGU KONFIRMASI SPEAKER" ? (
+                                                            <>
+                                                                <button
+                                                                    onClick={() =>
+                                                                        dispatch(
+                                                                            updateStatusTransaksi(
+                                                                                data._id,
+                                                                                "UNDANGAN DITERIMA, MENUNGGU PEMBAYARAN AUDIENCE"
+                                                                            )
+                                                                        )
+                                                                    }
+                                                                    className="btn btn-sm btn-primary"
+                                                                >
+                                                                    Terima
+                                                                </button>{" "}
+                                                                <button
+                                                                    onClick={() =>
+                                                                        dispatch(
+                                                                            updateStatusTransaksi(
+                                                                                data._id,
+                                                                                "UNDANGAN DITOLAK, TRANSAKSI GAGAL"
+                                                                            )
+                                                                        )
+                                                                    }
+                                                                    className="btn btn-sm btn-danger"
+                                                                >
+                                                                    Tolak
+                                                                </button>
+                                                            </>
+                                                        ) : data.status_transaksi ===
+                                                              "ACARA SEDANG BERLANGSUNG" &&
+                                                          data.status_speaker ===
+                                                              "PENDING" ? (
+                                                            <>
+                                                                <button
+                                                                    onClick={() =>
+                                                                        dispatch(
+                                                                            updateStatusSpeaker(
+                                                                                data._id,
+                                                                                "SELESAI"
+                                                                            )
+                                                                        )
+                                                                    }
+                                                                    className="btn btn-sm btn-primary"
+                                                                >
+                                                                    Selesai
+                                                                </button>
+                                                            </>
+                                                        ) : data.status_speaker ===
+                                                          "SELESAI" ? (
+                                                            <>
+                                                                <button className="btn btn-sm btn-primary">
+                                                                    Selesai
+                                                                </button>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                {" "}
+                                                                <button className="btn btn-sm btn-primary">
+                                                                    Selesai
+                                                                </button>
+                                                            </>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                                
+                                        
+                                        );
+                                    })}
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    {dataTransaction !== null &&
+                dataTransaction.map((data, index) => {
+                    return (
+                        <>
+                            <div
+                                key={data._id}
+                                className="modal fade"
+                                id={`detail${index + 1}`}
+                                tabIndex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                            >
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header text-center">
+                                            <h5
+                                                className="modal-title text-center"
+                                                id="exampleModalLabel"
+                                            >
+                                                Detail Acara
+                                            </h5>
+                                            <button
+                                                type="button"
+                                                className="close"
+                                                data-dismiss="modal"
+                                                aria-label="Close"
+                                            ></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <div className="d-flex flex-column text-left">
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        1. Nama Acara
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.nama_acara}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        2. Nama Penyelenggara
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.penyelenggara}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        3. Nama Audience
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.name}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        4. Nama Speaker
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.speakerID.name}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        5. Alamat Acara
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.alamat}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        6. Jumlah Peserta
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.jml_peserta}
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        7. Durasi Acara
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.durasi} Jam
+                                                    </span>
+                                                </div>
+                                                <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        8. Nilai Transaksi
+                                                    </span>
+                                                    <span className="w-50">
+                                                        :{" "}
+                                                        {`${
+                                                            data.durasi *
+                                                            data.speakerID.fee
+                                                        }`.localIDR()}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button
+                                                type="button"
+                                                className="btn btn-secondary"
+                                                data-dismiss="modal"
+                                            >
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    );
+                })}
                 </div>
-            </div> : <>
+            ) : (
+                <>
                     {" "}
                     <div
                         className="container-fluid"
@@ -238,8 +383,8 @@ function SpeakerSchedule() {
                             <span className="sr-only">Loading...</span>
                         </div>{" "}
                     </div>
-                </>}
-            
+                </>
+            )}
         </>
     );
 }

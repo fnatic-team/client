@@ -57,10 +57,12 @@ function PaymentPage() {
 
     const [formData, setFormData] = useState({
         bukti_transaksi: "",
-        jumlah_bayar: data.durasi * data.speakerID.fee,
+        jumlah_bayar: 0,
         status_transaksi: "ACARA SEDANG BERLANGSUNG",
     });
 
+
+    console.log(formData)
     // eslint-disable-next-line no-extend-native
     String.prototype.localIDR = function () {
         return Number(this).toLocaleString("id-ID", {
@@ -68,6 +70,9 @@ function PaymentPage() {
             currency: "IDR",
             minimumFractionDigits: 2,
         });
+    };
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     return (
@@ -105,8 +110,20 @@ function PaymentPage() {
                                 <span>{dataTransaction[0].alamat} </span>
                             </div>
                         </FormGroup>
+                        <FormGroup style={{ textAlign: "left" }}>
+                        <Label>Jumlah yang Dibayarkan :</Label>
+                        <Input
+                            type="number"
+                            name="jumlah_bayar"
+                            id="jumlah_bayar"
+                            onChange={handleChange}
+                            value={formData.jumlah_bayar}
+                            placeholder="Masukan Jumlah Yang Dibayarkan"
+                        />
+                    </FormGroup>
 
                         <FormGroup style={{ textAlign: "left" }}>
+                            
                             <ReactFilestack
                                 apikey={`${process.env.REACT_APP_API_KEY}`}
                                 customRender={({ onPick }) => (
@@ -132,7 +149,7 @@ function PaymentPage() {
                         <FormGroup style={{ textAlign: "center" }}>
                             <div className="Box">
                                 {dataTransaction !== null &&
-                                    `Total Pembayaran Sebesar ${`${
+                                    `Total Yang Harus Dibayarkan ${`${
                                         dataTransaction[0].durasi *
                                         dataTransaction[0].speakerID.fee
                                     }
