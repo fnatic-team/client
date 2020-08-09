@@ -12,6 +12,10 @@ const Container1 = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
+    @media (max-width: 576px){
+        flex-direction : "column"
+    }
+
 `;
 
 const Container = styled.div`

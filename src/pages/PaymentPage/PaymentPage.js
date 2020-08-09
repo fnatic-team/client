@@ -44,8 +44,6 @@ function PaymentPage() {
         dispatch(updateStatusTransaksiPembayaran(id, formData));
     };
 
-   
-
     useEffect(() => {
         dispatch(getTransactionDetail(id));
         // eslint-disable-next-line
@@ -57,8 +55,6 @@ function PaymentPage() {
         status_transaksi: "ACARA SEDANG BERLANGSUNG",
     });
 
-
- 
     // eslint-disable-next-line no-extend-native
     String.prototype.localIDR = function () {
         return Number(this).toLocaleString("id-ID", {
@@ -107,19 +103,18 @@ function PaymentPage() {
                             </div>
                         </FormGroup>
                         <FormGroup style={{ textAlign: "left" }}>
-                        <Label>Jumlah yang Dibayarkan :</Label>
-                        <Input
-                            type="number"
-                            name="jumlah_bayar"
-                            id="jumlah_bayar"
-                            onChange={handleChange}
-                            value={formData.jumlah_bayar}
-                            placeholder="Masukan Jumlah Yang Dibayarkan"
-                        />
-                    </FormGroup>
+                            <Label>Jumlah yang Dibayarkan :</Label>
+                            <Input
+                                type="number"
+                                name="jumlah_bayar"
+                                id="jumlah_bayar"
+                                onChange={handleChange}
+                                value={formData.jumlah_bayar}
+                                placeholder="Masukan Jumlah Yang Dibayarkan"
+                            />
+                        </FormGroup>
 
                         <FormGroup style={{ textAlign: "left" }}>
-                            
                             <ReactFilestack
                                 apikey={`${process.env.REACT_APP_API_KEY}`}
                                 customRender={({ onPick }) => (
@@ -140,6 +135,22 @@ function PaymentPage() {
                                     })
                                 }
                             />
+                        </FormGroup>
+                        <FormGroup
+                            style={{
+                                textAlign: "left",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            {formData.bukti_transaksi !== "" && (
+                                <img
+                                    style={{ width: "150px", height: "150px" }}
+                                    src={formData.bukti_transaksi}
+                                    alt={formData.image}
+                                />
+                            )}
                         </FormGroup>
 
                         <FormGroup style={{ textAlign: "center" }}>
