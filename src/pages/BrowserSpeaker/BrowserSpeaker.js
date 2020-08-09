@@ -29,11 +29,12 @@ const SearchWrapper = styled.div`
 `;
 
 function BrowserSpeaker() {
-    const [input, setInput] = useState("");
-    const [name, setName] = useState("");
+    let [input, setInput] = useState("");
+    let [name, setName] = useState("");
     const dispatch = useDispatch();
     const dataLocations = useSelector((state) => state.browserSpeaker.location);
     const handleChange = (event) => {
+        console.log(input);
         setInput(event.target.value);
     };
 
@@ -44,6 +45,7 @@ function BrowserSpeaker() {
     const handleClick = (event) => {
         setName(event.target.value);
         console.log(event.target.value);
+        return (input = "");
     };
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
