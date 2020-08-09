@@ -262,7 +262,7 @@ export const updateStatusTransaksiPembayaran = (id, formData) => async (
                 title: `Status Transaksi Berhasil diUpdate`,
             });
 
-            window.location.back();
+            window.history.back();
         } else {
             Swal.fire({
                 icon: "error",

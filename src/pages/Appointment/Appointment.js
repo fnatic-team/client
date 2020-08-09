@@ -117,7 +117,7 @@ function Appointment() {
                             onChange={handleChange}
                             value={formData.waktu_acara}
                             id="waktu_acara"
-                            placeholder="Masukan Waktu Acara"
+                            placeholder="hh:mm"
                         />
                     </FormGroup>
                 </div>
@@ -179,6 +179,7 @@ function Appointment() {
                             name="durasi"
                             onChange={handleChange}
                             value={formData.durasi}
+                            min="0"
                             id="durasi"
                             placeholder="Masukan durasi"
                         />

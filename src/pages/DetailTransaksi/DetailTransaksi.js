@@ -34,7 +34,6 @@ function PaymentPage() {
     const dataTransaction = useSelector(
         (state) => state.transaction.transactionDetail
     );
-    console.log(dataTransaction);
 
     useEffect(() => {
         dispatch(getTransactionDetail(id));

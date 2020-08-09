@@ -16,8 +16,7 @@ import Login from "./pages/Login/Login";
 import Appointment from "./pages/Appointment/Appointment";
 import Profile from "./pages/Profile/Profile";
 import SpeakerSchedule from "./pages/SpeakerSchedule/SpeakerSchedule";
-import PageSchedule from "./pages/PageAudience/PageAudience";
-import DetailTransaksi from "./pages/DetailTransaksi/DetailTransaksi";
+import PageAudience from "./pages/PageAudience/PageAudience";
 import PrivateRoute from "./helpers/PrivateRoute";
 import DetailSpeaker from "./pages/DetailSpeaker/DetailSpeaker";
 import ContactUs from "./pages/ContactUs/ContactUs";
@@ -59,33 +58,21 @@ function App() {
                         <PrivateRoute exact path="/speaker/profile/:id">
                             <Profile />
                         </PrivateRoute>
-                        <PrivateRoute exact path="/speaker/schedule/:id">
+                        <Route exact path="/speaker/schedule/:id">
                             <SpeakerSchedule />
-                        </PrivateRoute>
+                        </Route>
                         <Route exact path="/speaker/:id">
                             <DetailSpeaker />
                         </Route>
                         <Route exact path="/paymentPage">
                             <Payment />
                         </Route>
-                        {/* <Route exact path="/registrasi/speaker/facebook">
-                            <RegisterFacebookSpeaker/>
-                        </Route>
-                         <Route exact path="/registrasi/audience/facebook">
-                            <RegisterFacebookAudience/>
-                        </Route>
-                        <Route exact path="/registrasi/audience/google">
-                            <RegisterGoogleAudience/>
-                        </Route>
-                        <Route exact path="/registrasi/speaker/google">
-                            <RegisterGoogleSpeaker/>
-                        </Route> */}
                         <Route exact path="/contactus">
                             <ContactUs />
                         </Route>
-                        <PrivateRoute exact path="/audience/schedule/:id">
-                            <PageSchedule />
-                        </PrivateRoute>
+                        <Route exact path="/audience/schedule/:id">
+                            <PageAudience />
+                        </Route>
                         <PrivateRoute exact path="/pembayaran/:id">
                             <Payment />
                         </PrivateRoute>
