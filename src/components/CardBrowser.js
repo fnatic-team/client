@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import {
-    fetchAllSpeakers,
-    searchSpeakerByName,
-    searchSpeakerByLocation,
-} from "../redux/actions";
+import { fetchAllSpeakers, searchSpeakerByName } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
@@ -38,17 +34,16 @@ String.prototype.toTitleCase = function () {
     });
 };
 
-function CardBrowser({ props, user, location }) {
+function CardBrowser({ user, location }) {
     const dispatch = useDispatch();
     const dataSpeakers = useSelector((state) => state.browserSpeaker.speakers);
 
     useEffect(() => {
-        if (user !== "") {
-            dispatch(searchSpeakerByName(user));
-        } else if (location === "All Location") {
+        if (location === "All Location") {
             dispatch(fetchAllSpeakers());
-        } else if (location !== "") {
-            dispatch(searchSpeakerByLocation(location));
+        }
+        if (user !== "" || location !== "") {
+            dispatch(searchSpeakerByName(user, location));
         } else {
             dispatch(fetchAllSpeakers());
         }
@@ -126,9 +121,7 @@ function CardBrowser({ props, user, location }) {
                                                 {data.location}
                                             </span>
                                         </p>
-                                        <Link
-                                            to={`/speaker/${data._id}`}
-                                        >
+                                        <Link to={`/speaker/${data._id}`}>
                                             <button className="btn btn-sm btn-primary">
                                                 Detail Profile
                                             </button>

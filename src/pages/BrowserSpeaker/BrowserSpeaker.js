@@ -45,7 +45,6 @@ function BrowserSpeaker() {
 
     const handleClick = (event) => {
         setName(event.target.value);
-        console.log(event.target.value);
     };
     return (
         <div style={{ margin: "100px 0px 100px 0px" }}>
