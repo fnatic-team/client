@@ -57,7 +57,7 @@ function SpeakerSchedule() {
                                                 className="rounded-circle"
                                                 src={dataSpeaker.image}
                                                 alt=""
-                                                style={{ width: "200px" }}
+                                                style={{ width: "200px" , height:"200px" }}
                                             />
                                         </div>
                                     </div>
@@ -96,8 +96,9 @@ function SpeakerSchedule() {
                                                 </span>
                                             </div>
                                             <div className="d-flex flex-row justify-content-between">
-                                                <p>Languages</p>
-                                                <span>Indonesia , English</span>
+                                                <p>Bahasa</p>
+                                                <span> {dataSpeaker.language !== null &&
+                                                        dataSpeaker.language}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -337,6 +338,14 @@ function SpeakerSchedule() {
                                                     </span>
                                                     <span className="w-50">
                                                         : {data.durasi} Jam
+                                                    </span>
+                                                </div>
+                                                   <div className="w-100 d-flex">
+                                                    <span className="w-50">
+                                                        7. Fee Speaker
+                                                    </span>
+                                                    <span className="w-50">
+                                                        : {data.speakerID.fee} / Jam
                                                     </span>
                                                 </div>
                                                 <div className="w-100 d-flex">

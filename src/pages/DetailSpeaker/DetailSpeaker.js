@@ -84,9 +84,9 @@ function DetailSpeaker() {
                                             <div className="col-sm">
                                                 <img
                                                     className="rounded-circle mb-3"
-                                                    src={dataSpeaker.image}
+                                                    src={dataSpeaker !== null && dataSpeaker.image}
                                                     alt=""
-                                                    style={{ width: "200px" }}
+                                                    style={{ width: "200px", height: "200px" }}
                                                 />
                                             </div>
                                         </div>
@@ -95,39 +95,10 @@ function DetailSpeaker() {
                                             <div className="name-text text-left d-flex flex-column h-100 justify-content-center" 
                                             >
                                                 <h6 className="font-weight-bold">
-                                                    {dataSpeaker.name.toTitleCase()}
+                                                    {dataSpeaker !== null && dataSpeaker.name.toTitleCase()}
                                                 </h6>
                                                 <p>
-                                                    {dataSpeaker.category ===
-                                                    "nodejs" ? (
-                                                        <span className="badge badge-pill badge-success">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "reactjs" ? (
-                                                        <span className="badge badge-pill badge-primary">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "angular" ? (
-                                                        <span class="badge badge-pill badge-danger">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "mysql" ? (
-                                                        <span className="badge badge-pill badge-secondary">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "magento" ? (
-                                                        <span className="badge badge-pill badge-dark">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : (
-                                                        <span className="badge badge-pill badge-warning">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    )}
+                                                    {dataSpeaker !== null && dataSpeaker.category}
                                                 </p>
                                                 <div>
                                                     <button

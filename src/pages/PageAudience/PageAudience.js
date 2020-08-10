@@ -62,7 +62,7 @@ function PageAudience() {
                             <div className="col-sm">
                                 <img
                                     className="mt-3 rounded-circle"
-                                    style={{ width: "200px" }}
+                                    style={{ width: "200px", height: "200px"}}
                                     src={dataAudience.image}
                                     alt=""
                                 />
