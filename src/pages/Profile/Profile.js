@@ -57,36 +57,7 @@ function Profile() {
                                                     {dataSpeaker.name.toTitleCase()}
                                                 </h6>
                                                 <p>
-                                                    {dataSpeaker.category ===
-                                                    "nodejs" ? (
-                                                        <span className="badge badge-pill badge-success">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "reactjs" ? (
-                                                        <span class="badge badge-pill badge-primary">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "angular" ? (
-                                                        <span className="badge badge-pill badge-danger">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "mysql" ? (
-                                                        <span className="badge badge-pill badge-secondary">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : dataSpeaker.category ===
-                                                      "magento" ? (
-                                                        <span className="badge badge-pill badge-dark">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    ) : (
-                                                        <span className="badge badge-pill badge-warning">
-                                                            {dataSpeaker.category.toTitleCase()}
-                                                        </span>
-                                                    )}
+                                                    {dataSpeaker.category}
                                                 </p>
                                                 <div>
                                                     <Link
