@@ -173,7 +173,7 @@ function PaymentPage() {
                                         <br />
                                         <span>Bank Name: BCA</span>
                                         <br />
-                                        <span>Account No: xxxxxxx</span>
+                                        <span>Account No: 8574452432</span>
                                         <br />
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@ function PaymentPage() {
                                         <br />
                                         <span>Bank Name: Mandiri</span>
                                         <br />
-                                        <span>Account No: xxxxxxx</span>
+                                        <span>Account No: 2584562523</span>
                                         <br />
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@ function PaymentPage() {
                                         <br />
                                         <span>Bank Name: BTPN</span>
                                         <br />
-                                        <span>Account No: xxxxxxx</span>
+                                        <span>Account No: 2545285858</span>
                                         <br />
                                     </div>
                                 </div>

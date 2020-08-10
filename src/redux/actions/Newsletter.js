@@ -19,7 +19,7 @@ const newsLetter = (formData, history) => async (dispatch) => {
 
     if (result.message === "Add Newsletter succes") {
         Swal.fire({
-            title: "Thak you!",
+            title: "Thank you!",
             text: "",
             icon: "success",
             confirmButtonText: "ok",

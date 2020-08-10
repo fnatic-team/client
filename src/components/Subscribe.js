@@ -21,7 +21,7 @@ function Subscribe() {
     };
 
     return (
-        <Rosa className="container" animation="fade-down" duration={1000}>
+        <Rosa className="container" style={{marginBottom:"50px"}} animation="fade-down" duration={1000}>
             <form
                 onSubmit={handleSubmit}
                 className="row bg-white m-3 border  pad1 shadow"
