@@ -13,6 +13,7 @@ const Wrapper = styled.form`
     padding: 50px;
     margin: auto;
     height: 100%;
+    margin-bottom: 50px;
     .container1 {
         display: flex;
         flex-direction: row;
